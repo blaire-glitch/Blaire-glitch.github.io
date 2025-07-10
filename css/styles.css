@@ -70,6 +70,10 @@ footer {
   min-height: 250px;
   max-width: 250px;
   max-height: 250px;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
 }
 @media (max-width: 767px) {
   .carousel-container {
