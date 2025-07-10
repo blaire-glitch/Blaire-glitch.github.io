@@ -60,18 +60,23 @@ footer {
     }
 .carousel-container {
   box-shadow: 0 0.25rem 1.25rem rgba(0,0,0,0.15);
-  border-radius: 25rem;
-  /*Increasedformoreroundedcorners*/overflow: hidden;
+  border-radius: 50%;
+  overflow: hidden;
   background: #fff;
-  -webkit-border-radius: 25rem;
-  -moz-border-radius: 25rem;
-  -ms-border-radius: 25rem;
-  -o-border-radius: 25rem;
-}
+  width: 250px !important;
+  height: 250px !important;
+  min-width: 250px;
+  min-height: 250px;
+  max-width: 250px;
+  max-height: 250px;
 }
 @media (max-width: 767px) {
   .carousel-container {
-    width: 100% !important;
-    height: 200px !important;
+    width: 180px !important;
+    height: 180px !important;
+    min-width: 180px;
+    min-height: 180px;
+    max-width: 180px;
+    max-height: 180px;
   }
 }
