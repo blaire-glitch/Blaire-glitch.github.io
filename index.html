@@ -15,7 +15,10 @@
      <!-- ...existing code... -->
 <a class="navbar-brand" href="#">
   <img src="images/logo.jpg" alt="Arise Band_KE Logo" style="height: 40px; border-radius: 50%;">
-</a>
+</a><!-- In your navbar, update the Facebook link to use an anchor and add an id to the social feed section -->
+<li class="nav-item">
+  <a class="nav-link" href="#social-feed">Media</a>
+</li>
 <!-- ...existing code... --> 
       <buttonbutton class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -171,12 +174,17 @@
         </div>
       </div>
     </div> <!-- Social Feed Placeholder -->
-      <div class="social-feed mt-3">
-        <h3>Social Feeds</h3>
-        <p>Live updates from our Instagram and Twitter feeds.</p>
-	<div class="fb-page" data-href="https://www.facebook.com/profile.php?id=100092541825052" data-tabs="timeline" data-width="500" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/profile.php?id=100092541825052" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/profile.php?id=100092541825052">A&#039;s Band_ke</a></blockquote></div>
-	<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100092541825052&tabs=timeline&width=500&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-</div>
+    <!-- Update the social feed section with an id -->
+<div id="social-feed" class="social-feed mt-3">
+  <h3>Social Feeds</h3>
+  <p>Live updates from our Instagram and Twitter feeds.</p>
+  <div class="fb-page" data-href="https://www.facebook.com/profile.php?id=100092541825052" data-tabs="timeline" data-width="500" data-height="" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
+    <blockquote cite="https://www.facebook.com/profile.php?id=100092541825052" class="fb-xfbml-parse-ignore">
+      <a href="https://www.facebook.com/profile.php?id=100092541825052">A's Band_ke</a>
+    </blockquote>
+  </div>
+  <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D100092541825052&tabs=timeline&width=500&height=500&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="500" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+</div> 
   </section>
 
   <!-- Events Section -->
