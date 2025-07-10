@@ -33,35 +33,28 @@
   <div class="container">
 
     <!-- Photo Slideshow Start -->
-    <div id="heroCarousel" class="carousel slide mb-4" data-bs-ride="carousel">
-      <div class="carousel-inner rounded shadow">
-        <div class="carousel-item active">
-          <img src="images/slide1.jpg" class="d-block w-100" alt="Band performing">
+  <header class="hero-bg text-white text-center py-5 position-relative overflow-hidden">
+  <div class="hero-slideshow position-absolute top-0 start-0 w-100 h-100">
+    <div id="heroCarousel" class="carousel slide h-100" data-bs-ride="carousel">
+      <div class="carousel-inner h-100">
+        <div class="carousel-item active h-100">
+          <img src="images/slide1.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Band performing">
         </div>
-        <div class="carousel-item">
-          <img src="images/slide2.jpg" class="d-block w-100" alt="Band worship">
+        <div class="carousel-item h-100">
+          <img src="images/slide2.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Band worship">
         </div>
-        <div class="carousel-item">
-          <img src="images/slide3.jpg" class="d-block w-100" alt="Band event">
+        <div class="carousel-item h-100">
+          <img src="images/slide3.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Band event">
         </div>
       </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
     </div>
-    <!-- Photo Slideshow End -->
-
+  </div>
+  <div class="container position-relative z-2">
     <h1 class="display-4">Welcome to Arise Band_KE</h1>
     <p class="lead">Gospel. Groove. Glory.</p>
     <a href="dashboard.html" class="btn btn-primary btn-lg mt-3">Explore Dashboard</a>
   </div>
-</header>
-  
+  <div class="hero-overlay position-absolute top-0 start-0 w-100 h-100"></div>
 
   <!-- About Section -->
   <section id="about" class="py-5 bg-light">
