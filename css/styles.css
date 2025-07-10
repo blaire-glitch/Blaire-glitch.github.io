@@ -1,0 +1,61 @@
+/* Custom styles for Arise Band_KE portfolio website */
+
+/* General styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+h1, h2, h3 {
+    color: #2c3e50;
+}
+
+/* Navbar styles */
+.navbar {
+    margin-bottom: 20px;
+}
+
+/* Hero section styles */
+header {
+    background: url('../images/hero-bg.jpg') no-repeat center center/cover;
+    color: white;
+    padding: 100px 0;
+}
+
+/* About section styles */
+#about {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+}
+
+/* Media section styles */
+#media {
+    padding: 60px 0;
+}
+
+/* Contact section styles */
+#contact {
+    background-color: #f8f9fa;
+    padding: 60px 0;
+}
+
+/* Footer styles */
+footer {
+    background-color: #343a40;
+    color: white;
+    padding: 20px 0;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    header {
+        padding: 50px 0;
+    }
+
+    .navbar {
+        text-align: center;
+    }
+}
