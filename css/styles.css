@@ -63,10 +63,10 @@ footer {
   border-radius: 5rem;
   /*Increasedformoreroundedcorners*/overflow: hidden;
   background: #fff;
-  -webkit-border-radius: 5rem;
-  -moz-border-radius: 5rem;
-  -ms-border-radius: 5rem;
-  -o-border-radius: 5rem;
+  -webkit-border-radius: 10rem;
+  -moz-border-radius: 10rem;
+  -ms-border-radius: 10rem;
+  -o-border-radius: 10rem;
 }
 }
 @media (max-width: 767px) {
