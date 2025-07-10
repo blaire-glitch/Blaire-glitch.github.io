@@ -58,11 +58,12 @@ footer {
     .navbar {
         text-align: center;
     }
-}.carousel-container {
-  /* Already styled inline, but you can move it here if you prefer */
+.carousel-container {
   box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.15);
-  border-radius: 1.5rem;
+  border-radius: 2rem; /* Increased for more rounded corners */
   overflow: hidden;
+  background: #fff;
+}
 }
 @media (max-width: 767px) {
   .carousel-container {
