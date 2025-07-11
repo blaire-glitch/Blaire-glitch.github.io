@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,170 +8,187 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
+
 <body>
 
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
-     <!-- ...existing code... -->
-<a class="navbar-brand" href="#">
-  <img src="images/logo.jpg" alt="Arise Band_KE Logo" style="height: 40px; border-radius: 50%;">
-</a>
-<ul class="navbar-nav">
-  <!-- In your navbar, update the Facebook link to use an anchor and add an id to the social feed section -->
- <li class="nav-item">
-  <a class="nav-link" href="social-feed.html">Social Feeds</a>
-</li>
-<li class="nav-item">
-  <a class="nav-link" href="band-members.html">Band Members</a>
-</li>
-</ul>
-<!-- ...existing code... --> 
-      <buttonbutton class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
+      <!-- ...existing code... -->
+      <a class="navbar-brand" href="#">
+        <img src="images/logo.jpg" alt="Arise Band_KE Logo" style="height: 40px; border-radius: 50%;">
+      </a>
+      <ul class="navbar-nav">
+        <!-- In your navbar, update the Facebook link to use an anchor and add an id to the social feed section -->
+        <li class="nav-item">
+          <a class="nav-link" href="social-feed.html">Social Feeds</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="band-members.html">Band Members</a>
+        </li>
+      </ul>
+      <!-- ...existing code... -->
+      <buttonbutton class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="#vision-mission">Vision & Mission</a></li>
-          <li class="nav-item"><a class="nav-link" href="#media">Media</a></li>
-          <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
-          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        </ul>
-      </div>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+            <li class="nav-item"><a class="nav-link" href="#vision-mission">Vision & Mission</a></li>
+            <li class="nav-item"><a class="nav-link" href="#media">Media</a></li>
+            <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+        </div>
     </div>
   </nav>
 
   <!-- Hero Section -->
-<header class="bg-dark text-white text-center py-5">
-  <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center gap-4">
-    <!-- Floating Slideshow Rectangle -->
-    <div class="carousel-container bg-white rounded-4 shadow-lg overflow-hidden mb-4 mb-md-0" style="width: 400px; height: 250px;">
-      <div id="heroCarousel" class="carousel slide h-100" data-bs-ride="carousel">
-        <div class="carousel-inner h-100">
-          <div class="carousel-item active h-100">
-            <img src="images/slide1.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Band performing">
+  <header class="bg-dark text-white text-center py-5">
+    <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center gap-4">
+      <!-- Floating Slideshow Rectangle -->
+      <div class="carousel-container bg-white rounded-4 shadow-lg overflow-hidden mb-4 mb-md-0"
+        style="width: 400px; height: 250px;">
+        <div id="heroCarousel" class="carousel slide h-100" data-bs-ride="carousel">
+          <div class="carousel-inner h-100">
+            <div class="carousel-item active h-100">
+              <img src="images/slide1.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Band performing">
+            </div>
+            <div class="carousel-item h-100">
+              <img src="images/slide2.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Band worship">
+            </div>
+            <div class="carousel-item h-100">
+              <img src="images/slide3.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Band event">
+            </div>
           </div>
-          <div class="carousel-item h-100">
-            <img src="images/slide2.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Band worship">
-          </div>
-          <div class="carousel-item h-100">
-            <img src="images/slide3.jpg" class="d-block w-100 h-100 object-fit-cover" alt="Band event">
-          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-          <span class="carousel-control-prev-icon"></span>
-          <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-          <span class="carousel-control-next-icon"></span>
-          <span class="visually-hidden">Next</span>
-        </button>
+      </div>
+      <!-- Hero Text -->
+      <div class="flex-grow-1">
+        <h1 class="display-4">Welcome to Arise Band_KE</h1>
+        <p class="lead">Gospel. Groove. Glory.</p>
+        <a href="dashboard.html" class="btn btn-primary btn-lg mt-3">Explore Dashboard</a>
       </div>
     </div>
-    <!-- Hero Text -->
-    <div class="flex-grow-1">
-      <h1 class="display-4">Welcome to Arise Band_KE</h1>
-      <p class="lead">Gospel. Groove. Glory.</p>
-      <a href="dashboard.html" class="btn btn-primary btn-lg mt-3">Explore Dashboard</a>
-    </div>
-  </div>
-</header>
+  </header>
 
   <!-- About Section -->
   <section id="about" class="py-5 bg-light">
-    <section>
-  <h2>📖 Our Story</h2>
-  <p>Founded with a passion for worship and community outreach, Arise Band_Kenya has grown into a vibrant ministry impacting lives through music, prayer, and service. From humble beginnings to powerful concerts and outreach missions, our journey is one of faith, unity, and purpose.</p>
-</section>
-    <div class="container">
-      <h2 class="text-center mb-4">About Us</h2>
-      <p class="text-center">Arise Band_KE is a vibrant gospel band from Kenya, blending soulful harmonies with powerful messages. We perform live, record original music, and inspire through sound. Our mission is rooted in Isaiah 60:1, "Arise, shine, for your light has come, and the glory of the Lord rises upon you."</p>
-    </div>
+
+
+  </section>
+  <div class="container">
+    <h2 class="text-center mb-4">About Us</h2>
+    <p class="text-center">Arise Band_KE is a vibrant gospel band from Kenya, blending soulful harmonies with powerful
+      messages. We perform live, record original music, and inspire through sound. Our mission is rooted in Isaiah 60:1,
+      "Arise, shine, for your light has come, and the glory of the Lord rises upon you."</p>
+  <p>Founded with a passion for worship and community outreach, Arise Band_Kenya has grown into a vibrant ministry impacting lives through music, prayer, and service. From humble beginnings to powerful concerts and outreach missions, our journey is one of faith, unity, and purpose.</p></div>
   </section>
 
   <!-- Vision & Mission Section -->
-<!-- Animate.css & Bootstrap already assumed to be included -->
-<!-- Parallax Background Style -->
-<style>
-  #vision-mission {
-   background-image: url('images/Ariseprac.jpg'); /* Use a high-res subtle worship-themed image */
-    background-attachment: fixed;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-  .card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0.75rem 1.5rem rgba(8, 136, 156, 0.15);
-    transition: all 0.3s ease-in-out;
-  }
-  .card-body {
-    color: #f8f9fa; /* Bootstrap light */
-    font-size: 1.05rem;
-    line-height: 1.7;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.6); /* soft drop shadow */
-  }
+  <!-- Animate.css & Bootstrap already assumed to be included -->
+  <!-- Parallax Background Style -->
+  <style>
+    #vision-mission {
+      background-image: url('images/Ariseprac.jpg');
+      /* Use a high-res subtle worship-themed image */
+      background-attachment: fixed;
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
 
-  .card-title {
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 0 8px rgba(255,255,255,0.5); /* glowing text */
-  }
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0.75rem 1.5rem rgba(8, 136, 156, 0.15);
+      transition: all 0.3s ease-in-out;
+    }
 
-  h2.text-warning {
-    text-shadow: 0 0 12px rgba(255,193,7,0.8); /* gold glow */
-  }
-</style>
-</style>
+    .card-body {
+      color: #f8f9fa;
+      /* Bootstrap light */
+      font-size: 1.05rem;
+      line-height: 1.7;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      /* soft drop shadow */
+    }
 
-<section id="vision-mission" class="py-5 text-white">
-  <div class="container">
-    <h2 class="text-center mb-5 text-warning animate__animated">Vision & Mission</h2>
-    <div class="row">
-      <div class="col-md-6 mb-4">
-        <div class="card bg-dark border-0 rounded h-100 animate__animated">
-          <div class="card-body">
-            <h3 class="card-title text-info">Vision 🌟</h3>
-            <p class="card-text">To be a beacon of light in Busia County and beyond, spreading the gospel of Jesus Christ through music, worship, and ministry, while fostering spiritual growth, unity, and transformation in the community.</p>
+    .card-title {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #fff;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+      /* glowing text */
+    }
+
+    h2.text-warning {
+      text-shadow: 0 0 12px rgba(255, 193, 7, 0.8);
+      /* gold glow */
+    }
+  </style>
+  </style>
+
+  <section id="vision-mission" class="py-5 text-white">
+    <div class="container">
+      <h2 class="text-center mb-5 text-warning animate__animated">Vision & Mission</h2>
+      <div class="row">
+        <div class="col-md-6 mb-4">
+          <div class="card bg-dark border-0 rounded h-100 animate__animated">
+            <div class="card-body">
+              <h3 class="card-title text-info">Vision 🌟</h3>
+              <p class="card-text">To be a beacon of light in Busia County and beyond, spreading the gospel of Jesus
+                Christ through music, worship, and ministry, while fostering spiritual growth, unity, and transformation
+                in the community.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-4">
+          <div class="card bg-dark border-0 rounded h-100 animate__animated">
+            <div class="card-body">
+              <h3 class="card-title text-warning">Mission 🎶</h3>
+              <p class="card-text">To create an atmosphere of worship and praise that elevates the name of Jesus Christ,
+                empowers believers, and attracts the lost through contemporary gospel music rooted in biblical truth,
+                God's love, and the leading of the Holy Spirit.</p>
+            </div>
           </div>
         </div>
       </div>
-      <div class="col-md-6 mb-4">
-        <div class="card bg-dark border-0 rounded h-100 animate__animated">
-          <div class="card-body">
-            <h3 class="card-title text-warning">Mission 🎶</h3>
-            <p class="card-text">To create an atmosphere of worship and praise that elevates the name of Jesus Christ, empowers believers, and attracts the lost through contemporary gospel music rooted in biblical truth, God's love, and the leading of the Holy Spirit.</p>
-          </div>
-        </div>
+
+      <!-- Dismissible Alert -->
+      <div
+        class="alert alert-info alert-dismissible fade show mt-5 text-center shadow-sm rounded animate__animated animate__slideInRight notification-alert"
+        role="alert">
+        🙌 Join us in spreading joy and faith through music and worship — every soul matters!
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     </div>
+  </section>
 
-    <!-- Dismissible Alert -->
-    <div class="alert alert-info alert-dismissible fade show mt-5 text-center shadow-sm rounded animate__animated animate__slideInRight notification-alert" role="alert">
-  🙌 Join us in spreading joy and faith through music and worship — every soul matters!
-  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-  </div>
-</section>
-
-<!-- Scroll-triggered Animation with JavaScript -->
-<script>
-  const animatedElements = document.querySelectorAll('.animate__animated');
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('animate__fadeInUp');
-        observer.unobserve(entry.target);
-      }
+  <!-- Scroll-triggered Animation with JavaScript -->
+  <script>
+    const animatedElements = document.querySelectorAll('.animate__animated');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate__fadeInUp');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.2
     });
-  }, {
-    threshold: 0.2
-  });
 
-  animatedElements.forEach(el => observer.observe(el));
-</script>
+    animatedElements.forEach(el => observer.observe(el));
+  </script>
 
   <!-- Media Section -->
   <section id="media" class="py-5">
@@ -179,7 +197,8 @@
       <div class="row justify-content-center">
         <div class="col-md-6 mb-4">
           <div class="ratio ratio-16x9">
-             <iframe width="100%" height="200" src="https://www.youtube.com/embed/nlGtsI6zp00" frameborder="0" title="Arise Band Video" allowfullscreen></iframe> 
+            <iframe width="100%" height="200" src="https://www.youtube.com/embed/nlGtsI6zp00" frameborder="0"
+              title="Arise Band Video" allowfullscreen></iframe>
           </div>
         </div>
       </div>
@@ -231,14 +250,15 @@
       <a href="https://tiktok.com" class="text-white"><i class="fab fa-tiktok"></i></a>
     </div>
   </footer>
-<script>
-  document.getElementById('showSocialFeed').addEventListener('click', function(e) {
-    e.preventDefault();
-    var feed = document.getElementById('social-feed');
-    feed.style.display = 'block';
-    feed.scrollIntoView({ behavior: 'smooth' });
-  });
-</script>
+  <script>
+    document.getElementById('showSocialFeed').addEventListener('click', function (e) {
+      e.preventDefault();
+      var feed = document.getElementById('social-feed');
+      feed.style.display = 'block';
+      feed.scrollIntoView({ behavior: 'smooth' });
+    });
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
