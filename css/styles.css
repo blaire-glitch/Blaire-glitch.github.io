@@ -126,4 +126,6 @@ footer {
     transform: translateX(-100vw);
     opacity: 1;
   }
+}#social-feed {
+  display: none;
 }
