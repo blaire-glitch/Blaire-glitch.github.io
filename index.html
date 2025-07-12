@@ -11,64 +11,45 @@
 
 <body>
 
-  <!-- Simple Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="images/logo.jpg" alt="Arise Band_KE Logo" style="height: 40px; border-radius: 50%;">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-        <ul class="navbar-nav flex-row flex-nowrap w-100 justify-content-end">
-          <li class="nav-item">
-            <a class="nav-link px-3" href="#about">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="#vision-mission">Vision & Mission</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="#media">Media</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="#events">Events</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="#contact">Contact</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="#social-feeds-card">Social Feeds</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link px-3" href="#band-members-card">Band Members</a>
-          </li>
-        </ul>
-      </div>
+  <!-- Simple Navbar (no container, medium height) -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="min-height: 64px;">
+    <a class="navbar-brand ms-3" href="#">
+      <img src="images/logo.jpg" alt="Arise Band_KE Logo" style="height: 40px; border-radius: 50%;">
+    </a>
+    <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav flex-row flex-nowrap w-100 justify-content-end">
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#vision-mission">Vision & Mission</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#media">Media</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#events">Events</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#social-feeds-card">Social Feeds</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-3" href="#band-members-card">Band Members</a>
+        </li>
+      </ul>
     </div>
   </nav>
-
-  <!-- Social Feeds and Band Members Cards -->
-  <div class="container my-4 d-flex flex-wrap justify-content-center gap-4">
-    <div id="social-feeds-card" class="card shake-on-click" style="width: 18rem; cursor: pointer;">
-      <div class="card-body text-center">
-        <h5 class="card-title">Social Feeds</h5>
-        <p class="card-text">See our latest updates and posts from our social media platforms.</p>
-        <a href="social-feed.html" class="btn btn-primary">View Feeds</a>
-      </div>
-    </div>
-    <div id="band-members-card" class="card shake-on-click" style="width: 18rem; cursor: pointer;">
-      <div class="card-body text-center">
-        <h5 class="card-title">Band Members</h5>
-        <p class="card-text">Meet the talented members of Arise Band_KE.</p>
-        <a href="band-members.html" class="btn btn-primary">View Members</a>
-      </div>
-    </div>
-  </div>
-
   <style>
-    /* Navbar: keep items in a single row, even on mobile */
+    .navbar {
+      min-height: 64px;
+    }
     .navbar-nav {
       flex-direction: row !important;
       flex-wrap: nowrap !important;
@@ -89,30 +70,7 @@
         padding-right: 1rem;
       }
     }
-
-    /* Shake animation for cards */
-    @keyframes shake {
-      0% { transform: translateX(0); }
-      20% { transform: translateX(-8px); }
-      40% { transform: translateX(8px); }
-      60% { transform: translateX(-8px); }
-      80% { transform: translateX(8px); }
-      100% { transform: translateX(0); }
-    }
-    .shake-on-click.shake {
-      animation: shake 0.4s;
-    }
   </style>
-  <script>
-    // Add shake animation on card click
-    document.querySelectorAll('.shake-on-click').forEach(card => {
-      card.addEventListener('click', function () {
-        card.classList.remove('shake');
-        void card.offsetWidth; // trigger reflow
-        card.classList.add('shake');
-      });
-    });
-  </script>
 
   <!-- Hero Section -->
   <header class="bg-dark text-white text-center py-5">
