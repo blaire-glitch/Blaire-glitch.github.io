@@ -178,17 +178,11 @@
       <div class="row">
         <div class="col-md-6 mb-4">
           <div class="card bg-dark border-0 rounded h-100 animate__animated">
-            <div class="card-body">
-                <h3 class="card-title text-info">Vision 🌟</h3>
-                <p class="card-text">To be a beacon of light in Busia County and beyond, spreading the gospel of Jesus
-                Christ through music, worship, and ministry, while fostering spiritual growth, unity, and transformation
-                in the community.</p>
-                <style>
-                #vision-mission {
-                  background-image: none !important;
-                  background-color: #007bff !important; /* Bootstrap blue */
-                }
-                </style>
+            <div class="card-body" style="background-color: #007bff;">
+              <h3 class="card-title text-info">Vision 🌟</h3>
+              <p class="card-text">To be a beacon of light in Busia County and beyond, spreading the gospel of Jesus
+              Christ through music, worship, and ministry, while fostering spiritual growth, unity, and transformation
+              in the community.</p>
             </div>
           </div>
         </div>
@@ -231,11 +225,25 @@
     animatedElements.forEach(el => observer.observe(el));
   </script>
 <section>
-  <h2>🎶 Ministry in Action</h2>
-  <div class="gallery">
-    <img src="concert.jpg" alt="Worship Concert">
-    <img src="outreach.jpg" alt="Community Outreach">
-    <img src="rehearsal.jpg" alt="Band Rehearsal">
+  <div class="container my-5">
+    <h2 class="text-center mb-4">🎶 Ministry in Action</h2>
+    <div class="row justify-content-center">
+      <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+          <img src="concert.jpg" class="card-img-top" alt="Worship Concert">
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+          <img src="outreach.jpg" class="card-img-top" alt="Community Outreach">
+        </div>
+      </div>
+      <div class="col-md-4 mb-3">
+        <div class="card h-100 shadow-sm">
+          <img src="rehearsal.jpg" class="card-img-top" alt="Band Rehearsal">
+        </div>
+      </div>
+    </div>
   </div>
 </section>
   <!-- Media Section -->
@@ -266,10 +274,16 @@
       </ul>
     </div>
   </section>
-<section class="cta">
-  <h2>🤝 Get Involved</h2>
-  <p>Whether you're a worshipper, supporter, or fellow minister, there's a place for you in our journey. Partner with us, invite us to your event, or support our mission.</p>
-  <p><strong>Email:</strong> arisebandkenya@gmail.com</p>
+<section class="cta py-5" style="background: linear-gradient(135deg, #00fff7 0%, #007bff 100%);">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8 text-center text-white">
+        <h2 class="mb-3 fw-bold" style="text-shadow: 0 0 12px #000, 0 0 24px #00fff7;">🤝 Get Involved</h2>
+        <p class="lead mb-3" style="text-shadow: 0 0 8px #007bff;">Whether you're a worshipper, supporter, or fellow minister, there's a place for you in our journey. Partner with us, invite us to your event, or support our mission.</p>
+        <p class="mb-0" style="font-size: 1.2rem;"><strong>Email:</strong> <a href="mailto:arisebandkenya@gmail.com" class="text-white text-decoration-underline">arisebandkenya@gmail.com</a></p>
+      </div>
+    </div>
+  </div>
 </section>
   <!-- Contact Section -->
   <section id="contact" class="bg-light py-5">
