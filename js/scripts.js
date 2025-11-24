@@ -1,36 +1,39 @@
-// This file contains JavaScript code for interactivity on the website, including form submissions, animations, and dynamic content updates.
-
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle form submission for the contact form
+    // =========================
+    // CONTACT FORM HANDLING
+    // =========================
     const contactForm = document.querySelector('form');
     if (contactForm) {
-        // Link the form to Formspree
         contactForm.action = 'https://formspree.io/f/movzqlvj';
         contactForm.method = 'POST';
 
+        // Feedback element
+        const feedback = document.createElement('div');
+        feedback.className = 'form-feedback';
+        contactForm.appendChild(feedback);
+
+        function showFeedback(message, type) {
+            feedback.textContent = message;
+            feedback.style.color = type === 'success' ? 'green' : 'red';
+        }
+
         contactForm.addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent the default form submission
-
-            // Gather form data
+            event.preventDefault();
             const formData = new FormData(contactForm);
-            const name = formData.get('name') || contactForm.querySelector('input[type="text"]')?.value;
-            const email = formData.get('email') || contactForm.querySelector('input[type="email"]')?.value;
-            const message = formData.get('message') || contactForm.querySelector('textarea')?.value;
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const message = formData.get('message');
 
-            // Simple validation
             if (name && email && message) {
-                // Submit to Formspree via fetch (returns JSON when Accept: application/json)
                 fetch(contactForm.action, {
                     method: 'POST',
-                    headers: {
-                        'Accept': 'application/json'
-                    },
+                    headers: { 'Accept': 'application/json' },
                     body: formData
                 })
                 .then(response => {
                     if (response.ok) {
-                        alert(`Thank you, ${name}! Your message has been sent.`);
-                        contactForm.reset(); // Reset the form fields
+                        showFeedback(`Thank you, ${name}! Your message has been sent.`, 'success');
+                        contactForm.reset();
                     } else {
                         return response.json().then(data => {
                             const err = (data && data.error) ? data.error : 'There was a problem sending your message.';
@@ -40,15 +43,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .catch(error => {
                     console.error('Form submission error:', error);
-                    alert('Sorry, there was an error sending your message. Please try again later.');
+                    showFeedback('Sorry, there was an error sending your message. Please try again later.', 'error');
                 });
             } else {
-                alert('Please fill in all fields.');
+                showFeedback('Please fill in all fields.', 'error');
             }
         });
     }
 
-    // Add smooth scrolling for navigation links
+    // =========================
+    // SMOOTH SCROLLING
+    // =========================
     const navLinks = document.querySelectorAll('a[href^="#"]');
     navLinks.forEach(link => {
         link.addEventListener('click', function(event) {
@@ -60,4 +65,71 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+
+    // =========================
+    // SCROLL-TO-TOP BUTTON
+    // =========================
+    const scrollBtn = document.createElement('button');
+    scrollBtn.textContent = "↑";
+    scrollBtn.id = "scrollTopBtn";
+    scrollBtn.style.position = "fixed";
+    scrollBtn.style.bottom = "20px";
+    scrollBtn.style.right = "20px";
+    scrollBtn.style.display = "none";
+    scrollBtn.style.padding = "10px 15px";
+    scrollBtn.style.borderRadius = "50%";
+    scrollBtn.style.border = "none";
+    scrollBtn.style.background = "#4a148c";
+    scrollBtn.style.color = "#fff";
+    scrollBtn.style.cursor = "pointer";
+    document.body.appendChild(scrollBtn);
+
+    window.addEventListener('scroll', () => {
+        scrollBtn.style.display = window.scrollY > 300 ? "block" : "none";
+    });
+
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // =========================
+    // REVEAL ANIMATIONS
+    // =========================
+    const revealElements = document.querySelectorAll('.reveal');
+    function revealOnScroll() {
+        revealElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight - 100) {
+                el.classList.add('active');
+            }
+        });
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // run once on load
+
+    // =========================
+    // MOBILE MENU TOGGLE
+    // =========================
+    const menuToggle = document.querySelector('#menu-toggle');
+    const navMenu = document.querySelector('#nav-menu');
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+        });
+    }
+
+    // =========================
+    // LAZY LOADING IMAGES
+    // =========================
+    const lazyImages = document.querySelectorAll('img[data-src]');
+    const imgObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                observer.unobserve(img);
+            }
+        });
+    });
+    lazyImages.forEach(img => imgObserver.observe(img));
 });
