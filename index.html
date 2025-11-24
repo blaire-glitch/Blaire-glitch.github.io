@@ -443,59 +443,159 @@
       </script>
     </div>
   </section>
-<section class="cta py-5" style="background: linear-gradient(135deg, #00fff7 0%, #007bff 100%);">
-  <div class="container">
-    <div class="row justify-content-center">
+<section class="cta py-5" aria-label="Support CTA"
+  style="background: linear-gradient(180deg, rgba(28,18,8,0.55), rgba(28,18,8,0.55)), url('images/concert.jpg') center/cover no-repeat; color: #f7efe6;">
+  <style>
+    /* Vintage with a touch of class (local to CTA section) */
+    .cta .vintage-container { font-family: Georgia, 'Times New Roman', serif; }
+
+    .cta h2 {
+      color: #fff8ee;
+      font-weight: 700;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 0 10px rgba(255,238,210,0.06);
+      letter-spacing: 0.6px;
+      font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+    }
+
+    .cta p.lead {
+      color: rgba(255, 250, 240, 0.95);
+      font-size: 1.05rem;
+      text-shadow: 0 1px 6px rgba(0,0,0,0.55);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Accent bar under heading */
+    .cta .accent-bar {
+      height: 6px;
+      width: 76px;
+      background: linear-gradient(90deg, rgba(255,236,193,0.98), rgba(180,140,95,0.95));
+      margin: 12px auto 22px;
+      border-radius: 3px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+    }
+
+    /* Buttons - vintage variants */
+    .btn-vintage {
+      background: linear-gradient(180deg, #f7e7c8 0%, #e7cfa6 100%);
+      color: #2b1b10;
+      border: 1px solid rgba(80,55,34,0.12);
+      box-shadow: 0 8px 26px rgba(18,10,6,0.45), inset 0 1px 0 rgba(255,255,255,0.6);
+      border-radius: 8px;
+      padding: .6rem 1.1rem;
+      font-weight: 700;
+      transition: transform .12s ease, box-shadow .12s ease;
+    }
+    .btn-vintage:hover { transform: translateY(-3px); box-shadow: 0 14px 38px rgba(18,10,6,0.5); }
+
+    .btn-outline-vintage {
+      background: transparent;
+      color: #fff8ee;
+      border: 1px solid rgba(255, 250, 240, 0.18);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+      border-radius: 8px;
+      padding: .55rem 1rem;
+    }
+    .btn-outline-vintage:hover {
+      background: rgba(255,250,240,0.06);
+      transform: translateY(-2px);
+    }
+
+    /* Quick pledge card - semi-transparent parchment */
+    .vintage-card {
+      background: rgba(255, 249, 238, 0.92);
+      border-radius: 10px;
+      padding: 18px;
+      box-shadow: 0 12px 30px rgba(6,4,2,0.45), inset 0 1px 0 rgba(255,255,255,0.6);
+      color: #2b1b10;
+      border: 1px solid rgba(120,90,60,0.08);
+    }
+    .vintage-card .card-title { font-weight: 700; margin-bottom: .6rem; color: #2b1b10; }
+
+    /* Form controls - soft parchment look */
+    .vintage-card .form-control {
+      background: rgba(245,238,226,0.95);
+      border: 1px solid rgba(140,105,75,0.18);
+      padding: .6rem .75rem;
+      color: #2b1b10;
+      border-radius: 6px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
+      transition: transform .08s ease, box-shadow .08s ease;
+    }
+    .vintage-card .form-control:focus {
+      outline: none;
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(18,10,6,0.16);
+      border-color: rgba(120,90,60,0.3);
+    }
+
+    /* Small print */
+    .cta .muted-note { color: rgba(247,239,230,0.9); font-size: .88rem; }
+
+    @media (max-width: 767.98px) {
+      .vintage-card { margin-top: 1rem; }
+      .cta .accent-bar { margin-bottom: 14px; }
+    }
+  </style>
+
+  <div class="container vintage-container">
+    <div class="row justify-content-center align-items-start">
       <div class="col-md-8 text-center text-white">
-        <h2 class="mb-3 fw-bold" style="text-shadow: 0 0 12px #000, 0 0 24px #00fff7;">🤝 Stand With Arise — Pledge Support</h2>
-        <p class="lead mb-3" style="text-shadow: 0 0 8px #007bff;">Join our mission to lift hearts and communities through worship. Pledge a one-time gift or a regular contribution — every gift helps us reach more lives.</p>
-        <p class="mb-3" style="font-size: 1.05rem;"></p>
+        <h2 class="mb-2 fw-bold">
+          <span aria-hidden="true" style="display:inline-block; transform:rotate(18deg); margin-right:10px; font-size:1.1em; line-height:1;">
+            🕊️
+          </span>
+          Stand With Arise — Pledge Support
+        </h2>
+        <div class="accent-bar" aria-hidden="true"></div>
+        <p class="lead">Join our mission to lift hearts and communities through worship. Pledge a one-time gift or a regular contribution — every gift helps us reach more lives.</p>
+        <p class="mb-3" style="font-size: 1.02rem; color: #fff9ef; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">
           Prefer to chat first? Email us at
           <a href="mailto:arisebandkenya@gmail.com" class="text-white text-decoration-underline">arisebandkenya@gmail.com</a>.
         </p>
 
-        <div class="d-flex justify-content-center gap-3 flex-wrap">
-          <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#mpesaModal" aria-controls="mpesaModal">
-        📱 Pledge via M-Pesa
+        <div class="d-flex justify-content-center gap-3 flex-wrap" role="group" aria-label="Donation actions">
+          <button class="btn-vintage" data-bs-toggle="modal" data-bs-target="#mpesaModal" aria-controls="mpesaModal">
+            📱 Pledge via M-Pesa
           </button>
-          <a href="online-payments.html" class="btn btn-outline-light btn-lg" role="button" aria-label="Give online">
-        🌐 Give Online (Secure)
+          <button type="button" class="btn btn-outline-vintage btn-lg d-flex align-items-center gap-2" aria-label="Give online" onclick="location.href='online-payments.html'">
+            <span aria-hidden="true">🌐</span>
+            <span>Give Online</span>
+            <small class="text-muted ms-2" style="font-size:0.85rem;">Secure</small>
+          </button>
           </a>
-          <button class="btn btn-warning btn-lg text-dark" data-bs-toggle="modal" data-bs-target="#pledgeModal">
-        ✨ Make a Pledge
+          <button class="btn btn-warning btn-lg text-dark" data-bs-toggle="m</span>odal" data-bs-target="#pledgeModal">
+            Make a Pledge
           </button>
         </div>
 
-        <p class="mt-3 mb-0 small" style="opacity:0.9;">M-Pesa: Paybill 123456 (use your name/phone as Account). Replace with your official paybill/till when ready. Online payments processed securely — we never store payment credentials.</p>
+        <p class="mt-3 mb-0 small muted-note">M-Pesa: Payb</svg>ill 123456 (use your name/phone as Account). Replace with your official paybill/till when ready. Online payments processed securely — we never store payment credentials.</p>
       </div>
 
       <div class="col-md-4 col-sm-8 mt-4 mt-md-0">
-        <div class="card bg-white text-dark rounded-3 shadow-sm">
-          <div class="card-body">
-        <h5 class="card-title mb-3">Quick Pledge</h5>
-        <form id="quickPledgeForm" class="row g-2" novalidate>
-          <div class="col-12">
-            <label for="pledgeAmount" class="form-label visually-hidden">Amount</label>
-            <input id="pledgeAmount" name="amount" type="number" min="1" class="form-control" placeholder="Amount (KES)" required>
-          </div>
-          <div class="col-12">
-            <label for="pledgePhone" class="form-label visually-hidden">Phone (for M-Pesa)</label>
-            <input id="pledgePhone" name="phone" type="tel" class="form-control" placeholder="Phone (07XXXXXXXX)" required>
-          </div>
-          <div class="col-12">
-            <label for="pledgeNote" class="form-label visually-hidden">Note</label>
-            <input id="pledgeNote" name="note" type="text" class="form-control" placeholder="Note (optional)">
-          </div>
-          <div class="col-12 d-grid">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mpesaModal">
-          Prepare M-Pesa Payment
-            </button>
-          </div>
-          <div class="col-12 text-center mt-2">
-            <small class="text-muted">Or tap "Give Online" for card, mobile money or QR pay.</small>
-          </div>
-        </form>
-          </div>
+        <div class="vintage-card">
+          <h5 class="card-title mb-3">Quick Pledge</h5>
+          <form id="quickPledgeForm" class="row g-2" novalidate>
+            <div class="col-12">
+              <label for="pledgeAmount" class="form-label visually-hidden">Amount</label>
+              <input id="pledgeAmount" name="amount" type="number" min="1" class="form-control" placeholder="Amount (KES)" required>
+            </div>
+            <div class="col-12">
+              <label for="pledgePhone" class="form-label visually-hidden">Phone (for M-Pesa)</label>
+              <input id="pledgePhone" name="phone" type="tel" class="form-control" placeholder="Phone (07XXXXXXXX)" required>
+            </div>
+            <div class="col-12">
+              <label for="pledgeNote" class="form-label visually-hidden">Note</label>
+              <input id="pledgeNote" name="note" type="text" class="form-control" placeholder="Note (optional)">
+            </div>
+            <div class="col-12 d-grid">
+              <button type="button" class="btn btn-vintage" data-bs-toggle="modal" data-bs-target="#mpesaModal">
+                Prepare M-Pesa Payment
+              </button>
+            </div>
+            <div class="col-12 text-center mt-2">
+              <small class="text-muted">Or tap "Give Online" for card, mobile money or QR pay.</small>
+            </div>
+          </form>
         </div>
       </div>
 
@@ -503,28 +603,28 @@
       <div class="modal fade" id="mpesaModal" tabindex="-1" aria-labelledby="mpesaModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="mpesaModalLabel">How to Give via M-Pesa</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <ol class="mb-3">
-            <li>Open the M-Pesa menu on your phone.</li>
-            <li>Select "Lipa na M-Pesa" → "Paybill".</li>
-            <li>Enter Paybill: <strong>123456</strong></li>
-            <li>Account: <em>Your Name or Phone Number</em></li>
-            <li>Enter Amount and your M-Pesa PIN, then send.</li>
-            <li>Save the SMS confirmation and share it with us at <a href="mailto:arisebandkenya@gmail.com">arisebandkenya@gmail.com</a> or via WhatsApp.</li>
-          </ol>
-          <div class="text-center">
-            <img src="images/qr-placeholder.png" alt="QR code placeholder" class="img-fluid rounded" style="max-width:160px;">
-            <p class="small mt-2 text-muted mb-0">Scan QR (if available) for quick pay.</p>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <a href="mailto:arisebandkenya@gmail.com" class="btn btn-primary">Send Payment Receipt</a>
-        </div>
+            <div class="modal-header">
+              <h5 class="modal-title" id="mpesaModalLabel">How to Give via M-Pesa</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <ol class="mb-3">
+                <li>Open the M-Pesa menu on your phone.</li>
+                <li>Select "Lipa na M-Pesa" → "Paybill".</li>
+                <li>Enter Paybill: <strong>123456</strong></li>
+                <li>Account: <em>Your Name or Phone Number</em></li>
+                <li>Enter Amount and your M-Pesa PIN, then send.</li>
+                <li>Save the SMS confirmation and share it with us at <a href="mailto:arisebandkenya@gmail.com">arisebandkenya@gmail.com</a> or via WhatsApp.</li>
+              </ol>
+              <div class="text-center">
+                <img src="images/qr-placeholder.png" alt="QR code placeholder" class="img-fluid rounded" style="max-width:160px;">
+                <p class="small mt-2 text-muted mb-0">Scan QR (if available) for quick pay.</p>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <a href="mailto:arisebandkenya@gmail.com" class="btn btn-primary">Send Payment Receipt</a>
+            </div>
           </div>
         </div>
       </div>
@@ -533,16 +633,18 @@
       <div class="modal fade" id="pledgeModal" tabindex="-1" aria-labelledby="pledgeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-sm modal-dialog-centered">
           <div class="modal-content">
-        <div class="modal-body text-center py-4">
-          <h5 class="mb-2">Thank you!</h5>
-          <p class="small mb-3">We appreciate your heart to support Arise. Follow the steps in the M-Pesa modal or choose Give Online to complete your gift.</p>
-          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Got it — close</button>
-        </div>
+            <div class="modal-body text-center py-4">
+              <h5 class="mb-2">Thank you!</h5>
+              <p class="small mb-3">We appreciate your heart to support Arise. Follow the steps in the M-Pesa modal or choose Give Online to complete your gift.</p>
+              <button type="button" class="btn btn-success" data-bs-dismiss="modal">Got it — close</button>
+            </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
+</section>
 </section>
   <!-- Contact Section (full-width, catchy colors & styles) -->
   <section id="contact" class="py-5 position-relative overflow-hidden" aria-labelledby="contactHeading">
