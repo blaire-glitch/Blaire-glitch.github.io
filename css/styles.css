@@ -143,4 +143,19 @@ footer {
 .btn-secondary:hover {
   background-color: #f9a825; /* deeper gold */
   border-color: #f9a825;
+}/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Form feedback */
+.form-feedback {
+  margin-top: 10px;
+  font-weight: bold;
 }
