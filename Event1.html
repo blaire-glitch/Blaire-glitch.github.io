@@ -10,7 +10,7 @@
 
   <div class="container my-5">
     <h1 class="mb-4">Open Heaven Experience</h1>
-    <img src="event1.jpg" class="img-fluid mb-4" alt="Open Heaven Experience Poster">
+    <img src="images/event1.png" class="img-fluid mb-4" alt="Open Heaven Experience Poster">
 
     <p><strong>Date:</strong> Dec 15, 2025</p>
     <p><strong>Location:</strong> Busia Stadium</p>
@@ -21,18 +21,17 @@
     </p>
 
     <!-- RSVP Form -->
-    <form class="mt-4">
-      <div class="mb-3">
-        <label for="name" class="form-label">Your Name</label>
-        <input type="text" class="form-control" id="name" placeholder="Enter your name">
-      </div>
-      <div class="mb-3">
-        <label for="email" class="form-label">Your Email</label>
-        <input type="email" class="form-control" id="email" placeholder="Enter your email">
-      </div>
-      <button type="submit" class="btn btn-primary">RSVP</button>
-    </form>
-
+   <form action="https://formspree.io/f/movzqlvj" method="POST"></form>
+  <div class="mb-3">
+    <label for="name" class="form-label">Your Name</label>
+    <input type="text" class="form-control" id="name" name="name" required>
+  </div>
+  <div class="mb-3">
+    <label for="email" class="form-label">Your Email</label>
+    <input type="email" class="form-control" id="email" name="email" required>
+  </div>
+  <button type="submit" class="btn btn-primary">RSVP</button>
+</form> 
     <a href="index.html#events" class="btn btn-secondary mt-3">Back to Events</a>
   </div>
 
