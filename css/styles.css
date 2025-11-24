@@ -128,4 +128,19 @@ footer {
   }
 }#social-feed {
   display: none;
+}:root {
+  --bs-primary: #6a1b9a;   /* Deep Purple */
+  --bs-secondary: #fbc02d; /* Gold */
+  --bs-light: #ffffff;     /* White */
+}
+
+/* Optional: custom button hover */
+.btn-primary:hover {
+  background-color: #4a148c; /* darker purple */
+  border-color: #4a148c;
+}
+
+.btn-secondary:hover {
+  background-color: #f9a825; /* deeper gold */
+  border-color: #f9a825;
 }
