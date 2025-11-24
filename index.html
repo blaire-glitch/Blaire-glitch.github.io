@@ -203,21 +203,24 @@
   </script>
 <section>
   <div class="container my-5">
-    <h2 class="text-center mb-4">🎶 Ministry in Action</h2>
+    <h2 class="text-center mb-4">
+      <img src="images/logo.jpg" alt="Arise Band Logo" style="height:40px; width:40px; object-fit:cover; vertical-align:middle; margin-right:10px; border-radius:50%;">
+      Ministry in Action
+    </h2></h2>
     <div class="row justify-content-center">
       <div class="col-md-4 mb-3">
         <div class="card h-100 shadow-sm">
-          <img src="concert.jpg" class="card-img-top" alt="Worship Concert">
+          <img src="images/concert.jpg" class="card-img-top" alt="Worship Concert">
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <div class="card h-100 shadow-sm">
-          <img src="outreach.jpg" class="card-img-top" alt="Community Outreach">
+          <img src="images/outreach.jpg" class="card-img-top" alt="Community Outreach">
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <div class="card h-100 shadow-sm">
-          <img src="rehearsal.jpg" class="card-img-top" alt="Band Rehearsal">
+          <img src="images/rehearsal.jpg" class="card-img-top" alt="Band Rehearsal">
         </div>
       </div>
     </div>
@@ -245,10 +248,199 @@
     <div class="container">
       <h2 class="text-center mb-4">Upcoming Events</h2>
       <ul class="list-group">
-        <li class="list-group-item">Event 1 - Date</li>
+        <li class="list-group-item d-flex align-items-center">
+          <div class="d-flex align-items-center">
+        <style>
+          /* Heartbeat + glow for event thumbnail */
+          .event-logo-wrap {
+            width: 64px;
+            height: 64px;
+            margin-right: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: visible;
+          }
+
+          .event-logo {
+            height: 64px;
+            width: auto;
+            object-fit: cover;
+            border-radius: 6px;
+            transform-origin: center;
+            z-index: 1;
+            display: block;
+            /* quick, slightly bouncy heartbeat */
+            animation: heartbeat 1.2s cubic-bezier(.4,0,.2,1) infinite;
+            will-change: transform, filter;
+            box-shadow: 0 0 0 rgba(0,0,0,0);
+            transition: opacity .5s ease;
+          }
+
+          /* soft colored glow that grows and fades, giving effect of "fading into" the logo */
+          .event-logo-wrap::before {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center,
+          rgba(255,193,7,0.90) 0%,
+          rgba(255,193,7,0.55) 18%,
+          rgba(0,123,255,0.14) 45%,
+          rgba(0,123,255,0.06) 60%,
+          rgba(0,0,0,0) 100%);
+            filter: blur(10px);
+            z-index: 0;
+            opacity: 0;
+            pointer-events: none;
+            mix-blend-mode: screen;
+            animation: glowFade 2.4s ease-in-out infinite;
+            will-change: transform, opacity, filter;
+          }
+
+          /* Slight inner sheen to make glow appear to "enter" the image on peak */
+          .event-logo-wrap::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0.96);
+            width: 54px;
+            height: 54px;
+            border-radius: 8px;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), rgba(255,255,255,0) 40%);
+            z-index: 2;
+            opacity: 0;
+            animation: innerSheen 2.4s ease-in-out infinite;
+            pointer-events: none;
+          }
+
+          @keyframes heartbeat {
+            0%   { transform: scale(1); }
+            14%  { transform: scale(1.08); }
+            28%  { transform: scale(0.98); }
+            42%  { transform: scale(1.06); }
+            70%  { transform: scale(1); }
+            100% { transform: scale(1); }
+          }
+
+          @keyframes glowFade {
+            0%   { opacity: 0; transform: translate(-50%, -50%) scale(1); filter: blur(8px); }
+            20%  { opacity: 0.9; transform: translate(-50%, -50%) scale(1.25); filter: blur(10px); }
+            45%  { opacity: 0.6; transform: translate(-50%, -50%) scale(1.5); filter: blur(12px); }
+            70%  { opacity: 0.2; transform: translate(-50%, -50%) scale(1.9); filter: blur(14px); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(2.2); filter: blur(16px); }
+          }
+
+          @keyframes innerSheen {
+            0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.96); }
+            25%  { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
+            45%  { opacity: 0.35; transform: translate(-50%, -50%) scale(1.02); }
+            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.04); }
+          }
+        </style>
+
+        <div class="event-logo-wrap" aria-hidden="true">
+          <img id="eventLogo" src="images/event1.png" alt="Event 1 Poster" class="event-logo" />
+        </div>
+        <div>
+          <div class="fw-bold">Open Heaven Experience - Concert</div>
+          <div class="small text-muted">15 Dec 2025 • 7:00 PM</div>
+          <div class="small text-warning" id="countdown-event1" aria-live="polite">Loading countdown…</div>
+        </div>
+          </div>
+
+          <div class="ms-auto">
+        <a href="#" data-bs-toggle="modal" data-bs-target="#event1Modal" class="h6 mb-0 text-decoration-none">View Poster</a>
+          </div>
+        </li>
+
+        <!-- Event 1 Poster Modal -->
+        <div class="modal fade" id="event1Modal" tabindex="-1" aria-labelledby="event1ModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg"></div>
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header border-0">
+            <h5 class="modal-title" id="event1ModalLabel">Event 1 — Poster</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body p-0">
+            <img src="images/event1.png" alt="Event 1 Poster" class="img-fluid w-100">
+          </div>
+          <div class="modal-footer border-0">
+            <a href="images/event1.png" download class="btn btn-primary">Download Poster</a>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+          </div>
+        </div>
+
         <li class="list-group-item">Event 2 - Date</li>
         <li class="list-group-item">Event 3 - Date</li>
       </ul>
+
+      <script>
+        (function () {
+          // Countdown
+          const targetDate = new Date(2025, 11, 15, 19, 0, 0); // 15 Dec 2025 19:00 local time
+          const el = document.getElementById('countdown-event1');
+
+          function format(n) { return n.toString().padStart(2, '0'); }
+
+          function updateCountdown() {
+        const now = new Date();
+        let diff = targetDate - now;
+        if (diff <= 0) {
+          el.textContent = 'Event started';
+          clearInterval(countdownTimer);
+          return;
+        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        diff -= days * (1000 * 60 * 60 * 24);
+        const hours = Math.floor(diff / (1000 * 60 * 60));
+        diff -= hours * (1000 * 60 * 60);
+        const minutes = Math.floor(diff / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        el.textContent = `${days}d ${format(hours)}h ${format(minutes)}m ${format(seconds)}s`;
+          }
+
+          updateCountdown();
+          const countdownTimer = setInterval(updateCountdown, 1000);
+
+          // Alternate between event poster and band logo with heartbeat effect
+          const logoEl = document.getElementById('eventLogo');
+          const sources = ['images/event1.png', 'images/logo.jpg'];
+          let idx = 0;
+
+          function swapLogo() {
+        idx = (idx + 1) % sources.length;
+        // fade out -> swap src -> restart heartbeat animation -> fade in
+        logoEl.style.opacity = 0;
+        setTimeout(() => {
+          logoEl.src = sources[idx];
+          logoEl.alt = idx === 0 ? 'Event 1 Poster' : 'Arise Band Logo';
+          // restart CSS animation by reflow trick
+          logoEl.classList.remove('event-logo');
+          void logoEl.offsetWidth;
+          logoEl.classList.add('event-logo');
+          logoEl.style.opacity = 1;
+        }, 400);
+          }
+
+          // Start swapping every 2.5 seconds (adjust as desired)
+          const swapInterval = 2500;
+          const swapTimer = setInterval(swapLogo, swapInterval);
+
+          // Pause swapping when modal is open to avoid confusing poster view
+          const modalEl = document.getElementById('event1Modal');
+          modalEl && modalEl.addEventListener('show.bs.modal', () => clearInterval(swapTimer));
+        })();
+      </script>
     </div>
   </section>
 <section class="cta py-5" style="background: linear-gradient(135deg, #00fff7 0%, #007bff 100%);">
