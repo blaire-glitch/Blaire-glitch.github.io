@@ -447,9 +447,99 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-md-8 text-center text-white">
-        <h2 class="mb-3 fw-bold" style="text-shadow: 0 0 12px #000, 0 0 24px #00fff7;">🤝 Get Involved</h2>
-        <p class="lead mb-3" style="text-shadow: 0 0 8px #007bff;">Whether you're a worshipper, supporter, or fellow minister, there's a place for you in our journey. Partner with us, invite us to your event, or support our mission.</p>
-        <p class="mb-0" style="font-size: 1.2rem;"><strong>Email:</strong> <a href="mailto:arisebandkenya@gmail.com" class="text-white text-decoration-underline">arisebandkenya@gmail.com</a></p>
+        <h2 class="mb-3 fw-bold" style="text-shadow: 0 0 12px #000, 0 0 24px #00fff7;">🤝 Stand With Arise — Pledge Support</h2>
+        <p class="lead mb-3" style="text-shadow: 0 0 8px #007bff;">Join our mission to lift hearts and communities through worship. Pledge a one-time gift or a regular contribution — every gift helps us reach more lives.</p>
+        <p class="mb-3" style="font-size: 1.05rem;"></p>
+          Prefer to chat first? Email us at
+          <a href="mailto:arisebandkenya@gmail.com" class="text-white text-decoration-underline">arisebandkenya@gmail.com</a>.
+        </p>
+
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+          <button class="btn btn-light btn-lg" data-bs-toggle="modal" data-bs-target="#mpesaModal" aria-controls="mpesaModal">
+        📱 Pledge via M-Pesa
+          </button>
+          <a href="online-payments.html" class="btn btn-outline-light btn-lg" role="button" aria-label="Give online">
+        🌐 Give Online (Secure)
+          </a>
+          <button class="btn btn-warning btn-lg text-dark" data-bs-toggle="modal" data-bs-target="#pledgeModal">
+        ✨ Make a Pledge
+          </button>
+        </div>
+
+        <p class="mt-3 mb-0 small" style="opacity:0.9;">M-Pesa: Paybill 123456 (use your name/phone as Account). Replace with your official paybill/till when ready. Online payments processed securely — we never store payment credentials.</p>
+      </div>
+
+      <div class="col-md-4 col-sm-8 mt-4 mt-md-0">
+        <div class="card bg-white text-dark rounded-3 shadow-sm">
+          <div class="card-body">
+        <h5 class="card-title mb-3">Quick Pledge</h5>
+        <form id="quickPledgeForm" class="row g-2" novalidate>
+          <div class="col-12">
+            <label for="pledgeAmount" class="form-label visually-hidden">Amount</label>
+            <input id="pledgeAmount" name="amount" type="number" min="1" class="form-control" placeholder="Amount (KES)" required>
+          </div>
+          <div class="col-12">
+            <label for="pledgePhone" class="form-label visually-hidden">Phone (for M-Pesa)</label>
+            <input id="pledgePhone" name="phone" type="tel" class="form-control" placeholder="Phone (07XXXXXXXX)" required>
+          </div>
+          <div class="col-12">
+            <label for="pledgeNote" class="form-label visually-hidden">Note</label>
+            <input id="pledgeNote" name="note" type="text" class="form-control" placeholder="Note (optional)">
+          </div>
+          <div class="col-12 d-grid">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#mpesaModal">
+          Prepare M-Pesa Payment
+            </button>
+          </div>
+          <div class="col-12 text-center mt-2">
+            <small class="text-muted">Or tap "Give Online" for card, mobile money or QR pay.</small>
+          </div>
+        </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- M-Pesa Instructions Modal -->
+      <div class="modal fade" id="mpesaModal" tabindex="-1" aria-labelledby="mpesaModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="mpesaModalLabel">How to Give via M-Pesa</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ol class="mb-3">
+            <li>Open the M-Pesa menu on your phone.</li>
+            <li>Select "Lipa na M-Pesa" → "Paybill".</li>
+            <li>Enter Paybill: <strong>123456</strong></li>
+            <li>Account: <em>Your Name or Phone Number</em></li>
+            <li>Enter Amount and your M-Pesa PIN, then send.</li>
+            <li>Save the SMS confirmation and share it with us at <a href="mailto:arisebandkenya@gmail.com">arisebandkenya@gmail.com</a> or via WhatsApp.</li>
+          </ol>
+          <div class="text-center">
+            <img src="images/qr-placeholder.png" alt="QR code placeholder" class="img-fluid rounded" style="max-width:160px;">
+            <p class="small mt-2 text-muted mb-0">Scan QR (if available) for quick pay.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="mailto:arisebandkenya@gmail.com" class="btn btn-primary">Send Payment Receipt</a>
+        </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pledge Confirmation Modal -->
+      <div class="modal fade" id="pledgeModal" tabindex="-1" aria-labelledby="pledgeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm modal-dialog-centered">
+          <div class="modal-content">
+        <div class="modal-body text-center py-4">
+          <h5 class="mb-2">Thank you!</h5>
+          <p class="small mb-3">We appreciate your heart to support Arise. Follow the steps in the M-Pesa modal or choose Give Online to complete your gift.</p>
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Got it — close</button>
+        </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
