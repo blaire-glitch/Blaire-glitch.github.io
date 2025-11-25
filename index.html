@@ -151,26 +151,185 @@
 
   <section id="vision-mission" class="py-5 text-white">
     <div class="container">
-      <h2 class="text-center mb-5 text-warning animate__animated">Vision & Mission</h2>
+      <div class="container text-center mb-5">
+        <h2 id="vmHeading" class="animate__animated color-transition">Vision & Mission</h2>
+      </div>
+
+      <style>
+        /* initial styling (matches existing warm/gold theme) */
+        #vmHeading.color-transition,
+        #vmHeading {
+          color: #ffd580; /* warm gold start color */
+          font-weight: 700;
+          transition: color 1s ease, background 1s ease, -webkit-background-clip 1s ease;
+          -webkit-transition: color 1s ease, background 1s ease, -webkit-background-clip 1s ease;
+        }
+
+        /* blended gradient text (uses theme colors) */
+        #vmHeading.blend {
+          color: transparent; /* allow background-clip text effect */
+          background: linear-gradient(90deg,
+                      rgba(255,213,128,1) 0%,
+                      rgba(0,255,247,0.95) 50%,
+                      rgba(124,58,237,0.95) 100%);
+          -webkit-background-clip: text;
+          background-clip: text;
+          text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+        }
+
+        /* reduced-motion respect */
+        @media (prefers-reduced-motion: reduce) {
+          #vmHeading, #vmHeading.blend { transition: none !important; }
+        }
+      </style>
+
+      <script>
+        (function () {
+          const heading = document.getElementById('vmHeading');
+          if (!heading) return;
+          // Ensure class present for smooth transition on some browsers
+          heading.classList.add('color-transition');
+
+          // After 3s, add .blend to switch to gradient (blends with theme colors)
+          setTimeout(() => heading.classList.add('blend'), 3000);
+        })();
+      </script>
       <div class="row">
         <div class="col-md-6 mb-4">
-          <div class="card bg-dark border-0 rounded h-100 animate__animated">
-            <div class="card-body" style="background-color: #007bff;">
-              <h3 class="card-title text-info">Vision 🌟</h3>
-              <p class="card-text">To be a beacon of light in Busia County and beyond, spreading the gospel of Jesus
-              Christ through music, worship, and ministry, while fostering spiritual growth, unity, and transformation
-              in the community.</p>
+          <style>
+            .vision-mission-card {
+              position: relative;
+              overflow: hidden;
+              border-radius: 0.75rem;
+              min-height: 250px;
+              transition: box-shadow .25s ease;
+            }
+            .vision-mission-card img.card-cover {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              display: block;
+              transition: transform .6s cubic-bezier(.2,.8,.2,1), filter .4s ease;
+              will-change: transform;
+            }
+            .vision-mission-card .card-overlay {
+              position: absolute;
+              inset: 0;
+              display: flex;
+              align-items: flex-end;
+              padding: 1rem;
+              background: linear-gradient(180deg, rgba(0,0,0,0.0) 40%, rgba(0,0,0,0.45) 100%);
+              color: #fff;
+              transition: background .3s ease;
+            }
+            .vision-mission-card .card-body {
+              background: transparent;
+              padding: 0;
+              margin: 0;
+            }
+            .vision-mission-card .card-title {
+              margin-bottom: .25rem;
+            }
+            .vision-mission-card .card-text {
+              font-size: .95rem;
+              line-height: 1.4;
+              text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+            }
+
+            /* Hover effects */
+            .vision-mission-card:hover {
+              box-shadow: 0 12px 30px rgba(2,6,23,0.45);
+            }
+            .vision-mission-card:hover img.card-cover {
+              transform: scale(1.08) rotate(-0.8deg);
+              filter: brightness(.9) contrast(1.02);
+            }
+            .vision-mission-card:hover .card-overlay {
+              background: linear-gradient(180deg, rgba(0,0,0,0.05) 20%, rgba(0,0,0,0.6) 100%);
+            }
+
+            /* Small device tweaks */
+            @media (max-width: 575.98px) {
+              .vision-mission-card { min-height: 200px; }
+            }
+          </style>
+
+          <style>
+          /* blur & darken the cover image but keep overlay text crisp */
+          .vision-mission-card img.card-cover {
+            filter: blur(3px) brightness(0.55);
+            transform: scale(1.04);
+            transition: filter .35s ease, transform .5s ease;
+            will-change: filter, transform;
+          }
+
+          /* on hover, slightly sharpen/zoom for a subtle reveal */
+          .vision-mission-card:hover img.card-cover {
+            filter: blur(1px) brightness(0.5);
+            transform: scale(1.08) rotate(-0.8deg);
+          }
+
+          /* warmer, theme-blended text tones */
+          .vision-mission-card .card-title {
+            color: #ffd580; /* warm gold */
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+          }
+          .vision-mission-card .card-text {
+            color: rgba(255,244,230,0.95); /* soft parchment */
+            font-weight: 500;
+          }
+
+          /* slightly darker overlay for contrast with blurred background */
+          .vision-mission-card .card-overlay {
+            background: linear-gradient(180deg, rgba(0,0,0,0.08) 40%, rgba(0,0,0,0.7) 100%);
+          }
+
+          /* small device tweak */
+          @media (max-width: 575.98px) {
+            .vision-mission-card img.card-cover { filter: blur(2px) brightness(0.6); }
+          }
+          </style>
+
+          <div class="card bg-transparent border-0 rounded h-100 animate__animated">
+            <div class="vision-mission-card" style="font-size:1.15rem;">
+              <style>
+                /* instance-specific override to center overlay text */
+                .vision-mission-card .card-overlay {
+                  align-items: center;      /* vertical centering */
+                  justify-content: center;  /* horizontal centering */
+                  text-align: center;
+                  padding: 1rem;
+                }
+                .vision-mission-card .card-body {
+                  max-width: 92%;
+                  margin: 0 auto;
+                }
+              </style>
+              <img src="images/vision.jpg" alt="Vision - Arise Band in worship" class="card-cover">
+              <div class="card-overlay">
+                <div class="card-body">
+                  <h3 class="card-title text-info">Vision</h3>
+                  <p class="card-text">To be a beacon of light in Busia County and beyond, spreading the gospel of Jesus Christ through music, worship, and ministry, while fostering spiritual growth, unity, and transformation in the community.</p>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-6 mb-4">
-          <div class="card bg-dark border-0 rounded h-100 animate__animated">
-            <div class="card-body">
-              <h3 class="card-title text-warning">Mission 🎶</h3>
-              <p class="card-text">To create an atmosphere of worship and praise that elevates the name of Jesus Christ,
-                empowers believers, and attracts the lost through contemporary gospel music rooted in biblical truth,
-                God's love, and the leading of the Holy Spirit.</p>
+
+          </div>
+
+          <div class="col-md-6 mb-4">
+            <div class="card bg-transparent border-0 rounded h-100 animate__animated">
+              <div class="vision-mission-card">
+                <img src="images/mission.jpg" alt="Mission - Arise Band ministry" class="card-cover">
+                <div class="card-overlay">
+                  <div class="card-body">
+                    <h3 class="card-title text-warning">Mission</h3>
+                    <p class="card-text">To create an atmosphere of worship and praise that elevates the name of Jesus Christ, empowers believers, and attracts the lost through contemporary gospel music rooted in biblical truth, God's love, and the leading of the Holy Spirit.</p>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
           </div>
         </div>
       </div>
