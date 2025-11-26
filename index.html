@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="styles/animations.css" />
   <link rel="stylesheet" href="styles/responsive.css" />
   <link rel="stylesheet" href="styles/loader.css" />
+  
+  <!-- EmailJS SDK -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -444,6 +447,83 @@
     </div>
   </section>
 
+  <!-- Event Notification Popup -->
+  <div class="event-popup" id="eventPopup">
+    <div class="event-popup-content">
+      <button class="event-popup-close" id="closePopup">&times;</button>
+      <div class="event-popup-header">
+        <img src="assets/images/event1.png" alt="Open Heaven Experience" class="event-popup-img">
+      </div>
+      <div class="event-popup-body">
+        <h4 class="mb-3">🎉 Upcoming Event!</h4>
+        <h5 class="event-title">Open Heaven Experience</h5>
+        <p class="event-location">📍 Busia Stadium</p>
+        <p class="event-date">📅 December 15, 2025</p>
+        <div class="countdown-timer mt-3">
+          <div class="countdown-item">
+            <span class="countdown-value" id="days">00</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="hours">00</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="minutes">00</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value" id="seconds">00</span>
+            <span class="countdown-label">Seconds</span>
+          </div>
+        </div>
+        <button id="learnMoreBtn" class="btn btn-primary mt-3 w-100">Learn More</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Attendance Confirmation Modal -->
+  <div class="attendance-modal" id="attendanceModal">
+    <div class="attendance-modal-content">
+      <button class="attendance-modal-close" id="closeAttendanceModal">&times;</button>
+      <div class="attendance-modal-body">
+        <div class="attendance-icon">✓</div>
+        <h3 class="mb-3">Confirm Your Attendance</h3>
+        <p class="mb-3">Will you be joining us at the Open Heaven Experience?</p>
+        
+        <div class="event-details-summary mb-4">
+          <p><strong>Event:</strong> Open Heaven Experience</p>
+          <p><strong>Date:</strong> December 15, 2025 at 6:00 PM</p>
+          <p><strong>Location:</strong> Busia Stadium</p>
+        </div>
+        
+        <form id="attendanceForm" class="attendance-form">
+          <div class="mb-3">
+            <input type="text" id="attendeeName" class="form-control" placeholder="Your Full Name" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" id="attendeeEmail" class="form-control" placeholder="Your Email" required>
+          </div>
+          <div class="mb-3">
+            <input type="tel" id="attendeePhone" class="form-control" placeholder="Your Phone Number (Optional)">
+          </div>
+        </form>
+        
+        <div class="attendance-actions">
+          <button id="confirmAttendanceBtn" class="btn btn-success w-100 mb-2">
+            <span>✓</span> Yes, I'll Attend
+          </button>
+          <button id="addToCalendarBtn" class="btn btn-outline-light w-100 mb-3">
+            <span>📅</span> Add to Calendar
+          </button>
+          <button id="continueAnywayBtn" class="btn btn-link text-white">
+            Continue to Event Page
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer class="bg-dark text-white text-center py-3">
     <p class="mb-0">&copy; 2025 Arise Band_KE. All rights reserved.</p>
@@ -460,6 +540,280 @@
   
   <!-- Custom JavaScript -->
   <script src="scripts/main.js"></script>
+  
+  <!-- Event Popup Script -->
+  <script>
+    // Event date: December 15, 2025
+    const eventDate = new Date('December 15, 2025 18:00:00').getTime();
+    
+    // Countdown Timer Function
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+      
+      if (distance > 0) {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+      } else {
+        document.getElementById('days').textContent = '00';
+        document.getElementById('hours').textContent = '00';
+        document.getElementById('minutes').textContent = '00';
+        document.getElementById('seconds').textContent = '00';
+      }
+    }
+    
+    // Show popup function
+    function showEventPopup() {
+      const popup = document.getElementById('eventPopup');
+      popup.classList.add('show');
+    }
+    
+    // Close popup function
+    function closeEventPopup() {
+      const popup = document.getElementById('eventPopup');
+      popup.classList.remove('show');
+    }
+    
+    // Close button event
+    document.getElementById('closePopup').addEventListener('click', closeEventPopup);
+    
+    // Close on outside click
+    document.getElementById('eventPopup').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeEventPopup();
+      }
+    });
+    
+    // Update countdown every second
+    setInterval(updateCountdown, 1000);
+    
+    // Show popup every 45 seconds
+    setInterval(showEventPopup, 45000);
+    
+    // Show popup on page load after 5 seconds
+    setTimeout(showEventPopup, 5000);
+    
+    // Initialize countdown
+    updateCountdown();
+    
+    // Attendance Modal Functions
+    const attendanceModal = document.getElementById('attendanceModal');
+    const learnMoreBtn = document.getElementById('learnMoreBtn');
+    const closeAttendanceModal = document.getElementById('closeAttendanceModal');
+    const confirmAttendanceBtn = document.getElementById('confirmAttendanceBtn');
+    const addToCalendarBtn = document.getElementById('addToCalendarBtn');
+    const continueAnywayBtn = document.getElementById('continueAnywayBtn');
+    
+    // Show attendance modal
+    function showAttendanceModal() {
+      closeEventPopup();
+      attendanceModal.classList.add('show');
+    }
+    
+    // Close attendance modal
+    function closeAttendanceModalFunc() {
+      attendanceModal.classList.remove('show');
+    }
+    
+    // Navigate to event page
+    function goToEventPage() {
+      window.location.href = 'pages/Event1.html';
+    }
+    
+    // Add to calendar function (creates .ics file)
+    function addToCalendar() {
+      const event = {
+        title: 'Open Heaven Experience',
+        description: 'Join Arise Band KE for a powerful night of worship and unity at the Open Heaven Experience.',
+        location: 'Busia Stadium',
+        start: '20251215T180000',
+        end: '20251215T220000'
+      };
+      
+      const icsContent = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'BEGIN:VEVENT',
+        'DTSTART:' + event.start,
+        'DTEND:' + event.end,
+        'SUMMARY:' + event.title,
+        'DESCRIPTION:' + event.description,
+        'LOCATION:' + event.location,
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\n');
+      
+      const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'open-heaven-experience.ics';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      
+      // Show confirmation message
+      alert('Event added to calendar! Check your downloads folder.');
+    }
+    
+    // Google Sheets Web App URL (Replace with your deployed Google Apps Script URL)
+    const GOOGLE_SHEETS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+    
+    // Band email configuration
+    const BAND_EMAIL = 'arisebandke@gmail.com';
+    
+    // Function to send data to Google Sheets
+    async function sendToGoogleSheets(data) {
+      try {
+        const response = await fetch(GOOGLE_SHEETS_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        });
+        return true;
+      } catch (error) {
+        console.error('Error sending to Google Sheets:', error);
+        return false;
+      }
+    }
+    
+    // Initialize EmailJS with your Public Key
+    emailjs.init('OisfebWWM4Lt4q3QC');
+    
+    // Function to send email notification via EmailJS
+    async function sendEmailNotification(name, email, phone) {
+      try {
+        const templateParams = {
+          to_email: BAND_EMAIL,
+          from_name: name,
+          from_email: email,
+          phone: phone || 'Not provided',
+          event_name: 'Open Heaven Experience',
+          event_date: 'December 15, 2025 at 6:00 PM',
+          event_location: 'Busia Stadium',
+          timestamp: new Date().toLocaleString()
+        };
+        
+        // Send email using EmailJS
+        const response = await emailjs.send(
+          'service_jhdkc2a',
+          'template_fewu93i',
+          templateParams
+        );
+        
+        console.log('Email sent successfully:', response);
+        return true;
+      } catch (error) {
+        console.error('Error sending email:', error);
+        return false;
+      }
+    }
+    
+    // Function to validate and submit attendance
+    async function submitAttendance() {
+      const name = document.getElementById('attendeeName').value.trim();
+      const email = document.getElementById('attendeeEmail').value.trim();
+      const phone = document.getElementById('attendeePhone').value.trim();
+      
+      // Validation
+      if (!name || !email) {
+        alert('Please fill in your name and email address.');
+        return;
+      }
+      
+      // Email validation
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert('Please enter a valid email address.');
+        return;
+      }
+      
+      // Prepare data
+      const attendanceData = {
+        timestamp: new Date().toISOString(),
+        name: name,
+        email: email,
+        phone: phone,
+        event: 'Open Heaven Experience',
+        eventDate: 'December 15, 2025',
+        location: 'Busia Stadium'
+      };
+      
+      // Show loading state
+      confirmAttendanceBtn.disabled = true;
+      confirmAttendanceBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Submitting...';
+      
+      try {
+        // Send email notification to band
+        const emailSent = await sendEmailNotification(name, email, phone);
+        
+        // Send to Google Sheets (optional - for record keeping)
+        await sendToGoogleSheets(attendanceData);
+        
+        // Store locally
+        localStorage.setItem('eventAttendance', JSON.stringify(attendanceData));
+        
+        // Reset button
+        confirmAttendanceBtn.disabled = false;
+        confirmAttendanceBtn.innerHTML = '<span>✓</span> Yes, I\'ll Attend';
+        
+        if (emailSent) {
+          // Show success message
+          alert(`Thank you ${name}! Your attendance has been confirmed and the band has been notified. We look forward to seeing you at the event!`);
+        } else {
+          // Show partial success message
+          alert(`Thank you ${name}! Your attendance has been recorded. We look forward to seeing you at the event!`);
+        }
+        
+        // Navigate to event page
+        goToEventPage();
+      } catch (error) {
+        // Reset button on error
+        confirmAttendanceBtn.disabled = false;
+        confirmAttendanceBtn.innerHTML = '<span>✓</span> Yes, I\'ll Attend';
+        
+        // Show error but still allow navigation
+        alert(`Thank you for your interest! Your attendance has been noted. You can still view the event details!`);
+        
+        // Store locally even if online submission fails
+        localStorage.setItem('eventAttendance', JSON.stringify(attendanceData));
+        
+        // Navigate to event page
+        goToEventPage();
+      }
+    }
+    
+    // Event Listeners
+    learnMoreBtn.addEventListener('click', showAttendanceModal);
+    closeAttendanceModal.addEventListener('click', closeAttendanceModalFunc);
+    
+    confirmAttendanceBtn.addEventListener('click', submitAttendance);
+    
+    addToCalendarBtn.addEventListener('click', addToCalendar);
+    continueAnywayBtn.addEventListener('click', goToEventPage);
+    
+    // Handle form submission with Enter key
+    document.getElementById('attendanceForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitAttendance();
+    });
+    
+    // Close modal on outside click
+    attendanceModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeAttendanceModalFunc();
+      }
+    });
+  </script>
 </body>
 
 </html>
