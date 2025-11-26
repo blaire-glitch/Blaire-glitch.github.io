@@ -390,39 +390,44 @@
       <p class="mb-0">&copy; 2025 Arise Band_KE. All rights reserved.</p>
     </footer>
 
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../scripts/main.js"></script>
     
     <!-- Merchandise Popup Script -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log('Page loaded, checking for popup...');
+      // Wait for everything to load
+      window.addEventListener('load', function() {
+        console.log('✅ Page fully loaded');
+        console.log('✅ Bootstrap available:', typeof bootstrap !== 'undefined');
         
         // Check if user has already seen the popup in this session
         const hasSeenPopup = sessionStorage.getItem('merchandisePopupShown');
-        console.log('Has seen popup:', hasSeenPopup);
+        console.log('📋 Has seen popup:', hasSeenPopup);
         
-        // Show popup after 10 seconds on page (for all devices)
-        if (!hasSeenPopup) {
-          console.log('Will show popup in 10 seconds...');
-          setTimeout(function() {
-            console.log('Showing popup now!');
-            const modalElement = document.getElementById('merchandiseModal');
-            if (modalElement) {
-              sessionStorage.setItem('merchandisePopupShown', 'true');
-              const merchandiseModal = new bootstrap.Modal(modalElement);
-              merchandiseModal.show();
-            } else {
-              console.error('Modal element not found!');
-            }
-          }, 10000); // 10 seconds
-        } else {
-          console.log('Popup already shown this session');
+        // Check if modal exists
+        const modalElement = document.getElementById('merchandiseModal');
+        console.log('📋 Modal element found:', modalElement !== null);
+        
+        // Show popup every 45 seconds
+        function showMerchandisePopup() {
+          console.log('🎉 Showing popup now!');
+          if (modalElement && typeof bootstrap !== 'undefined') {
+            const merchandiseModal = new bootstrap.Modal(modalElement);
+            merchandiseModal.show();
+            console.log('✅ Popup displayed successfully!');
+          } else {
+            console.error('❌ Error: Modal element or Bootstrap not available');
+          }
         }
+        
+        // Initial popup after 45 seconds
+        console.log('⏰ Will show popup in 45 seconds...');
+        setTimeout(function() {
+          showMerchandisePopup();
+          // Repeat popup every 45 seconds
+          setInterval(showMerchandisePopup, 45000);
+        }, 45000); // 45 seconds
         
         // Order Form Submission Handler
         const submitBtn = document.getElementById('submitOrderBtn');
