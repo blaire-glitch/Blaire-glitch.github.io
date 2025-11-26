@@ -1,0 +1,89 @@
+/* ========================================
+   BAND MEMBERS PAGE CSS
+   Styles specific to band members pages
+   ======================================== */
+
+/* === Member Photo Styling === */
+.member-photo {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 0.5rem 1.5rem rgba(8, 136, 156, 0.15);
+  transition: transform 0.7s cubic-bezier(.68,-0.55,.27,1.55), box-shadow 0.3s;
+  animation: floatY 2.5s ease-in-out infinite alternate;
+  cursor: pointer;
+  border: 4px solid #fff;
+  background: #f8f9fa;
+}
+
+.member-photo:hover {
+  transform: scale(1.08) translateY(-10px);
+  box-shadow: 0 1.5rem 2.5rem rgba(8, 136, 156, 0.25);
+  z-index: 2;
+}
+
+/* === Member Card === */
+.member-card {
+  background: #fff;
+  border-radius: 1.5rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(8, 136, 156, 0.10);
+  padding: 1.5rem 1rem 1rem 1rem;
+  transition: box-shadow 0.3s;
+}
+
+.member-card:hover {
+  box-shadow: 0 1.5rem 2.5rem rgba(8, 136, 156, 0.18);
+}
+
+/* ========================================
+   DASHBOARD PAGE CSS
+   Styles for events dashboard/gallery
+   ======================================== */
+
+/* === Event Card Hover Effects === */
+.event-card .card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card .card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.event-card img {
+  transition: transform 0.4s ease;
+}
+
+.event-card:hover img {
+  transform: scale(1.05);
+}
+
+/* === Event Card Animations === */
+.event-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.event-card.in-view {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+/* === Smooth Scroll === */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ========================================
+   SOCIAL FEED PAGE CSS
+   Styles for social media embeds
+   ======================================== */
+
+/* === Social Media Iframe === */
+.social-iframe {
+  border: none;
+  overflow: hidden;
+}

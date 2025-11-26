@@ -1,52 +1,101 @@
-/* Custom styles for Arise Band_KE portfolio website */
+/* ========================================
+   MAIN STYLES - Arise Band_KE
+   Base styles and global configurations
+   ======================================== */
 
-/* General styles */
+/* === Import Modular CSS Files === */
+@import url('components.css');
+@import url('sections.css');
+@import url('animations.css');
+@import url('responsive.css');
+
+/* === Global Base Styles === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    margin: 0;
-    padding: 0;
     color: #333;
+    overflow-x: hidden;
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4, h5, h6 {
     color: #2c3e50;
+    margin-bottom: 1rem;
 }
 
-/* Navbar styles */
-.navbar {
-    margin-bottom: 20px;
+/* === Utility Classes === */
+.text-center {
+    text-align: center;
 }
 
-/* Hero section styles */
-header {
-    background: url('../images/hero-bg.jpg') no-repeat center center/cover;
-    color: white;
-    padding: 100px 0;
+/* === Section Spacing === */
+section {
+    position: relative;
 }
 
-/* About section styles */
 #about {
     background-color: #f8f9fa;
     padding: 60px 0;
 }
 
-/* Media section styles */
 #media {
     padding: 60px 0;
 }
 
-/* Contact section styles */
-#contact {
-    background-color: #f8f9fa;
-    padding: 60px 0;
+/* === Logo Styles === */
+.navbar-brand img,
+img[alt*="Logo"] {
+    height: 40px;
+    border-radius: 50%;
 }
 
-/* Footer styles */
-footer {
-    background-color: #343a40;
-    color: white;
-    padding: 20px 0;
+/* === Smooth Scrolling === */
+html {
+    scroll-behavior: smooth;
+}
+
+/* === Utility Classes === */
+.rotate-emoji {
+    display: inline-block;
+    transform: rotate(18deg);
+    margin-right: 10px;
+    font-size: 1.1em;
+    line-height: 1;
+}
+
+.cta-subtext {
+    font-size: 1.02rem;
+    color: #fff9ef;
+    text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+}
+
+.small-secure-badge {
+    font-size: 0.85rem;
+}
+
+.qr-placeholder {
+    max-width: 160px;
+}
+
+.contact-email-link {
+    color: var(--accent1);
+}
+
+.contact-info-text {
+    color: #eaf9ff;
+}
+
+.hidden {
+    display: none;
+}
+
+.feedback-text {
+    color: var(--accent1);
 }
 
 /* Responsive styles */
@@ -158,4 +207,31 @@ footer {
 .form-feedback {
   margin-top: 10px;
   font-weight: bold;
+}
+
+/* === Additional Utility Classes === */
+.secure-badge {
+  font-size: 0.85rem;
+}
+
+.qr-image {
+  max-width: 160px;
+}
+
+.contact-info {
+  color: #eaf9ff;
+}
+
+.ministry-logo {
+  height: 40px;
+  width: 40px;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+.carousel-container {
+  width: 400px;
+  height: 250px;
 }

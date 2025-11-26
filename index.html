@@ -8,16 +8,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Arise Band_Ke</title>
   <link rel="icon" href="assets/images/logo.jpg" type="image/jpeg" sizes="32x32">
+  
+  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+  <!-- Custom CSS (Modular) -->
   <link rel="stylesheet" href="styles/styles.css" />
+  <link rel="stylesheet" href="styles/components.css" />
+  <link rel="stylesheet" href="styles/sections.css" />
+  <link rel="stylesheet" href="styles/animations.css" />
+  <link rel="stylesheet" href="styles/responsive.css" />
 </head>
 
 <body>
 
   <!-- Simple Navbar (no container, medium height) -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top" style="min-height: 64px;">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <a class="navbar-brand ms-3" href="#">
-      <img src="assets/images/logo.jpg" alt="Arise Band_KE Logo" style="height: 40px; border-radius: 50%;">
+      <img src="assets/images/logo.jpg" alt="Arise Band_KE Logo" class="navbar-logo">
     </a>
     <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
       aria-label="Toggle navigation">
@@ -34,38 +42,12 @@
       </ul>
     </div>
   </nav>
-  <style>
-    .navbar {
-      min-height: 64px;
-    }
-    .navbar-nav {
-      flex-direction: row !important;
-      flex-wrap: nowrap !important;
-      width: 100%;
-      justify-content: flex-end;
-    }
-    .navbar-nav .nav-item {
-      margin-bottom: 0 !important;
-    }
-    @media (max-width: 991.98px) {
-      .navbar-nav {
-        overflow-x: auto;
-        white-space: nowrap;
-        flex-wrap: nowrap !important;
-      }
-      .navbar-nav .nav-link {
-        padding-left: 1rem;
-        padding-right: 1rem;
-      }
-    }
-  </style>
 
   <!-- Hero Section -->
   <header class="bg-dark text-white text-center py-5">
     <div class="container d-flex flex-column flex-md-row align-items-center justify-content-center gap-4">
       <!-- Floating Slideshow Rectangle -->
-      <div class="carousel-container bg-white rounded-4 shadow-lg overflow-hidden mb-4 mb-md-0"
-        style="width: 400px; height: 250px;">
+      <div class="carousel-container bg-white rounded-4 shadow-lg overflow-hidden mb-4 mb-md-0">
         <div id="heroCarousel" class="carousel slide h-100" data-bs-ride="carousel">
           <div class="carousel-inner h-100">
             <div class="carousel-item active h-100">
@@ -110,204 +92,16 @@
   </section>
 
   <!-- Vision & Mission Section -->
-  <!-- Animate.css & Bootstrap already assumed to be included -->
-  <!-- Parallax Background Style -->
-  <style>
-    #vision-mission {
-      background-image: url('assets/images/Ariseprac.jpg');
-      /* Use a high-res subtle worship-themed image */
-      background-attachment: fixed;
-      background-position: center;
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    .card:hover {
-      transform: scale(1.02);
-      box-shadow: 0 0.75rem 1.5rem rgba(8, 136, 156, 0.15);
-      transition: all 0.3s ease-in-out;
-    }
-
-    .card-body {
-      color: #f8f9fa;
-      /* Bootstrap light */
-      font-size: 1.05rem;
-      line-height: 1.7;
-      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
-      /* soft drop shadow */
-    }
-
-    .card-title {
-      font-size: 1.4rem;
-      font-weight: bold;
-      color: #fff;
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-      /* glowing text */
-    }
-
-    h2.text-warning {
-      text-shadow: 0 0 12px rgba(255, 193, 7, 0.8);
-      /* gold glow */
-    }
-  </style>
-  </style>
-
   <section id="vision-mission" class="py-5 text-white">
     <div class="container">
       <div class="container text-center mb-5">
         <h2 id="vmHeading" class="animate__animated color-transition">Vision & Mission</h2>
       </div>
 
-      <style>
-        /* initial styling (matches existing warm/gold theme) */
-        #vmHeading.color-transition,
-        #vmHeading {
-          color: #ffd580; /* warm gold start color */
-          font-weight: 700;
-          transition: color 1s ease, background 1s ease, -webkit-background-clip 1s ease;
-          -webkit-transition: color 1s ease, background 1s ease, -webkit-background-clip 1s ease;
-        }
-
-        /* blended gradient text (uses theme colors) */
-        #vmHeading.blend {
-          color: transparent; /* allow background-clip text effect */
-          background: linear-gradient(90deg,
-                      rgba(255,213,128,1) 0%,
-                      rgba(0,255,247,0.95) 50%,
-                      rgba(124,58,237,0.95) 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          text-shadow: 0 6px 18px rgba(0,0,0,0.45);
-        }
-
-        /* reduced-motion respect */
-        @media (prefers-reduced-motion: reduce) {
-          #vmHeading, #vmHeading.blend { transition: none !important; }
-        }
-      </style>
-
-      <script>
-        (function () {
-          const heading = document.getElementById('vmHeading');
-          if (!heading) return;
-          // Ensure class present for smooth transition on some browsers
-          heading.classList.add('color-transition');
-
-          // After 3s, add .blend to switch to gradient (blends with theme colors)
-          setTimeout(() => heading.classList.add('blend'), 3000);
-        })();
-      </script>
       <div class="row">
         <div class="col-md-6 mb-4">
-          <style>
-            .vision-mission-card {
-              position: relative;
-              overflow: hidden;
-              border-radius: 0.75rem;
-              min-height: 250px;
-              transition: box-shadow .25s ease;
-            }
-            .vision-mission-card img.card-cover {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              display: block;
-              transition: transform .6s cubic-bezier(.2,.8,.2,1), filter .4s ease;
-              will-change: transform;
-            }
-            .vision-mission-card .card-overlay {
-              position: absolute;
-              inset: 0;
-              display: flex;
-              align-items: flex-end;
-              padding: 1rem;
-              background: linear-gradient(180deg, rgba(0,0,0,0.0) 40%, rgba(0,0,0,0.45) 100%);
-              color: #fff;
-              transition: background .3s ease;
-            }
-            .vision-mission-card .card-body {
-              background: transparent;
-              padding: 0;
-              margin: 0;
-            }
-            .vision-mission-card .card-title {
-              margin-bottom: .25rem;
-            }
-            .vision-mission-card .card-text {
-              font-size: .95rem;
-              line-height: 1.4;
-              text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-            }
-
-            /* Hover effects */
-            .vision-mission-card:hover {
-              box-shadow: 0 12px 30px rgba(2,6,23,0.45);
-            }
-            .vision-mission-card:hover img.card-cover {
-              transform: scale(1.08) rotate(-0.8deg);
-              filter: brightness(.9) contrast(1.02);
-            }
-            .vision-mission-card:hover .card-overlay {
-              background: linear-gradient(180deg, rgba(0,0,0,0.05) 20%, rgba(0,0,0,0.6) 100%);
-            }
-
-            /* Small device tweaks */
-            @media (max-width: 575.98px) {
-              .vision-mission-card { min-height: 200px; }
-            }
-          </style>
-
-          <style>
-          /* blur & darken the cover image but keep overlay text crisp */
-          .vision-mission-card img.card-cover {
-            filter: blur(3px) brightness(0.55);
-            transform: scale(1.04);
-            transition: filter .35s ease, transform .5s ease;
-            will-change: filter, transform;
-          }
-
-          /* on hover, slightly sharpen/zoom for a subtle reveal */
-          .vision-mission-card:hover img.card-cover {
-            filter: blur(1px) brightness(0.5);
-            transform: scale(1.08) rotate(-0.8deg);
-          }
-
-          /* warmer, theme-blended text tones */
-          .vision-mission-card .card-title {
-            color: #ffd580; /* warm gold */
-            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-          }
-          .vision-mission-card .card-text {
-            color: rgba(255,244,230,0.95); /* soft parchment */
-            font-weight: 500;
-          }
-
-          /* slightly darker overlay for contrast with blurred background */
-          .vision-mission-card .card-overlay {
-            background: linear-gradient(180deg, rgba(0,0,0,0.08) 40%, rgba(0,0,0,0.7) 100%);
-          }
-
-          /* small device tweak */
-          @media (max-width: 575.98px) {
-            .vision-mission-card img.card-cover { filter: blur(2px) brightness(0.6); }
-          }
-          </style>
-
           <div class="card bg-transparent border-0 rounded h-100 animate__animated">
-            <div class="vision-mission-card" style="font-size:1.15rem;">
-              <style>
-                /* instance-specific override to center overlay text */
-                .vision-mission-card .card-overlay {
-                  align-items: center;      /* vertical centering */
-                  justify-content: center;  /* horizontal centering */
-                  text-align: center;
-                  padding: 1rem;
-                }
-                .vision-mission-card .card-body {
-                  max-width: 92%;
-                  margin: 0 auto;
-                }
-              </style>
+            <div class="vision-mission-card">
               <img src="assets/images/vision.jpg" alt="Vision - Arise Band in worship" class="card-cover">
               <div class="card-overlay">
                 <div class="card-body">
@@ -347,26 +141,10 @@
     </div>
   </section>
 
-  <!-- Scroll-triggered Animation with JavaScript -->
-  <script>
-    const animatedElements = document.querySelectorAll('.animate__animated');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate__fadeInUp');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, {
-      threshold: 0.2
-    });
-
-    animatedElements.forEach(el => observer.observe(el));
-  </script>
 <section>
   <div class="container my-5">
     <h2 class="text-center mb-4">
-      <img src="assets/images/logo.jpg" alt="Arise Band Logo" style="height:40px; width:40px; object-fit:cover; vertical-align:middle; margin-right:10px; border-radius:50%;">
+      <img src="assets/images/logo.jpg" alt="Arise Band Logo" class="ministry-logo">
       Ministry in Action
     </h2></h2>
     <div class="row justify-content-center">
@@ -430,101 +208,6 @@
       <ul class="list-group">
         <li class="list-group-item d-flex align-items-center">
           <div class="d-flex align-items-center">
-        <style>
-          /* Heartbeat + glow for event thumbnail */
-          .event-logo-wrap {
-            width: 64px;
-            height: 64px;
-            margin-right: 12px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: visible;
-          }
-
-          .event-logo {
-            height: 64px;
-            width: auto;
-            object-fit: cover;
-            border-radius: 6px;
-            transform-origin: center;
-            z-index: 1;
-            display: block;
-            /* quick, slightly bouncy heartbeat */
-            animation: heartbeat 1.2s cubic-bezier(.4,0,.2,1) infinite;
-            will-change: transform, filter;
-            box-shadow: 0 0 0 rgba(0,0,0,0);
-            transition: opacity .5s ease;
-          }
-
-          /* soft colored glow that grows and fades, giving effect of "fading into" the logo */
-          .event-logo-wrap::before {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%) scale(1);
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            background: radial-gradient(circle at center,
-          rgba(255,193,7,0.90) 0%,
-          rgba(255,193,7,0.55) 18%,
-          rgba(0,123,255,0.14) 45%,
-          rgba(0,123,255,0.06) 60%,
-          rgba(0,0,0,0) 100%);
-            filter: blur(10px);
-            z-index: 0;
-            opacity: 0;
-            pointer-events: none;
-            mix-blend-mode: screen;
-            animation: glowFade 2.4s ease-in-out infinite;
-            will-change: transform, opacity, filter;
-          }
-
-          /* Slight inner sheen to make glow appear to "enter" the image on peak */
-          .event-logo-wrap::after {
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%) scale(0.96);
-            width: 54px;
-            height: 54px;
-            border-radius: 8px;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.12), rgba(255,255,255,0) 40%);
-            z-index: 2;
-            opacity: 0;
-            animation: innerSheen 2.4s ease-in-out infinite;
-            pointer-events: none;
-          }
-
-          @keyframes heartbeat {
-            0%   { transform: scale(1); }
-            14%  { transform: scale(1.08); }
-            28%  { transform: scale(0.98); }
-            42%  { transform: scale(1.06); }
-            70%  { transform: scale(1); }
-            100% { transform: scale(1); }
-          }
-
-          @keyframes glowFade {
-            0%   { opacity: 0; transform: translate(-50%, -50%) scale(1); filter: blur(8px); }
-            20%  { opacity: 0.9; transform: translate(-50%, -50%) scale(1.25); filter: blur(10px); }
-            45%  { opacity: 0.6; transform: translate(-50%, -50%) scale(1.5); filter: blur(12px); }
-            70%  { opacity: 0.2; transform: translate(-50%, -50%) scale(1.9); filter: blur(14px); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(2.2); filter: blur(16px); }
-          }
-
-          @keyframes innerSheen {
-            0%   { opacity: 0; transform: translate(-50%, -50%) scale(0.96); }
-            25%  { opacity: 0.6; transform: translate(-50%, -50%) scale(1); }
-            45%  { opacity: 0.35; transform: translate(-50%, -50%) scale(1.02); }
-            100% { opacity: 0; transform: translate(-50%, -50%) scale(1.04); }
-          }
-        </style>
-
         <div class="event-logo-wrap" aria-hidden="true">
           <img id="eventLogo" src="assets/images/event1.png" alt="Event 1 Poster" class="event-logo" />
         </div>
@@ -556,179 +239,22 @@
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
-          </div>
-        </div>
-
-        <li class="list-group-item">Event 2 - Date</li>
-        <li class="list-group-item">Event 3 - Date</li>
       </ul>
-
-      <script>
-        (function () {
-          // Countdown
-          const targetDate = new Date(2025, 11, 15, 19, 0, 0); // 15 Dec 2025 19:00 local time
-          const el = document.getElementById('countdown-event1');
-
-          function format(n) { return n.toString().padStart(2, '0'); }
-
-          function updateCountdown() {
-        const now = new Date();
-        let diff = targetDate - now;
-        if (diff <= 0) {
-          el.textContent = 'Event started';
-          clearInterval(countdownTimer);
-          return;
-        }
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        diff -= days * (1000 * 60 * 60 * 24);
-        const hours = Math.floor(diff / (1000 * 60 * 60));
-        diff -= hours * (1000 * 60 * 60);
-        const minutes = Math.floor(diff / (1000 * 60));
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-        el.textContent = `${days}d ${format(hours)}h ${format(minutes)}m ${format(seconds)}s`;
-          }
-
-          updateCountdown();
-          const countdownTimer = setInterval(updateCountdown, 1000);
-
-          // Alternate between event poster and band logo with heartbeat effect
-          const logoEl = document.getElementById('eventLogo');
-          const sources = ['assets/images/event1.png', 'assets/images/logo.jpg'];
-          let idx = 0;
-
-          function swapLogo() {
-        idx = (idx + 1) % sources.length;
-        // fade out -> swap src -> restart heartbeat animation -> fade in
-        logoEl.style.opacity = 0;
-        setTimeout(() => {
-          logoEl.src = sources[idx];
-          logoEl.alt = idx === 0 ? 'Event 1 Poster' : 'Arise Band Logo';
-          // restart CSS animation by reflow trick
-          logoEl.classList.remove('event-logo');
-          void logoEl.offsetWidth;
-          logoEl.classList.add('event-logo');
-          logoEl.style.opacity = 1;
-        }, 400);
-          }
-
-          // Start swapping every 2.5 seconds (adjust as desired)
-          const swapInterval = 2500;
-          const swapTimer = setInterval(swapLogo, swapInterval);
-
-          // Pause swapping when modal is open to avoid confusing poster view
-          const modalEl = document.getElementById('event1Modal');
-          modalEl && modalEl.addEventListener('show.bs.modal', () => clearInterval(swapTimer));
-        })();
-      </script>
     </div>
   </section>
-<section class="cta py-5" aria-label="Support CTA"
-  style="background: linear-gradient(180deg, rgba(28,18,8,0.55), rgba(28,18,8,0.55)), url('assets/images/concert.jpg') center/cover no-repeat; color: #f7efe6;">
-  <style>
-    /* Vintage with a touch of class (local to CTA section) */
-    .cta .vintage-container { font-family: Georgia, 'Times New Roman', serif; }
-
-    .cta h2 {
-      color: #fff8ee;
-      font-weight: 700;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 0 10px rgba(255,238,210,0.06);
-      letter-spacing: 0.6px;
-      font-size: clamp(1.5rem, 2.6vw, 2.25rem);
-    }
-
-    .cta p.lead {
-      color: rgba(255, 250, 240, 0.95);
-      font-size: 1.05rem;
-      text-shadow: 0 1px 6px rgba(0,0,0,0.55);
-      margin-bottom: 0.75rem;
-    }
-
-    /* Accent bar under heading */
-    .cta .accent-bar {
-      height: 6px;
-      width: 76px;
-      background: linear-gradient(90deg, rgba(255,236,193,0.98), rgba(180,140,95,0.95));
-      margin: 12px auto 22px;
-      border-radius: 3px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.35);
-    }
-
-    /* Buttons - vintage variants */
-    .btn-vintage {
-      background: linear-gradient(180deg, #f7e7c8 0%, #e7cfa6 100%);
-      color: #2b1b10;
-      border: 1px solid rgba(80,55,34,0.12);
-      box-shadow: 0 8px 26px rgba(18,10,6,0.45), inset 0 1px 0 rgba(255,255,255,0.6);
-      border-radius: 8px;
-      padding: .6rem 1.1rem;
-      font-weight: 700;
-      transition: transform .12s ease, box-shadow .12s ease;
-    }
-    .btn-vintage:hover { transform: translateY(-3px); box-shadow: 0 14px 38px rgba(18,10,6,0.5); }
-
-    .btn-outline-vintage {
-      background: transparent;
-      color: #fff8ee;
-      border: 1px solid rgba(255, 250, 240, 0.18);
-      box-shadow: 0 6px 18px rgba(0,0,0,0.45);
-      border-radius: 8px;
-      padding: .55rem 1rem;
-    }
-    .btn-outline-vintage:hover {
-      background: rgba(255,250,240,0.06);
-      transform: translateY(-2px);
-    }
-
-    /* Quick pledge card - semi-transparent parchment */
-    .vintage-card {
-      background: rgba(255, 249, 238, 0.92);
-      border-radius: 10px;
-      padding: 18px;
-      box-shadow: 0 12px 30px rgba(6,4,2,0.45), inset 0 1px 0 rgba(255,255,255,0.6);
-      color: #2b1b10;
-      border: 1px solid rgba(120,90,60,0.08);
-    }
-    .vintage-card .card-title { font-weight: 700; margin-bottom: .6rem; color: #2b1b10; }
-
-    /* Form controls - soft parchment look */
-    .vintage-card .form-control {
-      background: rgba(245,238,226,0.95);
-      border: 1px solid rgba(140,105,75,0.18);
-      padding: .6rem .75rem;
-      color: #2b1b10;
-      border-radius: 6px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.6);
-      transition: transform .08s ease, box-shadow .08s ease;
-    }
-    .vintage-card .form-control:focus {
-      outline: none;
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(18,10,6,0.16);
-      border-color: rgba(120,90,60,0.3);
-    }
-
-    /* Small print */
-    .cta .muted-note { color: rgba(247,239,230,0.9); font-size: .88rem; }
-
-    @media (max-width: 767.98px) {
-      .vintage-card { margin-top: 1rem; }
-      .cta .accent-bar { margin-bottom: 14px; }
-    }
-  </style>
-
+<section class="cta py-5" aria-label="Support CTA">
   <div class="container vintage-container">
     <div class="row justify-content-center align-items-start">
       <div class="col-md-8 text-center text-white">
         <h2 class="mb-2 fw-bold">
-          <span aria-hidden="true" style="display:inline-block; transform:rotate(18deg); margin-right:10px; font-size:1.1em; line-height:1;">
+          <span aria-hidden="true" class="rotate-emoji">
             🕊️
           </span>
           Stand With Arise — Pledge Support
         </h2>
         <div class="accent-bar" aria-hidden="true"></div>
         <p class="lead">Join our mission to lift hearts and communities through worship. Pledge a one-time gift or a regular contribution — every gift helps us reach more lives.</p>
-        <p class="mb-3" style="font-size: 1.02rem; color: #fff9ef; text-shadow: 0 1px 6px rgba(0,0,0,0.6);">
+        <p class="mb-3 cta-subtext">
           Prefer to chat first? Email us at
           <a href="mailto:arisebandkenya@gmail.com" class="text-white text-decoration-underline">arisebandkenya@gmail.com</a>.
         </p>
@@ -740,7 +266,7 @@
           <button type="button" class="btn btn-outline-vintage btn-lg d-flex align-items-center gap-2" aria-label="Give online" onclick="location.href='online-payments.html'">
             <span aria-hidden="true">🌐</span>
             <span>Give Online</span>
-            <small class="text-muted ms-2" style="font-size:0.85rem;">Secure</small>
+            <small class="text-muted ms-2 secure-badge">Secure</small>
           </button>
           </a>
           <button class="btn btn-warning btn-lg text-dark" data-bs-toggle="m</span>odal" data-bs-target="#pledgeModal">
@@ -797,7 +323,7 @@
                 <li>Save the SMS confirmation and share it with us at <a href="mailto:arisebandkenya@gmail.com">arisebandkenya@gmail.com</a> or via WhatsApp.</li>
               </ol>
               <div class="text-center">
-                <img src="assets/images/qr-placeholder.png" alt="QR code placeholder" class="img-fluid rounded" style="max-width:160px;">
+                <img src="assets/images/qr-placeholder.png" alt="QR code placeholder" class="img-fluid rounded qr-image">
                 <p class="small mt-2 text-muted mb-0">Scan QR (if available) for quick pay.</p>
               </div>
             </div>
@@ -828,126 +354,6 @@
 </section>
   <!-- Contact Section (full-width, catchy colors & styles) -->
   <section id="contact" class="py-5 position-relative overflow-hidden" aria-labelledby="contactHeading">
-    <style>
-      :root{
-        --accent1: #00fff7;
-        --accent2: #007bff;
-        --accent3: #7c3aed;
-        --glass: rgba(255,255,255,0.06);
-        --glass-border: rgba(0,255,247,0.12);
-      }
-
-      /* animated gradient background */
-      #contact {
-        background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.08), transparent 10%),
-                    radial-gradient(900px 400px at 90% 80%, rgba(0,127,255,0.06), transparent 12%),
-                    linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
-                    url('assets/images/logo.jpg');
-        background-size: cover;
-        background-position: center;
-        color: #eaf9ff;
-      }
-
-      /* decorative floating blobs */
-      #contact::before, #contact::after{
-        content: "";
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(36px);
-        opacity: .45;
-        pointer-events: none;
-        z-index: 0;
-      }
-      #contact::before{
-        width: 420px;
-        height: 420px;
-        left: -80px;
-        top: -60px;
-        background: linear-gradient(135deg, var(--accent3), var(--accent1));
-        transform: rotate(15deg);
-      }
-      #contact::after{
-        width: 360px;
-        height: 360px;
-        right: -90px;
-        bottom: -80px;
-        background: linear-gradient(135deg, var(--accent2), rgba(0,255,247,0.5));
-      }
-
-      /* center card */
-      .contact-card{
-        position: relative;
-        z-index: 1;
-        margin: 0 auto;
-        max-width: 1100px;
-        border-radius: 18px;
-        padding: 28px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
-        border: 1px solid var(--glass-border);
-        box-shadow: 0 12px 40px rgba(2,6,23,0.6), inset 0 1px 0 rgba(255,255,255,0.02);
-        backdrop-filter: blur(8px) saturate(120%);
-      }
-
-      .contact-heading {
-        font-weight: 800;
-        letter-spacing: -0.5px;
-        color: #eaffff;
-        text-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 0 16px rgba(0,255,247,0.06);
-      }
-
-      .contact-sub {
-        color: rgba(234,249,255,0.9);
-        opacity: 0.95;
-      }
-
-      /* input styles */
-      .contact-card .form-control{
-        background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
-        border: 1px solid rgba(255,255,255,0.06);
-        border-left: 4px solid transparent;
-        color: #eaf9ff;
-        padding: 16px 14px;
-        transition: all .22s ease;
-        border-radius: 12px;
-        box-shadow: 0 6px 18px rgba(2,6,23,0.5);
-      }
-
-      .contact-card .form-control::placeholder{ color: rgba(234,249,255,0.6); }
-
-      .contact-card .form-control:focus{
-        outline: none;
-        border-color: rgba(0,255,247,0.28);
-        border-left-color: var(--accent1);
-        box-shadow: 0 10px 30px rgba(0,123,255,0.12), 0 0 30px rgba(0,255,247,0.04);
-        transform: translateY(-2px);
-      }
-
-      /* submit button */
-      .btn-cta{
-        border-radius: 999px;
-        padding: .85rem 1.6rem;
-        font-weight: 700;
-        box-shadow: 0 12px 30px rgba(0,123,255,0.22);
-        background: linear-gradient(90deg, var(--accent1), var(--accent2));
-        color: #001827;
-        transition: transform .18s ease, box-shadow .18s ease;
-        border: none;
-      }
-      .btn-cta:hover{
-        transform: translateY(-4px) scale(1.02);
-        box-shadow: 0 18px 40px rgba(0,123,255,0.32);
-      }
-
-      /* small helper text */
-      .contact-note { color: rgba(234,249,255,0.85); }
-
-      /* responsive tweaks */
-      @media (max-width: 767.98px) {
-        .contact-card { padding: 20px; border-radius: 14px; }
-        .contact-heading { font-size: 1.5rem; }
-      }
-    </style>
-
     <div class="container-fluid px-0">
       <div class="mx-auto px-3 contact-card">
         <div class="row align-items-center g-4">
@@ -956,11 +362,11 @@
             <p class="lead contact-sub mb-4">Worship • Collaborate • Celebrate — tell us how we can serve. We typically respond within 48 hours.</p>
 
             <ul class="list-unstyled mb-0">
-              <li class="mb-2 contact-note"><strong>Email:</strong> <a class="text-decoration-underline" href="mailto:arisebandkenya@gmail.com" style="color:var(--accent1)">arisebandkenya@gmail.com</a></li>
-              <li class="mb-2 contact-note"><strong>Phone/WhatsApp:</strong> <span style="color: #eaf9ff">+254 7XX XXX XXX</span></li>
+              <li class="mb-2 contact-note"><strong>Email:</strong> <a class="text-decoration-underline contact-email-link" href="mailto:arisebandkenya@gmail.com">arisebandkenya@gmail.com</a></li>
+              <li class="mb-2 contact-note"><strong>Phone/WhatsApp:</strong> <span class="contact-info">+254 7XX XXX XXX</span></li>
               <li class="mb-0 contact-note">
                 <strong>Booking:</strong>
-                <span style="color: #eaf9ff">
+                <span class="contact-info">
                   <a href="#" class="text-decoration-underline text-info" data-bs-toggle="modal" data-bs-target="#bookingConcerts">Concerts</a>
                    •
                   <a href="#" class="text-decoration-underline text-info" data-bs-toggle="modal" data-bs-target="#bookingOutreach">Outreach</a>
@@ -1001,33 +407,16 @@
               </div>
 
               <div class="col-12 text-center mt-2">
-                <small class="contact-note">Or email us directly: <a href="mailto:arisebandkenya@gmail.com" style="color:var(--accent1)">arisebandkenya@gmail.com</a></small>
+                <small class="contact-note">Or email us directly: <a href="mailto:arisebandkenya@gmail.com" class="contact-email-link">arisebandkenya@gmail.com</a></small>
               </div>
 
-              <div id="contactFeedback" class="col-12 text-center mt-2" aria-live="polite" style="display:none;">
-                <small class="fw-bold" style="color:var(--accent1)">Thanks — your message was sent.</small>
+              <div id="contactFeedback" class="col-12 text-center mt-2 hidden" aria-live="polite">
+                <small class="fw-bold feedback-text">Thanks — your message was sent.</small>
               </div>
             </form>
           </div>
         </div>
       </div>
-    </div>
-
-    <script>
-      (function(){
-        const form = document.getElementById('contactForm');
-        const feedback = document.getElementById('contactFeedback');
-
-        form.addEventListener('submit', function(e){
-          e.preventDefault();
-          // simple UI feedback (replace with real submit integration)
-          feedback.style.display = 'block';
-          form.reset();
-          setTimeout(()=> feedback.style.display = 'none', 5000);
-        });
-      })();
-    </script>
-  </section>
     </div>
   </section>
 
@@ -1041,15 +430,12 @@
       <a href="https://tiktok.com" class="text-white"><i class="fab fa-tiktok"></i></a>
     </div>
   </footer>
-  <script>
-    document.getElementById('showSocialFeed').addEventListener('click', function (e) {
-      e.preventDefault();
-      var feed = document.getElementById('social-feed');
-      feed.style.display = 'block';
-      feed.scrollIntoView({ behavior: 'smooth' });
-    });
-  </script>
+  
+  <!-- Bootstrap JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <!-- Custom JavaScript -->
+  <script src="scripts/main.js"></script>
 </body>
 
 </html>

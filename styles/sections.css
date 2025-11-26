@@ -1,0 +1,144 @@
+/* ========================================
+   SECTIONS CSS - Arise Band_KE
+   Page sections and layout styles
+   ======================================== */
+
+/* === Vision & Mission Section === */
+#vision-mission {
+  background-image: url('../assets/images/Ariseprac.jpg');
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* === Vision/Mission Heading === */
+#vmHeading.color-transition,
+#vmHeading {
+  color: #ffd580;
+  font-weight: 700;
+  transition: color 1s ease, background 1s ease, -webkit-background-clip 1s ease;
+  -webkit-transition: color 1s ease, background 1s ease, -webkit-background-clip 1s ease;
+}
+
+#vmHeading.blend {
+  color: transparent;
+  background: linear-gradient(90deg,
+    rgba(255,213,128,1) 0%,
+    rgba(0,255,247,0.95) 50%,
+    rgba(124,58,237,0.95) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+/* === CTA Section (Donation/Support) === */
+.cta {
+  color: #f7efe6;
+}
+
+.cta .vintage-container {
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.cta h2 {
+  color: #fff8ee;
+  font-weight: 700;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.7), 0 0 10px rgba(255,238,210,0.06);
+  letter-spacing: 0.6px;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+}
+
+.cta p.lead {
+  color: rgba(255, 250, 240, 0.95);
+  font-size: 1.05rem;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.55);
+  margin-bottom: 0.75rem;
+}
+
+.cta .accent-bar {
+  height: 6px;
+  width: 76px;
+  background: linear-gradient(90deg, rgba(255,236,193,0.98), rgba(180,140,95,0.95));
+  margin: 12px auto 22px;
+  border-radius: 3px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+}
+
+.cta .muted-note {
+  color: rgba(247,239,230,0.9);
+  font-size: .88rem;
+}
+
+/* === Contact Section === */
+:root {
+  --accent1: #00fff7;
+  --accent2: #007bff;
+  --accent3: #7c3aed;
+  --glass: rgba(255,255,255,0.06);
+  --glass-border: rgba(0,255,247,0.12);
+}
+
+#contact {
+  background: radial-gradient(1200px 600px at 10% 10%, rgba(124,58,237,0.08), transparent 10%),
+              radial-gradient(900px 400px at 90% 80%, rgba(0,127,255,0.06), transparent 12%),
+              linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.65)),
+              url('../assets/images/logo.jpg');
+  background-size: cover;
+  background-position: center;
+  color: #eaf9ff;
+}
+
+#contact::before,
+#contact::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(36px);
+  opacity: .45;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#contact::before {
+  width: 420px;
+  height: 420px;
+  left: -80px;
+  top: -60px;
+  background: linear-gradient(135deg, var(--accent3), var(--accent1));
+  transform: rotate(15deg);
+}
+
+#contact::after {
+  width: 360px;
+  height: 360px;
+  right: -90px;
+  bottom: -80px;
+  background: linear-gradient(135deg, var(--accent2), rgba(0,255,247,0.5));
+}
+
+.contact-heading {
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #eaffff;
+  text-shadow: 0 6px 18px rgba(0,0,0,0.6), 0 0 16px rgba(0,255,247,0.06);
+}
+
+.contact-sub {
+  color: rgba(234,249,255,0.9);
+  opacity: 0.95;
+}
+
+.contact-note {
+  color: rgba(234,249,255,0.85);
+}
+
+/* === Notification Alert === */
+.notification-alert {
+  animation: slideInRight 0.8s ease;
+}
+
+/* === Text Effects === */
+h2.text-warning {
+  text-shadow: 0 0 12px rgba(255, 193, 7, 0.8);
+}
