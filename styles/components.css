@@ -8,6 +8,17 @@
   min-height: 64px;
 }
 
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.navbar-brand span {
+  display: inline-block;
+}
+
 .navbar-nav {
   flex-direction: row !important;
   flex-wrap: nowrap !important;
@@ -17,6 +28,20 @@
 
 .navbar-nav .nav-item {
   margin-bottom: 0 !important;
+}
+
+.navbar-nav .nav-link {
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover {
+  color: var(--accent1, #0dcaf0);
+}
+
+.navbar-nav .nav-link.active {
+  color: var(--accent1, #0dcaf0);
+  font-weight: 500;
 }
 
 /* === Carousel Container === */

@@ -18,28 +18,52 @@
   <link rel="stylesheet" href="styles/sections.css" />
   <link rel="stylesheet" href="styles/animations.css" />
   <link rel="stylesheet" href="styles/responsive.css" />
+  <link rel="stylesheet" href="styles/loader.css" />
 </head>
 
 <body>
+  <!-- Page Loader -->
+  <div class="page-loader">
+    <div class="loader-content">
+      <img src="assets/images/logo.jpg" alt="Arise Band_KE" class="loader-logo">
+      <div class="loader-text">ARISE BAND_KE</div>
+      <div class="loader-spinner"></div>
+    </div>
+  </div>
 
-  <!-- Simple Navbar (no container, medium height) -->
+  <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <a class="navbar-brand ms-3" href="#">
-      <img src="assets/images/logo.jpg" alt="Arise Band_KE Logo" class="navbar-logo">
-    </a>
-    <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav flex-row flex-nowrap w-100 justify-content-end">
-        <li class="nav-item">
-          <a class="nav-link px-3" href="pages/social-feed.html">Social Feeds</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link px-3" href="pages/band-members.html">Band Members</a>
-        </li>
-      </ul>
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="assets/images/logo.jpg" alt="Arise Band_KE Logo" class="navbar-logo">
+        <span class="ms-2">Arise Band_KE</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/band-members.html">Band Members</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/dashboard.html">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="pages/social-feed.html">Social Feed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 

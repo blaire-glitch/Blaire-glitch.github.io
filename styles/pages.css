@@ -87,3 +87,411 @@ html {
   border: none;
   overflow: hidden;
 }
+
+/* ========================================
+   GALLERY PAGE CSS
+   Styles for photo gallery and Facebook feed
+   ======================================== */
+
+/* === Gallery Section === */
+.gallery-section {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  padding: 0;
+  position: relative;
+}
+
+/* === Gallery Header === */
+.gallery-header {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 1rem;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+}
+
+/* === Gallery Slideshow Container === */
+.gallery-slideshow-container {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.gallery-slideshow-container .carousel {
+  border-radius: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+  box-shadow: none;
+}
+
+.carousel-item {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.gallery-slide-img {
+  height: 100vh;
+  object-fit: cover;
+  width: 100%;
+  object-position: center;
+}
+
+.carousel-caption {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 50%, transparent 100%);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 4rem 2rem 2rem;
+  display: block !important;
+}
+
+.carousel-caption h5 {
+  font-size: 3rem;
+  font-weight: 700;
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.9);
+  margin-bottom: 1rem;
+}
+
+.carousel-caption p {
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.carousel-indicators {
+  bottom: 3rem;
+  z-index: 15;
+}
+
+.carousel-indicators button {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin: 0 8px;
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.carousel-indicators button.active {
+  background-color: rgba(255, 255, 255, 1);
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 10%;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+  z-index: 15;
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover {
+  opacity: 1;
+}
+
+/* === Individual Gallery Slide Backgrounds (Landscape Photos Only) === */
+.gallery-slide-1 {
+  background-image: url('../assets/gallery/slide1.jpg');
+  animation: zoomIn 3s ease-in-out;
+}
+
+.gallery-slide-2 {
+  background-image: url('../assets/gallery/slide2.jpg');
+  animation: slideInRight 1s ease-out;
+}
+
+.gallery-slide-3 {
+  background-image: url('../assets/gallery/slide3.jpg');
+  animation: slideInLeft 1s ease-out;
+}
+
+.gallery-slide-4 {
+  background-image: url('../assets/gallery/concert.jpg');
+  animation: fadeInScale 1.5s ease-in-out;
+}
+
+.gallery-slide-5 {
+  background-image: url('../assets/gallery/outreach.jpg');
+  animation: slideInUp 1s ease-out;
+}
+
+.gallery-slide-6 {
+  background-image: url('../assets/gallery/rehearsal.jpg');
+  animation: rotateIn 1.2s ease-out;
+}
+
+.gallery-slide-7 {
+  background-image: url('../assets/gallery/Ariseprac.jpg');
+  animation: slideInDown 1s ease-out;
+}
+
+/* === Gallery Transition Animations === */
+@keyframes zoomIn {
+  from {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomOut {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-10deg) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes flipInX {
+  from {
+    transform: perspective(400px) rotateX(90deg);
+    opacity: 0;
+  }
+  to {
+    transform: perspective(400px) rotateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* === Static Gallery Grid === */
+.static-gallery {
+  padding-top: 3rem;
+}
+
+.static-gallery h3 {
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* === Gallery Items === */
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+/* === Gallery Overlay === */
+.gallery-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 60%, transparent 100%);
+  padding: 2rem 1.5rem 1.5rem;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+  display: flex;
+  align-items: flex-end;
+}
+
+.gallery-item:hover .gallery-overlay {
+  transform: translateY(0);
+}
+
+.overlay-content h5 {
+  color: #fff;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.overlay-content p {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* === Responsive Gallery Styles === */
+@media (max-width: 768px) {
+  .gallery-header h1 {
+    font-size: 2rem;
+  }
+  
+  .gallery-header p {
+    font-size: 1rem;
+  }
+  
+  .carousel-caption h5 {
+    font-size: 2rem;
+  }
+  
+  .carousel-caption p {
+    font-size: 1.1rem;
+  }
+  
+  .carousel-caption {
+    padding: 3rem 1.5rem 1.5rem;
+  }
+  
+  .gallery-item img {
+    height: 250px;
+  }
+}
+
+@media (max-width: 576px) {
+  .gallery-header {
+    top: 1rem;
+  }
+  
+  .gallery-header h1 {
+    font-size: 1.5rem;
+  }
+  
+  .gallery-header p {
+    font-size: 0.9rem;
+  }
+  
+  .carousel-caption {
+    padding: 2rem 1rem 1rem;
+  }
+  
+  .carousel-caption h5 {
+    font-size: 1.5rem;
+  }
+  
+  .carousel-caption p {
+    font-size: 0.95rem;
+  }
+  
+  .carousel-indicators {
+    bottom: 2rem;
+  }
+  
+  .carousel-indicators button {
+    width: 12px;
+    height: 12px;
+    margin: 0 5px;
+  }
+  
+  .gallery-item img {
+    height: 200px;
+  }
+  
+  .overlay-content h5 {
+    font-size: 1rem;
+  }
+  
+  .overlay-content p {
+    font-size: 0.85rem;
+  }
+  
+  .carousel-control-prev,
+  .carousel-control-next {
+    width: 15%;
+  }
+}

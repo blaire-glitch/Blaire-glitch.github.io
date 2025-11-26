@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery - Arise Band_Ke</title>
+  <link rel="icon" href="../assets/images/logo.jpg" type="image/jpeg" sizes="32x32">
+  
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  
+  <!-- Custom CSS (Modular) -->
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="../styles/components.css" />
+  <link rel="stylesheet" href="../styles/sections.css" />
+  <link rel="stylesheet" href="../styles/animations.css" />
+  <link rel="stylesheet" href="../styles/responsive.css" />
+  <link rel="stylesheet" href="../styles/pages.css" />
+  <link rel="stylesheet" href="../styles/loader.css" />
+</head>
+
+<body>
+  <!-- Page Loader -->
+  <div class="page-loader">
+    <div class="loader-content">
+      <img src="../assets/images/logo.jpg" alt="Arise Band_KE" class="loader-logo">
+      <div class="loader-text">ARISE BAND_KE</div>
+      <div class="loader-spinner"></div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <img src="../assets/images/logo.jpg" alt="Arise Band_KE Logo" class="navbar-logo">
+        <span class="ms-2">Arise Band_KE</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="band-members.html">Band Members</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="dashboard.html">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="social-feed.html">Social Feed</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html#contact">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section">
+    <div class="gallery-header text-center">
+      <h1 class="display-4 fw-bold text-white mb-3">Photo Gallery</h1>
+      <p class="lead text-white-50">Moments captured from our worship, events, and ministry</p>
+    </div>
+
+    <!-- Photo Slideshow -->
+    <div class="gallery-slideshow-container">
+        <div id="galleryCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            <button type="button" data-bs-target="#galleryCarousel" data-bs-slide-to="6" aria-label="Slide 7"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active gallery-slide-1">
+              <div class="carousel-caption">
+                <h5>Worship Service</h5>
+                <p>Leading worship with passion and purpose</p>
+              </div>
+            </div>
+            <div class="carousel-item gallery-slide-2">
+              <div class="carousel-caption">
+                <h5>Praise & Worship</h5>
+                <p>Lifting up the name of Jesus</p>
+              </div>
+            </div>
+            <div class="carousel-item gallery-slide-3">
+              <div class="carousel-caption">
+                <h5>Ministry Event</h5>
+                <p>Touching lives through music</p>
+              </div>
+            </div>
+            <div class="carousel-item gallery-slide-4">
+              <div class="carousel-caption">
+                <h5>Worship Concert</h5>
+                <p>Celebrating God's goodness</p>
+              </div>
+            </div>
+            <div class="carousel-item gallery-slide-5">
+              <div class="carousel-caption">
+                <h5>Community Outreach</h5>
+                <p>Bringing hope to communities</p>
+              </div>
+            </div>
+            <div class="carousel-item gallery-slide-6">
+              <div class="carousel-caption">
+                <h5>Band Rehearsal</h5>
+                <p>Preparing for excellence</p>
+              </div>
+            </div>
+            <div class="carousel-item gallery-slide-7">
+              <div class="carousel-caption">
+                <h5>Practice Session</h5>
+                <p>Unity in preparation</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#galleryCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#galleryCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+    <!-- Static Photo Grid (Optional - Shows local images) -->
+    <div class="container">
+      <div class="static-gallery mt-5">
+        <h3 class="text-center mb-4 text-white">Featured Moments</h3>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img src="../assets/images/event1.jpg" alt="Worship Event 1" class="img-fluid rounded">
+              <div class="gallery-overlay">
+                <div class="overlay-content">
+                  <h5>Worship Night</h5>
+                  <p>Community Gathering</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img src="../assets/images/event2.jpg" alt="Worship Event 2" class="img-fluid rounded">
+              <div class="gallery-overlay">
+                <div class="overlay-content">
+                  <h5>Youth Conference</h5>
+                  <p>Empowering the Next Generation</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img src="../assets/images/event3.jpg" alt="Worship Event 3" class="img-fluid rounded">
+              <div class="gallery-overlay">
+                <div class="overlay-content">
+                  <h5>Sunday Service</h5>
+                  <p>Praise & Worship</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img src="../assets/images/member1.jpg" alt="Band Member" class="img-fluid rounded">
+              <div class="gallery-overlay">
+                <div class="overlay-content">
+                  <h5>Band Practice</h5>
+                  <p>Preparing for Ministry</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img src="../assets/images/member2.jpg" alt="Band Team" class="img-fluid rounded">
+              <div class="gallery-overlay">
+                <div class="overlay-content">
+                  <h5>Team Fellowship</h5>
+                  <p>Unity in Christ</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="gallery-item">
+              <img src="../assets/images/logo.jpg" alt="Arise Band Logo" class="img-fluid rounded">
+              <div class="gallery-overlay">
+                <div class="overlay-content">
+                  <h5>Arise Band_KE</h5>
+                  <p>Our Identity</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+      <p class="mb-0">&copy; 2024 Arise Band_KE. Spreading the Gospel through Music.</p>
+      <div class="mt-3">
+        <a href="https://www.facebook.com/profile.php?id=100083165318486" class="text-white me-3" target="_blank" rel="noopener">
+          <i class="fab fa-facebook fa-2x"></i>
+        </a>
+        <a href="https://www.youtube.com/@AriseKenya?sub_confirmation=1" class="text-white me-3" target="_blank" rel="noopener">
+          <i class="fab fa-youtube fa-2x"></i>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap Bundle JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Font Awesome -->
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Custom JS -->
+  <script src="../scripts/main.js"></script>
+</body>
+</html>

@@ -3,6 +3,22 @@
    Interactive functionality
    ======================================== */
 
+// === Page Loader ===
+(function initPageLoader() {
+  window.addEventListener('load', function() {
+    const loader = document.querySelector('.page-loader');
+    if (loader) {
+      setTimeout(() => {
+        loader.classList.add('hidden');
+        // Remove from DOM after transition
+        setTimeout(() => {
+          loader.remove();
+        }, 500);
+      }, 800); // Show loader for at least 800ms
+    }
+  });
+})();
+
 // === Scroll-triggered Animation for Elements ===
 (function initScrollAnimations() {
   const animatedElements = document.querySelectorAll('.animate__animated');
