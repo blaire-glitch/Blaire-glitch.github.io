@@ -208,13 +208,256 @@
       </div>
     </section>
 
+    <!-- Merchandise Exit Popup Modal -->
+    <div class="modal fade" id="merchandiseModal" tabindex="-1" aria-labelledby="merchandiseModalLabel" aria-hidden="true" data-bs-backdrop="static">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border-info">
+          <div class="modal-header border-info">
+            <h5 class="modal-title" id="merchandiseModalLabel">
+              <i class="bi bi-bag-heart-fill text-info"></i> Support Arise Band KE!
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row g-4">
+              <div class="col-12 text-center mb-3">
+                <h4 class="text-info">🎸 Show Your Love & Support 🎸</h4>
+                <p class="lead">Get exclusive Arise Band merchandise and help us create more amazing music!</p>
+              </div>
+              
+              <!-- Merchandise Items -->
+              <div class="col-md-4">
+                <div class="card bg-transparent border-info h-100">
+                  <div class="card-body text-center">
+                    <i class="bi bi-emoji-sunglasses" style="font-size: 3rem; color: #0dcaf0;"></i>
+                    <h5 class="card-title mt-3 text-info">T-Shirts</h5>
+                    <p class="card-text">Premium quality band tees</p>
+                    <p class="fw-bold text-warning">KSh 1,500</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="card bg-transparent border-info h-100">
+                  <div class="card-body text-center">
+                    <i class="bi bi-circle" style="font-size: 3rem; color: #0dcaf0;"></i>
+                    <h5 class="card-title mt-3 text-info">Caps</h5>
+                    <p class="card-text">Stylish branded caps</p>
+                    <p class="fw-bold text-warning">KSh 800</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-md-4">
+                <div class="card bg-transparent border-info h-100">
+                  <div class="card-body text-center">
+                    <i class="bi bi-ticket-perforated-fill" style="font-size: 3rem; color: #0dcaf0;"></i>
+                    <h5 class="card-title mt-3 text-info">Event Tickets</h5>
+                    <p class="card-text">Join us live!</p>
+                    <p class="fw-bold text-warning">From KSh 500</p>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="col-12 text-center mt-4">
+                <h5 class="text-white mb-3">💝 Every Purchase Supports Our Ministry 💝</h5>
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                  <button type="button" class="btn btn-info btn-lg" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#orderFormModal">
+                    <i class="bi bi-cart-fill"></i> Order Merchandise
+                  </button>
+                  <a href="dashboard.html" class="btn btn-outline-info btn-lg" data-bs-dismiss="modal">
+                    <i class="bi bi-calendar-event"></i> View Events
+                  </a>
+                </div>
+                <p class="text-muted mt-3 small">Fill out the order form to place your order</p>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer border-info justify-content-center">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Maybe Later</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Form Modal -->
+    <div class="modal fade" id="orderFormModal" tabindex="-1" aria-labelledby="orderFormModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white border-info">
+          <div class="modal-header border-info">
+            <h5 class="modal-title" id="orderFormModalLabel">
+              <i class="bi bi-clipboard-check-fill text-info"></i> Place Your Order
+            </h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="merchandiseOrderForm">
+              <div class="row g-3">
+                <!-- Personal Information -->
+                <div class="col-12">
+                  <h6 class="text-info"><i class="bi bi-person-fill"></i> Personal Information</h6>
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="orderName" class="form-label">Full Name <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control bg-transparent text-white border-info" id="orderName" required>
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="orderPhone" class="form-label">Phone Number <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control bg-transparent text-white border-info" id="orderPhone" placeholder="07XXXXXXXX" required>
+                </div>
+                
+                <div class="col-12">
+                  <label for="orderEmail" class="form-label">Email <span class="text-danger">*</span></label>
+                  <input type="email" class="form-control bg-transparent text-white border-info" id="orderEmail" required>
+                </div>
+                
+                <div class="col-12">
+                  <label for="orderLocation" class="form-label">Location/City <span class="text-danger">*</span></label>
+                  <input type="text" class="form-control bg-transparent text-white border-info" id="orderLocation" placeholder="e.g., Nairobi" required>
+                </div>
+                
+                <!-- Order Details -->
+                <div class="col-12 mt-4">
+                  <h6 class="text-info"><i class="bi bi-bag-fill"></i> Order Details</h6>
+                </div>
+                
+                <div class="col-12">
+                  <label for="orderType" class="form-label">Select Item Type <span class="text-danger">*</span></label>
+                  <select class="form-select bg-transparent text-white border-info" id="orderType" required>
+                    <option value="" selected disabled>Choose...</option>
+                    <option value="tshirt">T-Shirt (KSh 1,500)</option>
+                    <option value="cap">Cap (KSh 800)</option>
+                    <option value="ticket">Event Ticket (KSh 500+)</option>
+                    <option value="multiple">Multiple Items</option>
+                  </select>
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="orderQuantity" class="form-label">Quantity <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control bg-transparent text-white border-info" id="orderQuantity" min="1" value="1" required>
+                </div>
+                
+                <div class="col-md-6">
+                  <label for="orderSize" class="form-label">Size (for T-Shirts/Caps)</label>
+                  <select class="form-select bg-transparent text-white border-info" id="orderSize">
+                    <option value="" selected>Not applicable</option>
+                    <option value="S">Small (S)</option>
+                    <option value="M">Medium (M)</option>
+                    <option value="L">Large (L)</option>
+                    <option value="XL">Extra Large (XL)</option>
+                    <option value="XXL">XXL</option>
+                  </select>
+                </div>
+                
+                <div class="col-12">
+                  <label for="orderNotes" class="form-label">Additional Notes/Preferences</label>
+                  <textarea class="form-control bg-transparent text-white border-info" id="orderNotes" rows="3" placeholder="Any special requests, preferred colors, event details, etc."></textarea>
+                </div>
+                
+                <div class="col-12">
+                  <label for="orderPayment" class="form-label">Preferred Payment Method <span class="text-danger">*</span></label>
+                  <select class="form-select bg-transparent text-white border-info" id="orderPayment" required>
+                    <option value="" selected disabled>Choose...</option>
+                    <option value="mpesa">M-Pesa</option>
+                    <option value="cash">Cash on Delivery</option>
+                    <option value="bank">Bank Transfer</option>
+                  </select>
+                </div>
+                
+                <div class="col-12 mt-3">
+                  <div class="alert alert-info">
+                    <i class="bi bi-info-circle-fill"></i> <strong>Note:</strong> We'll contact you within 24 hours to confirm your order and provide payment details.
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer border-info">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-info" id="submitOrderBtn">
+              <i class="bi bi-check-circle-fill"></i> Submit Order
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-dark text-white text-center py-3">
       <p class="mb-0">&copy; 2025 Arise Band_KE. All rights reserved.</p>
     </footer>
 
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../scripts/main.js"></script>
+    
+    <!-- Merchandise Popup Script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        console.log('Page loaded, checking for popup...');
+        
+        // Check if user has already seen the popup in this session
+        const hasSeenPopup = sessionStorage.getItem('merchandisePopupShown');
+        console.log('Has seen popup:', hasSeenPopup);
+        
+        // Show popup after 10 seconds on page (for all devices)
+        if (!hasSeenPopup) {
+          console.log('Will show popup in 10 seconds...');
+          setTimeout(function() {
+            console.log('Showing popup now!');
+            const modalElement = document.getElementById('merchandiseModal');
+            if (modalElement) {
+              sessionStorage.setItem('merchandisePopupShown', 'true');
+              const merchandiseModal = new bootstrap.Modal(modalElement);
+              merchandiseModal.show();
+            } else {
+              console.error('Modal element not found!');
+            }
+          }, 10000); // 10 seconds
+        } else {
+          console.log('Popup already shown this session');
+        }
+        
+        // Order Form Submission Handler
+        document.getElementById('submitOrderBtn').addEventListener('click', function() {
+        const form = document.getElementById('merchandiseOrderForm');
+        
+        if (form.checkValidity()) {
+          // Collect form data
+          const orderData = {
+            name: document.getElementById('orderName').value,
+            phone: document.getElementById('orderPhone').value,
+            email: document.getElementById('orderEmail').value,
+            location: document.getElementById('orderLocation').value,
+            itemType: document.getElementById('orderType').value,
+            quantity: document.getElementById('orderQuantity').value,
+            size: document.getElementById('orderSize').value || 'N/A',
+            notes: document.getElementById('orderNotes').value || 'None',
+            paymentMethod: document.getElementById('orderPayment').value,
+            timestamp: new Date().toLocaleString()
+          };
+          
+          // Save to localStorage (in a real app, this would be sent to a backend)
+          let orders = JSON.parse(localStorage.getItem('bandOrders') || '[]');
+          orders.push(orderData);
+          localStorage.setItem('bandOrders', JSON.stringify(orders));
+          
+          // Show success message
+          alert('✅ Thank you! Your order has been received.\n\nWe will contact you within 24 hours at ' + orderData.phone + ' to confirm your order and provide payment details.\n\nOrder Reference: ORD-' + Date.now());
+          
+          // Close modal and reset form
+          bootstrap.Modal.getInstance(document.getElementById('orderFormModal')).hide();
+          form.reset();
+        } else {
+          form.reportValidity();
+        }
+        });
+      });
+    </script>
   </body>
 </html>
