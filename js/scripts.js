@@ -100,10 +100,21 @@ document.addEventListener('DOMContentLoaded', function () {
     // SMOOTH SCROLLING WITH OFFSET
     // =========================
     document.addEventListener('click', function (e) {
+        // ignore if already handled or not a primary (left) button click or modifier keys are used
+        if (e.defaultPrevented) return;
+        if (e.button && e.button !== 0) return;
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
         const link = e.target.closest('a[href^="#"]');
         if (!link) return;
         const href = link.getAttribute('href');
-        if (href === '#' || href === '#0') return;
+
+        // prevent default jump for empty/hash links (commonly used as toggles)
+        if (href === '#' || href === '#0') {
+            e.preventDefault();
+            return;
+        }
+
         const target = document.querySelector(href);
         if (!target) return;
 
