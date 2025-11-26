@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EmailJS Test</title>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .container {
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #555;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    button {
+      background: #28a745;
+      color: white;
+      padding: 12px 30px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #218838;
+    }
+    button:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+    .status {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 5px;
+      display: none;
+    }
+    .status.success {
+      background: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+    }
+    .status.error {
+      background: #f8d7da;
+      color: #721c24;
+      border: 1px solid #f5c6cb;
+    }
+    .info {
+      background: #e7f3ff;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 20px;
+      border-left: 4px solid #2196F3;
+    }
+    .console-log {
+      background: #1e1e1e;
+      color: #00ff00;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+      max-height: 300px;
+      overflow-y: auto;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📧 EmailJS Test Page</h1>
+    
+    <div class="info">
+      <strong>Testing EmailJS Configuration</strong><br>
+      Service ID: service_jhdkc2a<br>
+      Template ID: template_fewu93i<br>
+      To Email: arisebandke@gmail.com
+    </div>
+
+    <div class="form-group">
+      <label>Your Name:</label>
+      <input type="text" id="testName" value="Test User" placeholder="Enter your name">
+    </div>
+
+    <div class="form-group">
+      <label>Your Email:</label>
+      <input type="email" id="testEmail" value="test@example.com" placeholder="Enter your email">
+    </div>
+
+    <div class="form-group">
+      <label>Your Phone:</label>
+      <input type="tel" id="testPhone" value="1234567890" placeholder="Enter your phone">
+    </div>
+
+    <button id="sendTestBtn" onclick="sendTestEmail()">Send Test Email</button>
+
+    <div id="status" class="status"></div>
+
+    <div class="console-log" id="consoleLog">Console Output:<br></div>
+  </div>
+
+  <script>
+    // Initialize EmailJS
+    (function() {
+      emailjs.init('OisfebWWM4Lt4q3QC');
+      logToConsole('✅ EmailJS initialized with public key: OisfebWWM4Lt4q3QC');
+    })();
+
+    function logToConsole(message) {
+      const consoleLog = document.getElementById('consoleLog');
+      const timestamp = new Date().toLocaleTimeString();
+      consoleLog.innerHTML += `[${timestamp}] ${message}<br>`;
+      consoleLog.scrollTop = consoleLog.scrollHeight;
+      console.log(message);
+    }
+
+    async function sendTestEmail() {
+      const btn = document.getElementById('sendTestBtn');
+      const status = document.getElementById('status');
+      const name = document.getElementById('testName').value;
+      const email = document.getElementById('testEmail').value;
+      const phone = document.getElementById('testPhone').value;
+
+      // Disable button
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      status.style.display = 'none';
+
+      logToConsole('═══════════════════════════════');
+      logToConsole('🚀 Starting email send process...');
+      logToConsole(`Name: ${name}`);
+      logToConsole(`Email: ${email}`);
+      logToConsole(`Phone: ${phone}`);
+
+      try {
+        const templateParams = {
+          to_email: 'arisebandke@gmail.com',
+          from_name: name,
+          from_email: email,
+          phone: phone || 'Not provided',
+          event_name: 'Open Heaven Experience',
+          event_date: 'December 15, 2025 at 6:00 PM',
+          event_location: 'Busia Stadium',
+          timestamp: new Date().toLocaleString()
+        };
+
+        logToConsole('📦 Template parameters prepared:');
+        logToConsole(JSON.stringify(templateParams, null, 2));
+
+        logToConsole('📤 Sending email via EmailJS...');
+
+        const response = await emailjs.send(
+          'service_jhdkc2a',
+          'template_fewu93i',
+          templateParams
+        );
+
+        logToConsole('✅ SUCCESS! Email sent successfully!');
+        logToConsole(`Response status: ${response.status}`);
+        logToConsole(`Response text: ${response.text}`);
+
+        status.className = 'status success';
+        status.textContent = '✅ Test email sent successfully! Check arisebandke@gmail.com inbox (and spam folder).';
+        status.style.display = 'block';
+
+      } catch (error) {
+        logToConsole('❌ ERROR occurred!');
+        logToConsole(`Error: ${error.toString()}`);
+        logToConsole(`Error text: ${error.text || 'N/A'}`);
+        logToConsole(`Error status: ${error.status || 'N/A'}`);
+
+        status.className = 'status error';
+        status.textContent = `❌ Error: ${error.text || error.message || 'Unknown error'}`;
+        status.style.display = 'block';
+
+        // Common error explanations
+        if (error.text?.includes('Invalid')) {
+          logToConsole('💡 Tip: Check if Service ID or Template ID is correct');
+        }
+        if (error.text?.includes('not found')) {
+          logToConsole('💡 Tip: Template or Service might not exist in EmailJS dashboard');
+        }
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Send Test Email';
+        logToConsole('═══════════════════════════════');
+      }
+    }
+  </script>
+</body>
+</html>

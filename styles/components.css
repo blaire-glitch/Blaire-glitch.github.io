@@ -785,3 +785,292 @@
   }
 }
 
+/* ========================================
+   M-PESA PAYMENT MODAL STYLES
+   ======================================== */
+
+.mpesa-step {
+  display: none;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.mpesa-step.active {
+  display: block;
+}
+
+.mpesa-step .py-4 {
+  padding-top: 1rem !important;
+  padding-bottom: 1rem !important;
+}
+
+/* M-Pesa Logo Circle */
+.mpesa-logo-circle {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #00a651 0%, #007a3d 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem;
+  box-shadow: 0 8px 25px rgba(0, 166, 81, 0.4);
+  animation: mpesaPulse 2s infinite;
+}
+
+@keyframes mpesaPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 8px 25px rgba(0, 166, 81, 0.4);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(0, 166, 81, 0.6);
+  }
+}
+
+/* Payment Summary Box */
+.payment-summary {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border: 2px solid #dee2e6;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin: 0.75rem 0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.payment-summary .text-muted {
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.payment-summary strong {
+  color: #495057;
+  font-size: 1.1rem;
+}
+
+/* Processing Animation */
+.spinner-border {
+  width: 3rem;
+  height: 3rem;
+  border-width: 0.3rem;
+  margin-bottom: 1.5rem;
+}
+
+.phone-animation {
+  font-size: 2.5rem;
+  color: #00a651;
+  margin: 1rem 0;
+  animation: shake 0.8s infinite;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-5px) rotate(-5deg);
+  }
+  50% {
+    transform: translateX(0) rotate(0deg);
+  }
+  75% {
+    transform: translateX(5px) rotate(5deg);
+  }
+}
+
+/* Success Icon */
+.success-icon {
+  font-size: 3.5rem;
+  color: #28a745;
+  margin-bottom: 0.75rem;
+  animation: successPop 0.5s ease-out;
+}
+
+@keyframes successPop {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Error Icon */
+.error-icon {
+  font-size: 3.5rem;
+  color: #dc3545;
+  margin-bottom: 0.75rem;
+  animation: errorShake 0.5s ease-out;
+}
+
+@keyframes errorShake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-10px);
+  }
+  40%, 80% {
+    transform: translateX(10px);
+  }
+}
+
+/* Receipt Box */
+.receipt-box {
+  background: #fff;
+  border: 2px dashed #00a651;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin: 0.75rem 0;
+  box-shadow: 0 4px 12px rgba(0, 166, 81, 0.15);
+}
+
+.receipt-box .text-muted {
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.receipt-box strong {
+  color: #00a651;
+  font-size: 1rem;
+}
+
+/* Error Message */
+#errorMessage {
+  color: #dc3545;
+  font-weight: 600;
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(220, 53, 69, 0.1);
+  border-radius: 0.5rem;
+  border-left: 4px solid #dc3545;
+}
+
+/* M-Pesa Modal Structure */
+#mpesaModal .modal-dialog {
+  max-width: 500px;
+  margin: 1.75rem auto;
+}
+
+#mpesaModal .modal-content {
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* M-Pesa Modal Header */
+#mpesaModal .modal-header {
+  background: linear-gradient(135deg, #00a651 0%, #007a3d 100%);
+  border-bottom: none;
+  padding: 1.5rem;
+  flex-shrink: 0;
+}
+
+#mpesaModal .modal-header .modal-title {
+  color: #fff;
+  font-weight: 600;
+}
+
+/* M-Pesa Modal Body */
+#mpesaModal .modal-body {
+  max-height: calc(90vh - 180px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1.5rem;
+  flex: 1 1 auto;
+}
+
+#mpesaModal .modal-footer {
+  flex-shrink: 0;
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #dee2e6;
+}
+
+/* M-Pesa Modal Buttons */
+#mpesaModal .btn {
+  padding: 0.75rem 2rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+#mpesaModal .btn-success {
+  background: linear-gradient(135deg, #00a651 0%, #007a3d 100%);
+  border: none;
+  box-shadow: 0 4px 15px rgba(0, 166, 81, 0.3);
+}
+
+#mpesaModal .btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 166, 81, 0.5);
+}
+
+#mpesaModal .btn-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  border: none;
+  box-shadow: 0 4px 15px rgba(13, 110, 253, 0.3);
+}
+
+#mpesaModal .btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(13, 110, 253, 0.5);
+}
+
+/* Responsive M-Pesa Modal */
+@media (max-width: 576px) {
+  #mpesaModal .modal-dialog {
+    margin: 0.5rem;
+  }
+  
+  #mpesaModal .modal-body {
+    max-height: calc(100vh - 180px);
+    padding: 1rem;
+  }
+  
+  .mpesa-logo-circle {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .payment-summary {
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+  }
+  
+  .success-icon,
+  .error-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .phone-animation {
+    font-size: 2rem;
+  }
+  
+  .receipt-box {
+    padding: 0.75rem;
+    margin: 0.5rem 0;
+  }
+  
+  #mpesaModal .btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+  
+  #mpesaModal .modal-header {
+    padding: 1rem;
+  }
+  
+  #mpesaModal .modal-footer {
+    padding: 0.75rem 1rem;
+  }
+}
+
