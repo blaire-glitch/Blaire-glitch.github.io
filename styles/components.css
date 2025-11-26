@@ -1074,3 +1074,356 @@
   }
 }
 
+/* ========================================
+   FAN WALL PAGE STYLES
+   ======================================== */
+
+.fanwall-content {
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+  min-height: 100vh;
+}
+
+.filter-section {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-bottom: 2px solid rgba(13, 202, 240, 0.2);
+}
+
+.filter-section .nav-link {
+  background: rgba(13, 202, 240, 0.1);
+  border: 2px solid rgba(13, 202, 240, 0.3);
+  color: #0dcaf0;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  font-weight: 600;
+}
+
+.filter-section .nav-link:hover {
+  background: rgba(13, 202, 240, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(13, 202, 240, 0.3);
+}
+
+.filter-section .nav-link.active {
+  background: linear-gradient(135deg, #0dcaf0 0%, #0a8fb8 100%);
+  color: #000;
+  border-color: #0dcaf0;
+  box-shadow: 0 5px 20px rgba(13, 202, 240, 0.5);
+}
+
+.fanwall-post-card {
+  background: linear-gradient(135deg, rgba(22, 33, 62, 0.9) 0%, rgba(26, 26, 46, 0.9) 100%);
+  border: 2px solid rgba(13, 202, 240, 0.2);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.fanwall-post-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #0dcaf0, #6610f2, #0dcaf0);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.fanwall-post-card:hover::before {
+  opacity: 1;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.fanwall-post-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 40px rgba(13, 202, 240, 0.4);
+  border-color: rgba(13, 202, 240, 0.6);
+}
+
+.post-media {
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}
+
+.post-media:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.post-media::after {
+  content: '🔍 Click to view';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.post-media:hover::after {
+  opacity: 1;
+}
+
+.post-actions .btn {
+  transition: all 0.3s ease;
+}
+
+.post-actions .btn:hover {
+  transform: scale(1.1);
+}
+
+/* Modal styles for post creation */
+#postModal .modal-content {
+  border: 2px solid rgba(13, 202, 240, 0.3);
+  border-radius: 15px;
+}
+
+#postModal .form-control {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(13, 202, 240, 0.3);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+#postModal .form-control:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #0dcaf0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
+  color: #fff;
+}
+
+#postModal .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#postModal .form-label {
+  color: #0dcaf0;
+  font-weight: 600;
+}
+
+#postModal .btn-check:checked + .btn {
+  background: linear-gradient(135deg, #0dcaf0 0%, #0a8fb8 100%);
+  border-color: #0dcaf0;
+  color: #000;
+}
+
+/* Media viewer modal */
+#viewMediaModal .modal-dialog {
+  max-width: 90vw;
+}
+
+#viewMediaModal img,
+#viewMediaModal video {
+  max-height: 85vh;
+  width: auto;
+  margin: 0 auto;
+  display: block;
+}
+
+/* Cursor pointer utility */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* ========================================
+   FAN WALL INLINE SECTION STYLES
+   ======================================== */
+
+#fanwall {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  position: relative;
+}
+
+#fanwall::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><text x="50%" y="50%" font-size="40" fill="rgba(13,202,240,0.05)" text-anchor="middle" dominant-baseline="middle">♪</text></svg>');
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+/* Fan Wall Form Card */
+#fanwall .card {
+  background: linear-gradient(135deg, rgba(22, 33, 62, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%);
+  border: 2px solid rgba(13, 202, 240, 0.3);
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#fanwall .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(13, 202, 240, 0.3);
+}
+
+#fanwall .form-control {
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(13, 202, 240, 0.3);
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+#fanwall .form-control:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #0dcaf0;
+  box-shadow: 0 0 0 0.25rem rgba(13, 202, 240, 0.25);
+  color: #fff;
+}
+
+#fanwall .form-control::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+#fanwall .form-label {
+  color: #0dcaf0;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+#fanwall .form-text {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* Avatar Circle */
+.avatar-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0dcaf0 0%, #0a8fb8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  flex-shrink: 0;
+  box-shadow: 0 4px 15px rgba(13, 202, 240, 0.4);
+}
+
+/* Fan Wall Post Cards */
+#fanWallPosts .card {
+  background: linear-gradient(135deg, rgba(22, 33, 62, 0.8) 0%, rgba(26, 26, 46, 0.8) 100%);
+  border: 1px solid rgba(13, 202, 240, 0.2);
+  transition: all 0.3s ease;
+  animation: fadeInUp 0.5s ease-out;
+}
+
+#fanWallPosts .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(13, 202, 240, 0.3);
+  border-color: rgba(13, 202, 240, 0.5);
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Delete button */
+.delete-post {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+#fanWallPosts .card:hover .delete-post {
+  opacity: 1;
+}
+
+/* Post count badge */
+#postCount {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+}
+
+/* Load more button */
+#loadMoreBtn {
+  min-width: 200px;
+  padding: 0.75rem 2rem;
+  border: 2px solid #0dcaf0;
+  transition: all 0.3s ease;
+}
+
+#loadMoreBtn:hover {
+  background: #0dcaf0;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(13, 202, 240, 0.4);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  #fanwall .display-5 {
+    font-size: 2rem;
+  }
+  
+  .avatar-circle {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+  
+  #fanWallPosts .card {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Character counter styling */
+#charCount {
+  font-weight: 600;
+  color: #0dcaf0;
+}
+
+#fanMessage:invalid ~ .form-text #charCount {
+  color: #dc3545;
+}
+
+/* Success animation for submit button */
+.btn-success {
+  animation: successPulse 0.5s ease-out;
+}
+
+@keyframes successPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
