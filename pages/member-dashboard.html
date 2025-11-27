@@ -142,8 +142,8 @@
           <p class="lead mb-0">Ready to create beautiful worship music today?</p>
         </div>
         <div class="col-md-4 text-end">
-          <img src="../assets/images/logo.jpg" alt="Arise Band" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #ffd580; box-shadow: 0 5px 15px rgba(255, 213, 128, 0.3);">
-          <p class="mb-1 small">Last Login</p>
+          <img id="profilePicture" src="../assets/images/logo.jpg" alt="Arise Band" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #ffd580; box-shadow: 0 5px 15px rgba(255, 213, 128, 0.3);">
+          <p class="mb-1 small" id="authMethod">Last Login</p>
           <p class="h5" id="lastLogin">Just now</p>
         </div>
       </div>
@@ -365,6 +365,18 @@
       if (user.timestamp) {
         const loginTime = new Date(user.timestamp);
         lastLoginEl.textContent = loginTime.toLocaleString();
+      }
+      
+      // Display Google profile picture if signed in with Google
+      if (user.googleAuth && user.picture) {
+        const profilePic = document.getElementById('profilePicture');
+        if (profilePic) {
+          profilePic.src = user.picture;
+        }
+        const authMethod = document.getElementById('authMethod');
+        if (authMethod) {
+          authMethod.innerHTML = '<i class="bi bi-google text-danger"></i> Google Sign-In';
+        }
       }
       
       // Display role badge in welcome section
