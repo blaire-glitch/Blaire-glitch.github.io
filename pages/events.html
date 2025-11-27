@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Arise Band_KE Dashboard</title>
+    <title>Arise Band_KE Events</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
       rel="stylesheet" />
@@ -42,7 +42,7 @@
               <a class="nav-link" href="band-members.html">Band Members</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="dashboard.html">Events</a>
+              <a class="nav-link active" href="events.html">Events</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="gallery.html">Gallery</a>
@@ -58,16 +58,25 @@
       </div>
     </nav>
 
-    <!-- Dashboard Section -->
+    <!-- Events Section -->
     <header class="dashboard-hero text-center py-5">
-      <video autoplay muted loop playsinline class="dashboard-video-bg">
-        <source src="../assets/images/band-performance.mp4" type="video/mp4">
-        <source src="../assets/images/band-performance.webm" type="video/webm">
-      </video>
+      <!-- Slideshow Background -->
+      <div class="events-slideshow">
+        <div class="slideshow-image active" style="background-image: url('../assets/images/event1.png');"></div>
+        <div class="slideshow-image" style="background-image: url('../assets/images/concert.jpg');"></div>
+        <div class="slideshow-image" style="background-image: url('../assets/images/Ariseprac.jpg');"></div>
+        <div class="slideshow-image" style="background-image: url('../assets/images/outreach.jpg');"></div>
+        <div class="slideshow-image" style="background-image: url('../assets/images/rehearsal.jpg');"></div>
+      </div>
       <div class="dashboard-overlay"></div>
       <div class="container dashboard-content">
-        <h1 class="display-4 text-white">Arise Band_KE Dashboard</h1>
-        <p class="lead text-white">Stay updated with our latest activities and events!</p>
+        <h1 class="display-3 fw-bold events-title"> ARISE BAND_KE EVENTS </h1>
+        <p class="lead fs-4 events-subtitle">Join Us for Worship, Praise & Celebration!</p>
+        <div class="events-tagline mt-3">
+          <span class="badge events-badge">📅 Upcoming Shows</span>
+          <span class="badge events-badge ms-2">🎤 Live Worship</span>
+          <span class="badge events-badge ms-2">🙏 Community Outreach</span>
+        </div>
       </div>
     </header>
 <!DOCTYPE html>
@@ -266,7 +275,7 @@
                   <button type="button" class="btn btn-info btn-lg" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#orderFormModal">
                     <i class="bi bi-cart-fill"></i> Order Merchandise
                   </button>
-                  <a href="dashboard.html" class="btn btn-outline-info btn-lg" data-bs-dismiss="modal">
+                  <a href="events.html" class="btn btn-outline-info btn-lg" data-bs-dismiss="modal">
                     <i class="bi bi-calendar-event"></i> View Events
                   </a>
                 </div>
@@ -394,6 +403,22 @@
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../scripts/main.js"></script>
     
+    <!-- Events Slideshow Script -->
+    <script>
+      // Slideshow functionality
+      let currentSlide = 0;
+      const slides = document.querySelectorAll('.slideshow-image');
+      
+      function showNextSlide() {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+      }
+      
+      // Change slide every 4 seconds
+      setInterval(showNextSlide, 4000);
+    </script>
+
     <!-- Merchandise Popup Script -->
     <script>
       // Wait for everything to load
