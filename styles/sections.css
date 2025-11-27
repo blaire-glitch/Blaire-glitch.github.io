@@ -18,8 +18,14 @@
   width: 100%;
 }
 
-.hero-slideshow-section .carousel-item {
+.hero-slideshow-section .carousel-inner {
   height: 100vh;
+  width: 100%;
+}
+
+.hero-slideshow-section .carousel-item {
+  height: 100vh !important;
+  min-height: 100vh;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -92,38 +98,31 @@
 
 /* Individual Hero Slide Backgrounds */
 .hero-slide-1 {
-  background-image: url('../assets/images/slide1.jpg');
-  animation: zoomIn 3s ease-in-out;
+  background-image: url('../assets/images/slide1.jpg') !important;
 }
 
 .hero-slide-2 {
-  background-image: url('../assets/images/slide2.jpg');
-  animation: slideInRight 1s ease-out;
+  background-image: url('../assets/images/slide2.jpg') !important;
 }
 
 .hero-slide-3 {
-  background-image: url('../assets/images/slide3.jpg');
-  animation: slideInLeft 1s ease-out;
+  background-image: url('../assets/images/slide3.jpg') !important;
 }
 
 .hero-slide-4 {
-  background-image: url('../assets/images/concert.jpg');
-  animation: fadeInScale 1.5s ease-in-out;
+  background-image: url('../assets/images/concert.jpg') !important;
 }
 
 .hero-slide-5 {
-  background-image: url('../assets/images/outreach.jpg');
-  animation: slideInUp 1s ease-out;
+  background-image: url('../assets/images/outreach.jpg') !important;
 }
 
 .hero-slide-6 {
-  background-image: url('../assets/images/rehearsal.jpg');
-  animation: rotateIn 1.2s ease-out;
+  background-image: url('../assets/images/rehearsal.jpg') !important;
 }
 
 .hero-slide-7 {
-  background-image: url('../assets/images/Ariseprac.jpg');
-  animation: slideInDown 1s ease-out;
+  background-image: url('../assets/images/Ariseprac.jpg') !important;
 }
 
 .hero-slideshow-section .carousel-indicators {
