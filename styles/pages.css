@@ -330,37 +330,37 @@ html {
 
 /* === Individual Gallery Slide Backgrounds (Landscape Photos Only) === */
 .gallery-slide-1 {
-  background-image: url('../assets/gallery/slide1.jpg');
+  background-image: url('../assets/images/slide1.jpg');
   animation: zoomIn 3s ease-in-out;
 }
 
 .gallery-slide-2 {
-  background-image: url('../assets/gallery/slide2.jpg');
+  background-image: url('../assets/images/slide2.jpg');
   animation: slideInRight 1s ease-out;
 }
 
 .gallery-slide-3 {
-  background-image: url('../assets/gallery/slide3.jpg');
+  background-image: url('../assets/images/slide3.jpg');
   animation: slideInLeft 1s ease-out;
 }
 
 .gallery-slide-4 {
-  background-image: url('../assets/gallery/concert.jpg');
+  background-image: url('../assets/images/concert.jpg');
   animation: fadeInScale 1.5s ease-in-out;
 }
 
 .gallery-slide-5 {
-  background-image: url('../assets/gallery/outreach.jpg');
+  background-image: url('../assets/images/outreach.jpg');
   animation: slideInUp 1s ease-out;
 }
 
 .gallery-slide-6 {
-  background-image: url('../assets/gallery/rehearsal.jpg');
+  background-image: url('../assets/images/rehearsal.jpg');
   animation: rotateIn 1.2s ease-out;
 }
 
 .gallery-slide-7 {
-  background-image: url('../assets/gallery/Ariseprac.jpg');
+  background-image: url('../assets/images/Ariseprac.jpg');
   animation: slideInDown 1s ease-out;
 }
 
