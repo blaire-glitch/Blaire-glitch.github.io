@@ -1,0 +1,22 @@
+# Jekyll configuration for GitHub Pages
+permalink: pretty
+
+# Build settings
+markdown: kramdown
+plugins:
+  - jekyll-redirect-from
+
+# Exclude files from processing
+exclude:
+  - README.md
+  - CNAME
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+
+# Collections (if needed)
+collections:
+  pages:
+    output: true
+    permalink: /:name/
