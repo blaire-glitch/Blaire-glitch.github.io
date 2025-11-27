@@ -820,211 +820,100 @@
 
   <!-- Main Studio Layout -->
   <div class="studio-layout">
-    <!-- Left Sidebar -->
-    <div class="left-sidebar">
-      <!-- Voice Parts -->
-      <div class="sidebar-section">
-        <div class="sidebar-section-title">Voice Parts</div>
-        <div class="sidebar-item active" data-voice="lead">
-          <i class="bi bi-mic-fill"></i>
-          <span>Lead Vocal</span>
-        </div>
-        <div class="sidebar-item" data-voice="soprano">
-          <i class="bi bi-music-note"></i>
-          <span>Soprano</span>
-        </div>
-        <div class="sidebar-item" data-voice="alto">
-          <i class="bi bi-music-note"></i>
-          <span>Alto</span>
-        </div>
-        <div class="sidebar-item" data-voice="tenor">
-          <i class="bi bi-music-note"></i>
-          <span>Tenor</span>
-        </div>
-        <div class="sidebar-item" data-voice="bass">
-          <i class="bi bi-music-note"></i>
-          <span>Bass</span>
-        </div>
-        <div class="sidebar-item" data-voice="harmony">
-          <i class="bi bi-music-note-list"></i>
-          <span>Harmony</span>
-        </div>
-      </div>
-
-      <!-- Tracks -->
-      <div class="sidebar-section">
-        <div class="sidebar-section-title">Tracks</div>
-        <div id="tracksList">
-          <p style="color: var(--text-secondary); font-size: 0.85rem; text-align: center; padding: 1rem 0;">
-            No tracks yet. Start recording!
+    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; flex-direction: column; background: var(--bg-primary); padding: 2rem;">
+      
+      <!-- BandLab Connection Info -->
+      <div style="max-width: 800px; text-align: center;">
+        <div style="background: var(--bg-secondary); border-radius: 16px; padding: 3rem; border: 2px solid var(--accent-primary); box-shadow: 0 8px 32px rgba(255, 107, 53, 0.2);">
+          
+          <!-- Icon -->
+          <div style="margin-bottom: 2rem;">
+            <i class="bi bi-music-note-beamed" style="font-size: 5rem; color: var(--accent-primary);"></i>
+          </div>
+          
+          <!-- Heading -->
+          <h2 style="color: var(--text-primary); margin-bottom: 1rem; font-size: 2rem;">
+            Open BandLab Studio
+          </h2>
+          
+          <p style="color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.6;">
+            Access the full BandLab DAW with professional recording, mixing, and collaboration tools. 
+            Your projects sync automatically to the cloud.
+          </p>
+          
+          <!-- Features List -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; text-align: left;">
+            <div style="padding: 1rem; background: var(--bg-tertiary); border-radius: 8px;">
+              <i class="bi bi-mic-fill" style="color: var(--accent-primary); font-size: 1.5rem;"></i>
+              <p style="margin: 0.5rem 0 0 0; color: var(--text-primary); font-size: 0.9rem;">Multi-track Recording</p>
+            </div>
+            <div style="padding: 1rem; background: var(--bg-tertiary); border-radius: 8px;">
+              <i class="bi bi-sliders" style="color: var(--accent-primary); font-size: 1.5rem;"></i>
+              <p style="margin: 0.5rem 0 0 0; color: var(--text-primary); font-size: 0.9rem;">Pro Effects & Mixing</p>
+            </div>
+            <div style="padding: 1rem; background: var(--bg-tertiary); border-radius: 8px;">
+              <i class="bi bi-keyboard-fill" style="color: var(--accent-primary); font-size: 1.5rem;"></i>
+              <p style="margin: 0.5rem 0 0 0; color: var(--text-primary); font-size: 0.9rem;">Virtual Instruments</p>
+            </div>
+            <div style="padding: 1rem; background: var(--bg-tertiary); border-radius: 8px;">
+              <i class="bi bi-people-fill" style="color: var(--accent-primary); font-size: 1.5rem;"></i>
+              <p style="margin: 0.5rem 0 0 0; color: var(--text-primary); font-size: 0.9rem;">Real-time Collaboration</p>
+            </div>
+          </div>
+          
+          <!-- Action Buttons -->
+          <div style="display: flex; gap: 1rem; justify-content: center; margin-bottom: 1.5rem;">
+            <button id="openBandLabBtn" style="padding: 1rem 2rem; background: linear-gradient(135deg, var(--accent-primary) 0%, #ff8c5a 100%); border: none; border-radius: 12px; color: white; font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: transform 0.2s; box-shadow: 0 4px 16px rgba(255, 107, 53, 0.3);">
+              <i class="bi bi-box-arrow-up-right"></i>
+              Open BandLab Studio
+            </button>
+            <button id="quickRecordBtn" style="padding: 1rem 2rem; background: var(--bg-tertiary); border: 2px solid var(--accent-secondary); border-radius: 12px; color: var(--text-primary); font-size: 1.1rem; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 0.5rem; transition: all 0.2s;">
+              <i class="bi bi-mic"></i>
+              Quick Record
+            </button>
+          </div>
+          
+          <!-- Help Text -->
+          <p style="color: var(--text-secondary); font-size: 0.85rem; margin: 0;">
+            <i class="bi bi-lightbulb"></i> 
+            Tip: Sign up for a free BandLab account to save and sync your projects
           </p>
         </div>
-      </div>
-    </div>
-
-    <!-- Main Canvas -->
-    <div class="main-canvas">
-      <!-- Toolbar -->
-      <div class="toolbar">
-        <!-- Transport Controls -->
-        <div class="transport">
-          <button class="transport-btn" id="rewindBtn" title="Rewind">
-            <i class="bi bi-skip-start-fill"></i>
-          </button>
-          <button class="transport-btn play" id="playBtn" title="Play/Pause">
-            <i class="bi bi-play-fill"></i>
-          </button>
-          <button class="transport-btn" id="stopBtn" title="Stop">
-            <i class="bi bi-stop-fill"></i>
-          </button>
-          <button class="transport-btn record" id="recordBtn" title="Record">
-            <i class="bi bi-record-circle"></i>
-          </button>
-        </div>
-
-        <div class="time-display" id="timeDisplay">00:00:00</div>
-
-        <!-- Tool Group -->
-        <div class="tool-group">
-          <button class="tool-btn active" id="selectTool" title="Select">
-            <i class="bi bi-cursor"></i>
-          </button>
-          <button class="tool-btn" id="pencilTool" title="Draw">
-            <i class="bi bi-pencil"></i>
-          </button>
-          <button class="tool-btn" id="splitTool" title="Split">
-            <i class="bi bi-scissors"></i>
-          </button>
-          <button class="tool-btn" id="eraserTool" title="Erase">
-            <i class="bi bi-eraser"></i>
-          </button>
-        </div>
-
-        <!-- BPM Control -->
-        <div class="bpm-control">
-          <i class="bi bi-speedometer2"></i>
-          <input type="number" id="bpmInput" value="120" min="40" max="200">
-          <span style="font-size: 0.85rem;">BPM</span>
-        </div>
-
-        <!-- Metronome -->
-        <button class="tool-btn" id="metronomeBtn" title="Metronome">
-          <i class="bi bi-heart-pulse"></i>
-        </button>
-
-        <!-- Loop Toggle -->
-        <button class="tool-btn" id="loopBtn" title="Loop">
-          <i class="bi bi-arrow-repeat"></i>
-        </button>
-      </div>
-
-      <!-- Timeline Container -->
-      <div class="timeline-container">
-        <!-- Timeline Ruler -->
-        <div class="timeline-ruler">
-          <div class="ruler-markers" id="rulerMarkers">
-            <!-- Generated by JS -->
-          </div>
-        </div>
-
-        <!-- Timeline Tracks -->
-        <div class="timeline-tracks" id="timelineTracks">
-          <div class="timeline-track">
-            <div class="track-label">
-              <div class="track-label-name">Backing Track</div>
-              <div class="track-label-type">Audio</div>
+        
+        <!-- Quick Recording Panel (Hidden by default) -->
+        <div id="quickRecordPanel" style="display: none; margin-top: 2rem; background: var(--bg-secondary); border-radius: 16px; padding: 2rem; border: 2px solid var(--accent-secondary);">
+          <h3 style="color: var(--text-primary); margin-bottom: 1rem;">
+            <i class="bi bi-mic-fill me-2"></i>Quick Voice Recorder
+          </h3>
+          
+          <div style="display: flex; flex-direction: column; gap: 1rem; align-items: center;">
+            <div style="display: flex; gap: 1rem;">
+              <button id="startRecBtn" style="width: 80px; height: 80px; border-radius: 50%; background: var(--danger); border: none; color: white; font-size: 2rem; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(244, 67, 54, 0.3);">
+                <i class="bi bi-record-circle"></i>
+              </button>
+              <button id="stopRecBtn" style="width: 80px; height: 80px; border-radius: 50%; background: var(--bg-tertiary); border: none; color: var(--text-secondary); font-size: 2rem; cursor: pointer;" disabled>
+                <i class="bi bi-stop-circle"></i>
+              </button>
+              <button id="playRecBtn" style="width: 80px; height: 80px; border-radius: 50%; background: var(--success); border: none; color: white; font-size: 2rem; cursor: pointer;" disabled>
+                <i class="bi bi-play-circle"></i>
+              </button>
             </div>
-            <div class="track-content" id="backingTrackContent">
-              <!-- Audio regions added here -->
+            
+            <div style="width: 100%; max-width: 500px;">
+              <canvas id="recWaveform" width="500" height="80" style="width: 100%; background: #000; border-radius: 8px;"></canvas>
             </div>
-          </div>
-          <!-- More tracks added dynamically -->
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Sidebar -->
-    <div class="right-sidebar">
-      <!-- Virtual Piano -->
-      <div class="instrument-panel">
-        <div class="panel-title">
-          <i class="bi bi-music-note-beamed"></i>
-          Virtual Piano
-        </div>
-        <div class="virtual-piano">
-          <div class="piano-keys-container" id="pianoKeys">
-            <!-- Piano keys generated by JS -->
+            
+            <div id="recStatus" style="color: var(--text-secondary); font-size: 0.9rem;">
+              Click record to start
+            </div>
+            
+            <button id="downloadRecBtn" style="padding: 0.75rem 1.5rem; background: var(--accent-secondary); border: none; border-radius: 8px; color: var(--bg-primary); font-weight: 600; cursor: pointer; display: none;">
+              <i class="bi bi-download me-2"></i>Download Recording
+            </button>
           </div>
         </div>
       </div>
-
-      <!-- Effects Panel -->
-      <div class="effects-panel">
-        <div class="panel-title">
-          <i class="bi bi-sliders"></i>
-          Effects
-        </div>
-        <div class="effect-item">
-          <div class="effect-name">
-            <i class="bi bi-soundwave"></i>
-            Reverb
-          </div>
-          <div class="effect-toggle" id="reverbToggle"></div>
-        </div>
-        <div class="effect-item">
-          <div class="effect-name">
-            <i class="bi bi-broadcast"></i>
-            Echo
-          </div>
-          <div class="effect-toggle" id="echoToggle"></div>
-        </div>
-        <div class="effect-item">
-          <div class="effect-name">
-            <i class="bi bi-box"></i>
-            Compressor
-          </div>
-          <div class="effect-toggle" id="compressorToggle"></div>
-        </div>
-        <div class="effect-item">
-          <div class="effect-name">
-            <i class="bi bi-filter"></i>
-            EQ
-          </div>
-          <div class="effect-toggle" id="eqToggle"></div>
-        </div>
-      </div>
-
-      <!-- Library Panel -->
-      <div class="library-panel">
-        <div class="panel-title">
-          <i class="bi bi-folder2-open"></i>
-          Library
-        </div>
-        
-        <!-- Upload Options -->
-        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
-          <button class="upload-btn" id="uploadLocalBtn" style="flex: 1; font-size: 0.85rem; padding: 0.6rem;">
-            <i class="bi bi-folder-fill"></i>
-            Local File
-          </button>
-          <button class="upload-btn" id="uploadStreamBtn" style="flex: 1; font-size: 0.85rem; padding: 0.6rem; background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);">
-            <i class="bi bi-link-45deg"></i>
-            Stream URL
-          </button>
-        </div>
-        
-        <input type="file" id="fileInput" accept="audio/*" multiple style="display: none;">
-        
-        <div id="libraryList">
-          <!-- Library items added here -->
-        </div>
-        
-        <!-- Add Track Button -->
-        <button class="upload-btn" id="addTrackBtn" style="margin-top: 1rem; background: linear-gradient(135deg, #0dcaf0 0%, #0aa2c0 100%);">
-          <i class="bi bi-plus-circle-fill"></i>
-          Add Audio Track
-        </button>
-      </div>
+      
     </div>
   </div>
 
@@ -1037,765 +926,146 @@
     }
 
     // Initialize saved data
-    let savedTracks = JSON.parse(localStorage.getItem('ariseBandTracks') || '[]');
-    let savedLoops = JSON.parse(localStorage.getItem('ariseBandLoops') || '[]');
-    let currentProject = JSON.parse(localStorage.getItem('ariseBandCurrentProject') || '{"name": "Untitled Project", "tracks": []}');
+    let currentProject = JSON.parse(localStorage.getItem('ariseBandCurrentProject') || '{"name": "Arise Studio Project", "tracks": []}');
 
     // Update project name
     document.getElementById('projectName').textContent = currentProject.name;
 
-    // Audio Context
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+
+    // Open BandLab in same tab
+    document.getElementById('openBandLabBtn').addEventListener('click', () => {
+      window.location.href = 'https://www.bandlab.com/studio';
+    });
+
+    // Quick Record functionality
     let mediaRecorder;
-    let recordedChunks = [];
-    let isRecording = false;
-    let isPlaying = false;
-    let currentTime = 0;
+    let audioChunks = [];
+    let recordedBlob;
+    let audioContext;
+    let analyser;
+    let dataArray;
     let animationId;
 
-    // Generate Piano Keys
-    const pianoKeys = document.getElementById('pianoKeys');
-    const notes = [
-      { note: 'C4', freq: 261.63, type: 'white', key: 'A' },
-      { note: 'C#4', freq: 277.18, type: 'black', key: 'W', offset: 24 },
-      { note: 'D4', freq: 293.66, type: 'white', key: 'S' },
-      { note: 'D#4', freq: 311.13, type: 'black', key: 'E', offset: 56 },
-      { note: 'E4', freq: 329.63, type: 'white', key: 'D' },
-      { note: 'F4', freq: 349.23, type: 'white', key: 'F' },
-      { note: 'F#4', freq: 369.99, type: 'black', key: 'T', offset: 120 },
-      { note: 'G4', freq: 392.00, type: 'white', key: 'G' },
-      { note: 'G#4', freq: 415.30, type: 'black', key: 'Y', offset: 152 },
-      { note: 'A4', freq: 440.00, type: 'white', key: 'H' },
-      { note: 'A#4', freq: 466.16, type: 'black', key: 'U', offset: 184 },
-      { note: 'B4', freq: 493.88, type: 'white', key: 'J' },
-      { note: 'C5', freq: 523.25, type: 'white', key: 'K' }
-    ];
+    const quickRecordBtn = document.getElementById('quickRecordBtn');
+    const quickRecordPanel = document.getElementById('quickRecordPanel');
+    const startRecBtn = document.getElementById('startRecBtn');
+    const stopRecBtn = document.getElementById('stopRecBtn');
+    const playRecBtn = document.getElementById('playRecBtn');
+    const downloadRecBtn = document.getElementById('downloadRecBtn');
+    const recWaveform = document.getElementById('recWaveform');
+    const recStatus = document.getElementById('recStatus');
+    const ctx = recWaveform.getContext('2d');
 
-    notes.forEach((note, index) => {
-      const key = document.createElement('div');
-      key.className = note.type === 'white' ? 'white-key' : 'black-key';
-      key.dataset.freq = note.freq;
-      key.dataset.note = note.note;
-      
-      if (note.type === 'black') {
-        key.style.left = note.offset + 'px';
-      }
-      
-      key.addEventListener('mousedown', () => playNote(note.freq, key));
-      key.addEventListener('mouseup', () => stopNote(key));
-      key.addEventListener('mouseleave', () => stopNote(key));
-      
-      pianoKeys.appendChild(key);
+    quickRecordBtn.addEventListener('click', () => {
+      quickRecordPanel.style.display = quickRecordPanel.style.display === 'none' ? 'block' : 'none';
     });
 
-    // Piano Note Playing
-    let oscillator = null;
-    let gainNode = null;
-
-    function playNote(frequency, keyElement) {
-      oscillator = audioContext.createOscillator();
-      gainNode = audioContext.createGain();
-      
-      oscillator.type = 'sine';
-      oscillator.frequency.value = frequency;
-      
-      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
-      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
-      
-      oscillator.connect(gainNode);
-      gainNode.connect(audioContext.destination);
-      
-      oscillator.start(audioContext.currentTime);
-      keyElement.classList.add('active');
-    }
-
-    function stopNote(keyElement) {
-      if (oscillator) {
-        oscillator.stop();
-        oscillator = null;
-      }
-      keyElement.classList.remove('active');
-    }
-
-    // Keyboard shortcuts for piano
-    document.addEventListener('keydown', (e) => {
-      const key = e.key.toUpperCase();
-      const note = notes.find(n => n.key === key);
-      if (note) {
-        const keyElement = document.querySelector(`[data-note="${note.note}"]`);
-        if (keyElement && !keyElement.classList.contains('active')) {
-          playNote(note.freq, keyElement);
-        }
-      }
-    });
-
-    document.addEventListener('keyup', (e) => {
-      const key = e.key.toUpperCase();
-      const note = notes.find(n => n.key === key);
-      if (note) {
-        const keyElement = document.querySelector(`[data-note="${note.note}"]`);
-        if (keyElement) {
-          stopNote(keyElement);
-        }
-      }
-    });
-
-    // Generate Timeline Ruler
-    const rulerMarkers = document.getElementById('rulerMarkers');
-    for (let i = 0; i < 100; i++) {
-      const mark = document.createElement('div');
-      mark.className = 'ruler-mark';
-      mark.textContent = i;
-      rulerMarkers.appendChild(mark);
-    }
-
-    // Transport Controls
-    const playBtn = document.getElementById('playBtn');
-    const stopBtn = document.getElementById('stopBtn');
-    const recordBtn = document.getElementById('recordBtn');
-    const rewindBtn = document.getElementById('rewindBtn');
-    const timeDisplay = document.getElementById('timeDisplay');
-
-    playBtn.addEventListener('click', togglePlay);
-    stopBtn.addEventListener('click', stop);
-    recordBtn.addEventListener('click', toggleRecord);
-    rewindBtn.addEventListener('click', rewind);
-
-    function togglePlay() {
-      isPlaying = !isPlaying;
-      const icon = playBtn.querySelector('i');
-      
-      if (isPlaying) {
-        icon.className = 'bi bi-pause-fill';
-        startPlayback();
-      } else {
-        icon.className = 'bi bi-play-fill';
-        pausePlayback();
-      }
-    }
-
-    function stop() {
-      isPlaying = false;
-      currentTime = 0;
-      updateTimeDisplay();
-      playBtn.querySelector('i').className = 'bi bi-play-fill';
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    }
-
-    function rewind() {
-      currentTime = 0;
-      updateTimeDisplay();
-    }
-
-    function startPlayback() {
-      const startTime = Date.now() - (currentTime * 1000);
-      
-      function animate() {
-        currentTime = (Date.now() - startTime) / 1000;
-        updateTimeDisplay();
-        
-        if (isPlaying) {
-          animationId = requestAnimationFrame(animate);
-        }
-      }
-      
-      animate();
-    }
-
-    function pausePlayback() {
-      if (animationId) {
-        cancelAnimationFrame(animationId);
-      }
-    }
-
-    function updateTimeDisplay() {
-      const hours = Math.floor(currentTime / 3600);
-      const minutes = Math.floor((currentTime % 3600) / 60);
-      const seconds = Math.floor(currentTime % 60);
-      
-      timeDisplay.textContent = 
-        String(hours).padStart(2, '0') + ':' +
-        String(minutes).padStart(2, '0') + ':' +
-        String(seconds).padStart(2, '0');
-    }
-
-    // Recording
-    async function toggleRecord() {
-      if (!isRecording) {
-        await startRecording();
-      } else {
-        stopRecording();
-      }
-    }
-
-    async function startRecording() {
+    startRecBtn.addEventListener('click', async () => {
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioContext.createMediaStreamSource(stream);
+        analyser = audioContext.createAnalyser();
+        analyser.fftSize = 2048;
+        source.connect(analyser);
+        
+        const bufferLength = analyser.frequencyBinCount;
+        dataArray = new Uint8Array(bufferLength);
+        
         mediaRecorder = new MediaRecorder(stream);
-        recordedChunks = [];
+        audioChunks = [];
 
         mediaRecorder.ondataavailable = (e) => {
-          if (e.data.size > 0) {
-            recordedChunks.push(e.data);
-          }
+          audioChunks.push(e.data);
         };
 
         mediaRecorder.onstop = () => {
-          const blob = new Blob(recordedChunks, { type: 'audio/webm' });
-          const trackName = prompt('Name your recording:', 'Recording ' + (savedTracks.length + 1));
-          
-          if (trackName) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-              const newTrack = {
-                id: Date.now(),
-                name: trackName,
-                data: e.target.result,
-                timestamp: new Date().toLocaleString(),
-                voicePart: document.querySelector('.sidebar-item.active').dataset.voice
-              };
-              
-              savedTracks.push(newTrack);
-              localStorage.setItem('ariseBandTracks', JSON.stringify(savedTracks));
-              addTrackToTimeline(newTrack);
-              updateTracksList();
-            };
-            reader.readAsDataURL(blob);
-          }
+          recordedBlob = new Blob(audioChunks, { type: 'audio/webm' });
+          playRecBtn.disabled = false;
+          downloadRecBtn.style.display = 'block';
+          stream.getTracks().forEach(track => track.stop());
+          cancelAnimationFrame(animationId);
         };
 
         mediaRecorder.start();
-        isRecording = true;
-        recordBtn.classList.add('active');
+        startRecBtn.disabled = true;
+        stopRecBtn.disabled = false;
+        startRecBtn.style.background = '#666';
+        stopRecBtn.style.background = 'var(--danger)';
+        recStatus.textContent = 'Recording... Click stop when done';
+        recStatus.style.color = 'var(--danger)';
         
-        // Start playback timer
-        if (!isPlaying) {
-          togglePlay();
-        }
+        visualize();
       } catch (error) {
-        alert('Microphone access denied. Please allow microphone access to record.');
+        alert('Microphone access denied. Please allow microphone access.');
         console.error('Recording error:', error);
       }
-    }
+    });
 
-    function stopRecording() {
-      if (mediaRecorder && isRecording) {
+    stopRecBtn.addEventListener('click', () => {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
         mediaRecorder.stop();
-        isRecording = false;
-        recordBtn.classList.remove('active');
-        
-        // Stop all tracks
-        mediaRecorder.stream.getTracks().forEach(track => track.stop());
+        startRecBtn.disabled = false;
+        stopRecBtn.disabled = true;
+        startRecBtn.style.background = 'var(--danger)';
+        stopRecBtn.style.background = 'var(--bg-tertiary)';
+        recStatus.textContent = 'Recording saved. Click play to listen.';
+        recStatus.style.color = 'var(--success)';
       }
-    }
-
-    // Add track to timeline
-    function addTrackToTimeline(track) {
-      const timelineTracks = document.getElementById('timelineTracks');
-      
-      const trackRow = document.createElement('div');
-      trackRow.className = 'timeline-track';
-      trackRow.innerHTML = `
-        <div class="track-label">
-          <div class="track-label-name">${track.name}</div>
-          <div class="track-label-type">${track.voicePart}</div>
-        </div>
-        <div class="track-content">
-          <div class="audio-region" style="left: ${currentTime * 60}px; width: 300px;">
-            <canvas class="audio-region-waveform"></canvas>
-            <span class="audio-region-name">${track.name}</span>
-          </div>
-        </div>
-      `;
-      
-      timelineTracks.appendChild(trackRow);
-    }
-
-    // Update tracks list in sidebar
-    function updateTracksList() {
-      const tracksList = document.getElementById('tracksList');
-      
-      if (savedTracks.length === 0) {
-        tracksList.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.85rem; text-align: center; padding: 1rem 0;">No tracks yet. Start recording!</p>';
-        return;
-      }
-      
-      tracksList.innerHTML = '';
-      
-      savedTracks.forEach((track, index) => {
-        const trackItem = document.createElement('div');
-        trackItem.className = 'track-item';
-        trackItem.innerHTML = `
-          <div class="track-header">
-            <span class="track-name">${track.name}</span>
-            <div class="track-controls">
-              <button class="track-btn" onclick="toggleMute(${index})" title="Mute">
-                <i class="bi bi-volume-up"></i>
-              </button>
-              <button class="track-btn" onclick="toggleSolo(${index})" title="Solo">
-                <i class="bi bi-music-note"></i>
-              </button>
-              <button class="track-btn" onclick="deleteTrack(${index})" title="Delete">
-                <i class="bi bi-trash"></i>
-              </button>
-            </div>
-          </div>
-          <input type="range" class="track-volume" min="0" max="100" value="80">
-        `;
-        tracksList.appendChild(trackItem);
-      });
-    }
-
-    window.toggleMute = function(index) {
-      const btn = event.target.closest('.track-btn');
-      btn.classList.toggle('active');
-    };
-
-    window.toggleSolo = function(index) {
-      const btn = event.target.closest('.track-btn');
-      btn.classList.toggle('active');
-    };
-
-    window.deleteTrack = function(index) {
-      if (confirm('Delete this track?')) {
-        savedTracks.splice(index, 1);
-        localStorage.setItem('ariseBandTracks', JSON.stringify(savedTracks));
-        updateTracksList();
-      }
-    };
-
-    // Upload backing track from local file
-    const uploadLocalBtn = document.getElementById('uploadLocalBtn');
-    const uploadStreamBtn = document.getElementById('uploadStreamBtn');
-    const fileInput = document.getElementById('fileInput');
-
-    if (uploadLocalBtn) {
-      uploadLocalBtn.addEventListener('click', () => {
-        fileInput.click();
-      });
-    }
-
-    if (fileInput) {
-      fileInput.addEventListener('change', (e) => {
-        const files = e.target.files;
-        if (!files || files.length === 0) return;
-
-        // Process each selected file
-        Array.from(files).forEach((file, index) => {
-          const reader = new FileReader();
-          reader.onload = function(event) {
-            // Get audio duration
-            const audio = new Audio(event.target.result);
-            audio.addEventListener('loadedmetadata', () => {
-              const minutes = Math.floor(audio.duration / 60);
-              const seconds = Math.floor(audio.duration % 60);
-              const durationStr = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-              
-              const newLoop = {
-                id: Date.now() + index,
-                name: file.name.replace(/\.[^/.]+$/, ''),
-                data: event.target.result,
-                timestamp: new Date().toLocaleString(),
-                duration: durationStr,
-                type: 'local'
-              };
-
-              savedLoops.push(newLoop);
-              localStorage.setItem('ariseBandLoops', JSON.stringify(savedLoops));
-              updateLibraryList();
-              
-              // Show success notification
-              showNotification(`✓ ${file.name} uploaded successfully!`, 'success');
-            });
-          };
-
-          reader.readAsDataURL(file);
-        });
-
-        fileInput.value = '';
-      });
-    }
-
-    // Upload from stream URL
-    if (uploadStreamBtn) {
-      uploadStreamBtn.addEventListener('click', () => {
-        const url = prompt('Enter audio stream URL:\n(e.g., https://example.com/audio.mp3)');
-        if (!url) return;
-
-        // Validate URL format
-        try {
-          new URL(url);
-        } catch (e) {
-          alert('Invalid URL format. Please enter a valid URL.');
-          return;
-        }
-
-        // Test if URL is accessible
-        const audio = new Audio(url);
-        
-        audio.addEventListener('loadedmetadata', () => {
-          const minutes = Math.floor(audio.duration / 60);
-          const seconds = Math.floor(audio.duration % 60);
-          const durationStr = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-          
-          const fileName = url.split('/').pop().split('?')[0] || 'Stream Audio';
-          
-          const newLoop = {
-            id: Date.now(),
-            name: fileName.replace(/\.[^/.]+$/, ''),
-            data: url,
-            timestamp: new Date().toLocaleString(),
-            duration: durationStr,
-            type: 'stream'
-          };
-
-          savedLoops.push(newLoop);
-          localStorage.setItem('ariseBandLoops', JSON.stringify(savedLoops));
-          updateLibraryList();
-          
-          showNotification(`✓ Stream added: ${newLoop.name}`, 'success');
-        });
-
-        audio.addEventListener('error', () => {
-          alert('Failed to load audio from URL. Please check:\n• URL is correct\n• Audio file is accessible\n• CORS is enabled on the server');
-        });
-      });
-    }
-
-    // Add backing track to timeline from library
-    window.addToTimeline = function(index) {
-      const loop = savedLoops[index];
-      if (!loop) return;
-
-      const backingTrackContent = document.getElementById('backingTrackContent');
-      const region = document.createElement('div');
-      region.className = 'audio-region';
-      region.style.left = '60px'; // Start position
-      region.style.width = '500px';
-      region.dataset.trackId = loop.id;
-      region.innerHTML = `
-        <canvas class="audio-region-waveform"></canvas>
-        <span class="audio-region-name">${loop.name}</span>
-      `;
-      
-      // Make draggable
-      makeDraggable(region);
-      
-      backingTrackContent.appendChild(region);
-      showNotification(`✓ ${loop.name} added to timeline`, 'success');
-    };
-
-    // Make audio regions draggable
-    function makeDraggable(element) {
-      let pos1 = 0, pos3 = 0;
-      
-      element.addEventListener('mousedown', dragMouseDown);
-      
-      function dragMouseDown(e) {
-        e.preventDefault();
-        pos3 = e.clientX;
-        document.addEventListener('mouseup', closeDragElement);
-        document.addEventListener('mousemove', elementDrag);
-      }
-      
-      function elementDrag(e) {
-        e.preventDefault();
-        pos1 = pos3 - e.clientX;
-        pos3 = e.clientX;
-        const newLeft = element.offsetLeft - pos1;
-        if (newLeft >= 0) {
-          element.style.left = newLeft + 'px';
-        }
-      }
-      
-      function closeDragElement() {
-        document.removeEventListener('mouseup', closeDragElement);
-        document.removeEventListener('mousemove', elementDrag);
-      }
-    }
-
-    // Show notification
-    function showNotification(message, type = 'info') {
-      const notification = document.createElement('div');
-      notification.style.cssText = `
-        position: fixed;
-        top: 80px;
-        right: 20px;
-        background: ${type === 'success' ? 'var(--success)' : 'var(--accent-primary)'};
-        color: white;
-        padding: 1rem 1.5rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        z-index: 1000;
-        animation: slideIn 0.3s ease;
-      `;
-      notification.textContent = message;
-      document.body.appendChild(notification);
-      
-      setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-      }, 3000);
-    }
-
-    // Add custom animation
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes slideIn {
-        from { transform: translateX(400px); opacity: 0; }
-        to { transform: translateX(0); opacity: 1; }
-      }
-      @keyframes slideOut {
-        from { transform: translateX(0); opacity: 1; }
-        to { transform: translateX(400px); opacity: 0; }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Update library list
-    function updateLibraryList() {
-      const libraryList = document.getElementById('libraryList');
-      
-      if (savedLoops.length === 0) {
-        libraryList.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.85rem; text-align: center; padding: 1rem 0;">No files yet. Upload tracks!</p>';
-        return;
-      }
-      
-      libraryList.innerHTML = '';
-      
-      savedLoops.forEach((loop, index) => {
-        const item = document.createElement('div');
-        item.className = 'library-item';
-        
-        const typeIcon = loop.type === 'stream' ? 
-          '<i class="bi bi-wifi" style="color: var(--warning); font-size: 0.7rem;" title="Stream"></i>' : 
-          '<i class="bi bi-file-music" style="color: var(--accent-secondary); font-size: 0.7rem;" title="Local file"></i>';
-        
-        item.innerHTML = `
-          <div class="library-item-info">
-            <div class="library-item-name">${typeIcon} ${loop.name}</div>
-            <div class="library-item-meta">${loop.duration || '0:00'} • ${loop.timestamp}</div>
-          </div>
-          <div class="library-item-actions">
-            <button class="track-btn" onclick="playLibraryItem(${index})" title="Play">
-              <i class="bi bi-play-fill"></i>
-            </button>
-            <button class="track-btn" onclick="addToTimeline(${index})" title="Add to Timeline">
-              <i class="bi bi-plus-square"></i>
-            </button>
-            <button class="track-btn" onclick="deleteLibraryItem(${index})" title="Delete">
-              <i class="bi bi-trash"></i>
-            </button>
-          </div>
-        `;
-        libraryList.appendChild(item);
-      });
-    }
-
-    window.playLibraryItem = function(index) {
-      const loop = savedLoops[index];
-      const audio = new Audio(loop.data);
-      audio.play();
-    };
-
-    window.deleteLibraryItem = function(index) {
-      if (confirm('Delete this file?')) {
-        savedLoops.splice(index, 1);
-        localStorage.setItem('ariseBandLoops', JSON.stringify(savedLoops));
-        updateLibraryList();
-        showNotification('File deleted', 'info');
-      }
-    };
-
-    // Add new audio track dynamically
-    let trackCounter = 1;
-    const addTrackBtn = document.getElementById('addTrackBtn');
-    
-    if (addTrackBtn) {
-      addTrackBtn.addEventListener('click', () => {
-        const trackName = prompt('Enter track name:', `Audio Track ${trackCounter}`);
-        if (!trackName) return;
-
-        const timelineTracks = document.getElementById('timelineTracks');
-        
-        const trackRow = document.createElement('div');
-        trackRow.className = 'timeline-track';
-        trackRow.dataset.trackId = `track-${Date.now()}`;
-        trackRow.innerHTML = `
-          <div class="track-label">
-            <div class="track-label-name">${trackName}</div>
-            <div class="track-label-type">Audio</div>
-          </div>
-          <div class="track-content" data-track-content="${trackName}">
-            <!-- Audio regions can be added here -->
-          </div>
-        `;
-        
-        timelineTracks.appendChild(trackRow);
-        trackCounter++;
-        
-        showNotification(`✓ Track "${trackName}" added`, 'success');
-        
-        // Add to tracks list in sidebar
-        addToTracksList(trackName);
-      });
-    }
-
-    // Add track to sidebar list
-    function addToTracksList(trackName) {
-      const tracksList = document.getElementById('tracksList');
-      
-      // Remove "no tracks" message if exists
-      if (tracksList.querySelector('p')) {
-        tracksList.innerHTML = '';
-      }
-      
-      const trackItem = document.createElement('div');
-      trackItem.className = 'track-item';
-      trackItem.innerHTML = `
-        <div class="track-header">
-          <span class="track-name">${trackName}</span>
-          <div class="track-controls">
-            <button class="track-btn" onclick="toggleTrackMute(this)" title="Mute">
-              <i class="bi bi-volume-up"></i>
-            </button>
-            <button class="track-btn" onclick="toggleTrackSolo(this)" title="Solo">
-              <i class="bi bi-music-note"></i>
-            </button>
-            <button class="track-btn" onclick="deleteTrackFromList(this)" title="Delete">
-              <i class="bi bi-trash"></i>
-            </button>
-          </div>
-        </div>
-        <input type="range" class="track-volume" min="0" max="100" value="80">
-      `;
-      tracksList.appendChild(trackItem);
-    }
-
-    window.toggleTrackMute = function(btn) {
-      btn.classList.toggle('active');
-      const icon = btn.querySelector('i');
-      if (btn.classList.contains('active')) {
-        icon.className = 'bi bi-volume-mute';
-      } else {
-        icon.className = 'bi bi-volume-up';
-      }
-    };
-
-    window.toggleTrackSolo = function(btn) {
-      btn.classList.toggle('active');
-    };
-
-    window.deleteTrackFromList = function(btn) {
-      if (confirm('Delete this track?')) {
-        btn.closest('.track-item').remove();
-        showNotification('Track removed', 'info');
-      }
-    };
-
-    // Effect toggles
-    document.querySelectorAll('.effect-toggle').forEach(toggle => {
-      toggle.addEventListener('click', function() {
-        this.classList.toggle('active');
-      });
     });
 
-    // Tool selection
-    document.querySelectorAll('.tool-btn').forEach(btn => {
-      btn.addEventListener('click', function() {
-        if (!this.id.includes('metronome') && !this.id.includes('loop')) {
-          document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
-          this.classList.add('active');
+    playRecBtn.addEventListener('click', () => {
+      if (recordedBlob) {
+        const audio = new Audio(URL.createObjectURL(recordedBlob));
+        audio.play();
+        recStatus.textContent = 'Playing recording...';
+        audio.onended = () => {
+          recStatus.textContent = 'Playback finished.';
+        };
+      }
+    });
+
+    downloadRecBtn.addEventListener('click', () => {
+      if (recordedBlob) {
+        const url = URL.createObjectURL(recordedBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `arise-recording-${Date.now()}.webm`;
+        a.click();
+      }
+    });
+
+    function visualize() {
+      animationId = requestAnimationFrame(visualize);
+      analyser.getByteTimeDomainData(dataArray);
+
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, recWaveform.width, recWaveform.height);
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#ff6b35';
+      ctx.beginPath();
+
+      const sliceWidth = recWaveform.width / dataArray.length;
+      let x = 0;
+
+      for (let i = 0; i < dataArray.length; i++) {
+        const v = dataArray[i] / 128.0;
+        const y = v * recWaveform.height / 2;
+
+        if (i === 0) {
+          ctx.moveTo(x, y);
         } else {
-          this.classList.toggle('active');
+          ctx.lineTo(x, y);
         }
-      });
-    });
 
-    // Voice part selection
-    document.querySelectorAll('.sidebar-item[data-voice]').forEach(item => {
-      item.addEventListener('click', function() {
-        document.querySelectorAll('.sidebar-item[data-voice]').forEach(i => i.classList.remove('active'));
-        this.classList.add('active');
-      });
-    });
-
-    // BPM Control
-    const bpmInput = document.getElementById('bpmInput');
-    let metronomeInterval;
-    let metronomeActive = false;
-
-    document.getElementById('metronomeBtn').addEventListener('click', function() {
-      metronomeActive = !metronomeActive;
-      this.classList.toggle('active');
-      
-      if (metronomeActive) {
-        startMetronome();
-      } else {
-        stopMetronome();
+        x += sliceWidth;
       }
-    });
 
-    function startMetronome() {
-      const bpm = parseInt(bpmInput.value);
-      const interval = 60000 / bpm;
-      
-      metronomeInterval = setInterval(() => {
-        const beep = audioContext.createOscillator();
-        const beepGain = audioContext.createGain();
-        
-        beep.frequency.value = 1000;
-        beepGain.gain.value = 0.1;
-        
-        beep.connect(beepGain);
-        beepGain.connect(audioContext.destination);
-        
-        beep.start(audioContext.currentTime);
-        beep.stop(audioContext.currentTime + 0.05);
-      }, interval);
+      ctx.lineTo(recWaveform.width, recWaveform.height / 2);
+      ctx.stroke();
     }
-
-    function stopMetronome() {
-      if (metronomeInterval) {
-        clearInterval(metronomeInterval);
-      }
-    }
-
-    // Save project
-    document.getElementById('saveBtn').addEventListener('click', () => {
-      currentProject.tracks = savedTracks;
-      localStorage.setItem('ariseBandCurrentProject', JSON.stringify(currentProject));
-      
-      const btn = document.getElementById('saveBtn');
-      const originalContent = btn.innerHTML;
-      btn.innerHTML = '<i class="bi bi-check-circle"></i> Saved!';
-      btn.style.background = 'var(--success)';
-      
-      setTimeout(() => {
-        btn.innerHTML = originalContent;
-        btn.style.background = '';
-      }, 2000);
-    });
-
-    // Export project
-    document.getElementById('exportBtn').addEventListener('click', () => {
-      if (savedTracks.length === 0) {
-        alert('No tracks to export. Record something first!');
-        return;
-      }
-      
-      // Download all tracks
-      savedTracks.forEach((track, index) => {
-        setTimeout(() => {
-          const a = document.createElement('a');
-          a.href = track.data;
-          a.download = `${currentProject.name}-${track.name}.webm`;
-          a.click();
-        }, index * 500);
-      });
-    });
 
     // Back to dashboard
     document.getElementById('backToDashboard').addEventListener('click', () => {
@@ -1812,10 +1082,35 @@
       }
     });
 
-    // Initialize
-    updateTracksList();
-    updateLibraryList();
-    updateTimeDisplay();
+    // Save and Export buttons
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      alert('💡 Use BandLab Studio to save your multi-track projects to the cloud!');
+    });
+
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      alert('💡 Export finished tracks from BandLab Studio with professional mastering!');
+    });
+
+    // Add hover effects
+    const openBtn = document.getElementById('openBandLabBtn');
+    openBtn.addEventListener('mouseenter', () => {
+      openBtn.style.transform = 'translateY(-2px) scale(1.02)';
+      openBtn.style.boxShadow = '0 6px 20px rgba(255, 107, 53, 0.4)';
+    });
+    openBtn.addEventListener('mouseleave', () => {
+      openBtn.style.transform = 'translateY(0) scale(1)';
+      openBtn.style.boxShadow = '0 4px 16px rgba(255, 107, 53, 0.3)';
+    });
+
+    const quickBtn = document.getElementById('quickRecordBtn');
+    quickBtn.addEventListener('mouseenter', () => {
+      quickBtn.style.background = 'var(--bg-primary)';
+      quickBtn.style.borderColor = 'var(--accent-primary)';
+    });
+    quickBtn.addEventListener('mouseleave', () => {
+      quickBtn.style.background = 'var(--bg-tertiary)';
+      quickBtn.style.borderColor = 'var(--accent-secondary)';
+    });
   </script>
 </body>
 </html>

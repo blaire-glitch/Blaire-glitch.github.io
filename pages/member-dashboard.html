@@ -350,8 +350,12 @@
       window.location.href = 'band-members.html';
     } else {
       const user = JSON.parse(loginData);
+      
+      // Display member name and role
       const memberNameEl = document.getElementById('memberName');
-      if (user.email) {
+      if (user.name) {
+        memberNameEl.textContent = user.name;
+      } else if (user.email) {
         const name = user.email.split('@')[0];
         memberNameEl.textContent = name.charAt(0).toUpperCase() + name.slice(1);
       }
@@ -361,6 +365,92 @@
       if (user.timestamp) {
         const loginTime = new Date(user.timestamp);
         lastLoginEl.textContent = loginTime.toLocaleString();
+      }
+      
+      // Display role badge in welcome section
+      const welcomeSection = document.querySelector('.welcome-section .row');
+      if (user.role && welcomeSection) {
+        const roleInfo = document.createElement('div');
+        roleInfo.className = 'col-12 mt-3';
+        roleInfo.innerHTML = `
+          <div class="alert alert-info mb-0" style="background: rgba(13, 202, 240, 0.2); border: 1px solid #0dcaf0;">
+            <strong><i class="bi bi-award-fill me-2"></i>Role:</strong> ${user.role}
+            <span class="ms-3"><strong><i class="bi bi-key-fill me-2"></i>Access Level:</strong> ${user.privileges?.accessLevel?.toUpperCase() || 'MEMBER'}</span>
+          </div>
+        `;
+        welcomeSection.appendChild(roleInfo);
+      }
+      
+      // Add privilege information card
+      const mainContainer = document.querySelector('.container.py-5');
+      if (user.privileges && mainContainer) {
+        const privilegeCard = document.createElement('div');
+        privilegeCard.className = 'dashboard-card mb-4';
+        privilegeCard.innerHTML = `
+          <h3 class="mb-4 text-info">
+            <i class="bi bi-shield-check me-2"></i>Your Privileges
+          </h3>
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <div class="p-3 rounded" style="background: ${user.privileges.canAccessStudio ? 'rgba(40, 167, 69, 0.2)' : 'rgba(108, 117, 125, 0.2)'}; border: 1px solid ${user.privileges.canAccessStudio ? '#28a745' : '#6c757d'};">
+                <i class="bi ${user.privileges.canAccessStudio ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-muted'} me-2"></i>
+                <strong>Studio Access</strong>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="p-3 rounded" style="background: ${user.privileges.canEditSongs ? 'rgba(40, 167, 69, 0.2)' : 'rgba(108, 117, 125, 0.2)'}; border: 1px solid ${user.privileges.canEditSongs ? '#28a745' : '#6c757d'};">
+                <i class="bi ${user.privileges.canEditSongs ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-muted'} me-2"></i>
+                <strong>Edit Songs</strong>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="p-3 rounded" style="background: ${user.privileges.canManageRehearsals ? 'rgba(40, 167, 69, 0.2)' : 'rgba(108, 117, 125, 0.2)'}; border: 1px solid ${user.privileges.canManageRehearsals ? '#28a745' : '#6c757d'};">
+                <i class="bi ${user.privileges.canManageRehearsals ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-muted'} me-2"></i>
+                <strong>Manage Rehearsals</strong>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="p-3 rounded" style="background: ${user.privileges.canScheduleEvents ? 'rgba(40, 167, 69, 0.2)' : 'rgba(108, 117, 125, 0.2)'}; border: 1px solid ${user.privileges.canScheduleEvents ? '#28a745' : '#6c757d'};">
+                <i class="bi ${user.privileges.canScheduleEvents ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-muted'} me-2"></i>
+                <strong>Schedule Events</strong>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="p-3 rounded" style="background: ${user.privileges.canManageMembers ? 'rgba(40, 167, 69, 0.2)' : 'rgba(108, 117, 125, 0.2)'}; border: 1px solid ${user.privileges.canManageMembers ? '#28a745' : '#6c757d'};">
+                <i class="bi ${user.privileges.canManageMembers ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-muted'} me-2"></i>
+                <strong>Manage Members</strong>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="p-3 rounded" style="background: ${user.privileges.canViewAnalytics ? 'rgba(40, 167, 69, 0.2)' : 'rgba(108, 117, 125, 0.2)'}; border: 1px solid ${user.privileges.canViewAnalytics ? '#28a745' : '#6c757d'};">
+                <i class="bi ${user.privileges.canViewAnalytics ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-muted'} me-2"></i>
+                <strong>View Analytics</strong>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <div class="p-3 rounded" style="background: ${user.privileges.canApproveRecordings ? 'rgba(40, 167, 69, 0.2)' : 'rgba(108, 117, 125, 0.2)'}; border: 1px solid ${user.privileges.canApproveRecordings ? '#28a745' : '#6c757d'};">
+                <i class="bi ${user.privileges.canApproveRecordings ? 'bi-check-circle-fill text-success' : 'bi-x-circle-fill text-muted'} me-2"></i>
+                <strong>Approve Recordings</strong>
+              </div>
+            </div>
+          </div>
+        `;
+        // Insert after welcome section
+        const welcomeCard = document.querySelector('.welcome-section');
+        if (welcomeCard && welcomeCard.nextSibling) {
+          mainContainer.insertBefore(privilegeCard, welcomeCard.nextSibling);
+        }
+      }
+      
+      // Check studio access permission
+      const studioLink = document.querySelector('a[href="member-studio-bandlab.html"]');
+      if (studioLink && user.privileges && !user.privileges.canAccessStudio) {
+        studioLink.addEventListener('click', function(e) {
+          e.preventDefault();
+          alert('❌ Access Denied: You do not have permission to access the studio. Contact your Music Director.');
+        });
+        studioLink.style.opacity = '0.5';
+        studioLink.style.cursor = 'not-allowed';
       }
     }
 

@@ -307,29 +307,94 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../scripts/main.js"></script>
   <script>
+    // Band Member Database with Roles and Privileges
+    const bandMembers = [
+      {
+        name: 'Sam Tracy',
+        email: 'sam.tracy@ariseband.com',
+        password: 'musicdirector2025',
+        role: 'Music Director',
+        privileges: {
+          canManageRehearsals: true,
+          canEditSongs: true,
+          canManageMembers: true,
+          canAccessStudio: true,
+          canViewAnalytics: true,
+          canScheduleEvents: true,
+          canApproveRecordings: true,
+          accessLevel: 'admin'
+        }
+      },
+      {
+        name: 'Irene Merab',
+        email: 'irene.merab@ariseband.com',
+        password: 'leadvocalist2025',
+        role: 'Lead Vocalist',
+        privileges: {
+          canManageRehearsals: false,
+          canEditSongs: true,
+          canManageMembers: false,
+          canAccessStudio: true,
+          canViewAnalytics: true,
+          canScheduleEvents: false,
+          canApproveRecordings: false,
+          accessLevel: 'lead'
+        }
+      },
+      {
+        name: 'Becky',
+        email: 'becky@ariseband.com',
+        password: 'vocalist2025',
+        role: 'Vocalist',
+        privileges: {
+          canManageRehearsals: false,
+          canEditSongs: false,
+          canManageMembers: false,
+          canAccessStudio: true,
+          canViewAnalytics: false,
+          canScheduleEvents: false,
+          canApproveRecordings: false,
+          accessLevel: 'member'
+        }
+      }
+    ];
+
     // Band Member Login Handler
     document.getElementById('memberLoginForm').addEventListener('submit', function(e) {
       e.preventDefault();
       
-      const email = document.getElementById('loginEmail').value;
+      const email = document.getElementById('loginEmail').value.trim();
       const password = document.getElementById('loginPassword').value;
       const rememberMe = document.getElementById('rememberMe').checked;
       
-      // For now, this is a placeholder. In production, this would connect to your authentication backend
-      // You can integrate with Firebase, Auth0, or your own backend API
+      // Find member in database
+      const member = bandMembers.find(m => m.email.toLowerCase() === email.toLowerCase());
       
-      // Simulate login process
+      if (!member) {
+        alert('❌ Invalid email address. Please contact band management if you need access.');
+        return;
+      }
+      
+      if (member.password !== password) {
+        alert('❌ Incorrect password. Please try again or contact band management.');
+        return;
+      }
+      
+      // Successful login - store member data with role and privileges
       const loginData = {
-        email: email,
+        name: member.name,
+        email: member.email,
+        role: member.role,
+        privileges: member.privileges,
         timestamp: new Date().toISOString(),
         rememberMe: rememberMe
       };
       
-      // Store in localStorage (temporary solution)
+      // Store in localStorage
       localStorage.setItem('ariseBandMemberLogin', JSON.stringify(loginData));
       
-      // Show success message and redirect to dashboard
-      alert('Login successful! Redirecting to your dashboard...');
+      // Show personalized success message
+      alert(`✅ Welcome back, ${member.name}! (${member.role})\nRedirecting to your dashboard...`);
       
       // Redirect to dashboard
       window.location.href = 'member-dashboard.html';
