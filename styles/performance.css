@@ -1,0 +1,64 @@
+/* ========================================
+   PERFORMANCE CSS OPTIMIZATIONS
+   GPU acceleration and will-change
+   ======================================== */
+
+/* === GPU Acceleration for Animations === */
+.animate__animated,
+.page-loader,
+.loader-logo,
+.card,
+.btn {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* === Optimize transitions === */
+.nav-link,
+.btn,
+.card {
+  will-change: transform;
+}
+
+/* === Reduce motion for accessibility === */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* === Font Display Optimization === */
+@font-face {
+  font-display: swap;
+}
+
+/* === Contain Layout Shifts === */
+img {
+  content-visibility: auto;
+}
+
+.card,
+.section {
+  contain: layout style paint;
+}
+
+/* === Optimize Image Loading === */
+img[loading="lazy"] {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}

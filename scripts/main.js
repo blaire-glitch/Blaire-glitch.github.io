@@ -13,8 +13,8 @@
         // Remove from DOM after transition
         setTimeout(() => {
           loader.remove();
-        }, 500);
-      }, 800); // Show loader for at least 800ms
+        }, 300);
+      }, 300); // Show loader for at least 300ms
     }
   });
 })();
