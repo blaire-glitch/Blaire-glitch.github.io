@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Member Dashboard - Arise Band</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      min-height: 100vh;
+      color: #fff;
+    }
+    .dashboard-card {
+      background: rgba(45, 45, 45, 0.9);
+      border: 1px solid #0dcaf0;
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .dashboard-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(13, 202, 240, 0.3);
+    }
+    .stat-card {
+      background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+      border-radius: 10px;
+      padding: 1.5rem;
+      color: #fff;
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #ffd580;
+    }
+    .quick-action-btn {
+      background: linear-gradient(135deg, #0dcaf0 0%, #0aa2c0 100%);
+      border: none;
+      border-radius: 10px;
+      padding: 1.5rem;
+      width: 100%;
+      color: #fff;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .quick-action-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 20px rgba(13, 202, 240, 0.5);
+    }
+    .quick-action-btn i {
+      font-size: 2.5rem;
+    }
+    .welcome-section {
+      background: linear-gradient(135deg, #6a1b9a 0%, #0dcaf0 100%);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .welcome-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('../assets/images/hero-bg.jpg') center/cover;
+      opacity: 0.1;
+      border-radius: 15px;
+    }
+    .welcome-section .row {
+      position: relative;
+      z-index: 1;
+    }
+    .recent-activity {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .activity-item {
+      background: rgba(13, 202, 240, 0.1);
+      border-left: 3px solid #0dcaf0;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+    }
+    .navbar {
+      background: rgba(26, 26, 26, 0.95) !important;
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-info" href="../index.html">
+        <i class="bi bi-music-note-beamed me-2"></i>ARISE BAND
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="member-dashboard.html">
+              <i class="bi bi-speedometer2 me-1"></i>Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="member-studio-bandlab.html">
+              <i class="bi bi-mic-fill me-1"></i>Studio
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="logoutBtn">
+              <i class="bi bi-box-arrow-right me-1"></i>Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container py-5">
+    <!-- Welcome Section with Band Photo -->
+    <div class="welcome-section position-relative overflow-hidden">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <h1 class="mb-3">
+            <i class="bi bi-person-circle me-2"></i>
+            Welcome Back, <span id="memberName">Band Member</span>!
+          </h1>
+          <p class="lead mb-0">Ready to create beautiful worship music today?</p>
+        </div>
+        <div class="col-md-4 text-end">
+          <img src="../assets/images/logo.jpg" alt="Arise Band" class="img-fluid rounded-circle mb-2" style="width: 100px; height: 100px; object-fit: cover; border: 3px solid #ffd580; box-shadow: 0 5px 15px rgba(255, 213, 128, 0.3);">
+          <p class="mb-1 small">Last Login</p>
+          <p class="h5" id="lastLogin">Just now</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+      <div class="col-md-3 mb-3">
+        <div class="stat-card">
+          <i class="bi bi-music-note-list display-4 mb-2"></i>
+          <div class="stat-number">12</div>
+          <p class="mb-0">Practice Sessions</p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="stat-card">
+          <i class="bi bi-mic-fill display-4 mb-2"></i>
+          <div class="stat-number">8</div>
+          <p class="mb-0">Recordings</p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="stat-card">
+          <i class="bi bi-calendar-event display-4 mb-2"></i>
+          <div class="stat-number">3</div>
+          <p class="mb-0">Upcoming Events</p>
+        </div>
+      </div>
+      <div class="col-md-3 mb-3">
+        <div class="stat-card">
+          <i class="bi bi-clock-history display-4 mb-2"></i>
+          <div class="stat-number">24h</div>
+          <p class="mb-0">Practice Time</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="dashboard-card position-relative overflow-hidden">
+      <div class="position-absolute top-0 end-0 opacity-25" style="width: 200px; height: 200px;">
+        <img src="../assets/images/logo.jpg" alt="Arise Band Logo" class="img-fluid" style="transform: rotate(15deg);">
+      </div>
+      <h3 class="mb-4 text-info position-relative">
+        <i class="bi bi-lightning-charge-fill me-2"></i>Quick Actions
+      </h3>
+      <div class="row position-relative">
+        <div class="col-md-3 mb-3">
+          <button class="quick-action-btn" onclick="window.location.href='member-studio-bandlab.html'">
+            <i class="bi bi-mic-fill"></i>
+            <span>Practice Studio</span>
+          </button>
+        </div>
+        <div class="col-md-3 mb-3">
+          <button class="quick-action-btn" onclick="alert('Song library coming soon!')">
+            <i class="bi bi-music-note-list"></i>
+            <span>Song Library</span>
+          </button>
+        </div>
+        <div class="col-md-3 mb-3">
+          <button class="quick-action-btn" onclick="window.location.href='events.html'">
+            <i class="bi bi-calendar-event"></i>
+            <span>View Events</span>
+          </button>
+        </div>
+        <div class="col-md-3 mb-3">
+          <button class="quick-action-btn" onclick="alert('Settings coming soon!')">
+            <i class="bi bi-gear-fill"></i>
+            <span>Settings</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- Recent Activity -->
+      <div class="col-md-8">
+        <div class="dashboard-card">
+          <h3 class="mb-4 text-info">
+            <i class="bi bi-clock-history me-2"></i>Recent Activity
+          </h3>
+          <div class="recent-activity">
+            <div class="activity-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="bi bi-mic-fill text-info me-2"></i>
+                  <strong>Recorded "Amazing Grace"</strong>
+                </div>
+                <small class="text-muted">2 hours ago</small>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="bi bi-calendar-check text-success me-2"></i>
+                  <strong>RSVP'd to Christmas Concert</strong>
+                </div>
+                <small class="text-muted">1 day ago</small>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="bi bi-music-note text-warning me-2"></i>
+                  <strong>Practice session completed</strong>
+                </div>
+                <small class="text-muted">2 days ago</small>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="bi bi-download text-info me-2"></i>
+                  <strong>Downloaded "Worthy Is The Lamb" sheet music</strong>
+                </div>
+                <small class="text-muted">3 days ago</small>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <i class="bi bi-people-fill text-info me-2"></i>
+                  <strong>Joined group practice session</strong>
+                </div>
+                <small class="text-muted">5 days ago</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Events -->
+      <div class="col-md-4">
+        <div class="dashboard-card">
+          <h3 class="mb-4 text-info">
+            <i class="bi bi-calendar-event me-2"></i>Upcoming
+          </h3>
+          <div class="mb-3">
+            <div class="bg-dark p-3 rounded border border-warning">
+              <h6 class="text-warning mb-2">Christmas Concert</h6>
+              <p class="small mb-1">
+                <i class="bi bi-calendar3 me-1"></i>Dec 25, 2025
+              </p>
+              <p class="small mb-0">
+                <i class="bi bi-geo-alt me-1"></i>Faith Center Hall
+              </p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="bg-dark p-3 rounded border border-info">
+              <h6 class="text-info mb-2">Band Practice</h6>
+              <p class="small mb-1">
+                <i class="bi bi-calendar3 me-1"></i>Nov 30, 2025
+              </p>
+              <p class="small mb-0">
+                <i class="bi bi-geo-alt me-1"></i>Studio Room
+              </p>
+            </div>
+          </div>
+          <div class="mb-3">
+            <div class="bg-dark p-3 rounded border border-success">
+              <h6 class="text-success mb-2">Worship Night</h6>
+              <p class="small mb-1">
+                <i class="bi bi-calendar3 me-1"></i>Jan 5, 2026
+              </p>
+              <p class="small mb-0">
+                <i class="bi bi-geo-alt me-1"></i>Community Church
+              </p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Band Photo Gallery -->
+        <div class="dashboard-card mt-3">
+          <h3 class="mb-3 text-warning">
+            <i class="bi bi-images me-2"></i>Band Memories
+          </h3>
+          <div class="row g-2">
+            <div class="col-6">
+              <img src="../assets/images/slide1.jpg" alt="Band Performance" class="img-fluid rounded" style="height: 120px; width: 100%; object-fit: cover; border: 2px solid #0dcaf0;">
+            </div>
+            <div class="col-6">
+              <img src="../assets/images/rehearsal.jpg" alt="Band Rehearsal" class="img-fluid rounded" style="height: 120px; width: 100%; object-fit: cover; border: 2px solid #ffd580;">
+            </div>
+            <div class="col-12">
+              <img src="../assets/images/slide2.jpg" alt="Band Group Photo" class="img-fluid rounded" style="height: 120px; width: 100%; object-fit: cover; border: 2px solid #6a1b9a;">
+            </div>
+          </div>
+          <div class="text-center mt-3">
+            <a href="gallery.html" class="btn btn-outline-info btn-sm">
+              <i class="bi bi-images me-1"></i>View Gallery
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Check if user is logged in
+    const loginData = localStorage.getItem('ariseBandMemberLogin');
+    if (!loginData) {
+      alert('Please login to access the dashboard');
+      window.location.href = 'band-members.html';
+    } else {
+      const user = JSON.parse(loginData);
+      const memberNameEl = document.getElementById('memberName');
+      if (user.email) {
+        const name = user.email.split('@')[0];
+        memberNameEl.textContent = name.charAt(0).toUpperCase() + name.slice(1);
+      }
+      
+      // Set last login time
+      const lastLoginEl = document.getElementById('lastLogin');
+      if (user.timestamp) {
+        const loginTime = new Date(user.timestamp);
+        lastLoginEl.textContent = loginTime.toLocaleString();
+      }
+    }
+
+    // Logout functionality
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('ariseBandMemberLogin');
+        alert('Logged out successfully!');
+        window.location.href = '../index.html';
+      }
+    });
+  </script>
+</body>
+</html>

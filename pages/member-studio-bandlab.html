@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio - Arise Band</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+  <style>
+    :root {
+      --bg-primary: #0f0f0f;
+      --bg-secondary: #1a1a1a;
+      --bg-tertiary: #242424;
+      --accent-primary: #ff6b35;
+      --accent-secondary: #ffd580;
+      --border-color: #333;
+      --text-primary: #ffffff;
+      --text-secondary: #b3b3b3;
+      --success: #4caf50;
+      --danger: #f44336;
+      --warning: #ff9800;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    /* Top Navigation Bar */
+    .top-nav {
+      height: 60px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1rem;
+      position: relative;
+      z-index: 100;
+    }
+
+    .logo-section {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-section img {
+      height: 35px;
+      width: 35px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-primary);
+    }
+
+    .logo-section h4 {
+      margin: 0;
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent-primary);
+    }
+
+    .project-info {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .project-name {
+      padding: 0.4rem 1rem;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .project-name:hover {
+      background: #2a2a2a;
+    }
+
+    .top-nav-actions {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+
+    .nav-btn {
+      padding: 0.5rem 1rem;
+      background: var(--bg-tertiary);
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav-btn:hover {
+      background: #2a2a2a;
+      border-color: var(--accent-primary);
+    }
+
+    .nav-btn.primary {
+      background: var(--accent-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .nav-btn.primary:hover {
+      background: #ff5520;
+    }
+
+    /* Main Studio Layout */
+    .studio-layout {
+      display: flex;
+      height: calc(100vh - 60px);
+    }
+
+    /* Left Sidebar */
+    .left-sidebar {
+      width: 250px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .sidebar-section {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .sidebar-section-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.5px;
+    }
+
+    .sidebar-item {
+      padding: 0.6rem 0.75rem;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      transition: all 0.2s;
+      font-size: 0.9rem;
+    }
+
+    .sidebar-item:hover {
+      background: #2a2a2a;
+      transform: translateX(2px);
+    }
+
+    .sidebar-item.active {
+      background: var(--accent-primary);
+      color: white;
+    }
+
+    .sidebar-item i {
+      font-size: 1.1rem;
+    }
+
+    /* Track List */
+    .track-item {
+      padding: 0.75rem;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .track-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .track-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .track-controls {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    .track-btn {
+      width: 24px;
+      height: 24px;
+      border: none;
+      background: #333;
+      color: var(--text-secondary);
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      transition: all 0.2s;
+    }
+
+    .track-btn:hover {
+      background: #444;
+      color: var(--text-primary);
+    }
+
+    .track-btn.active {
+      background: var(--accent-primary);
+      color: white;
+    }
+
+    .track-volume {
+      width: 100%;
+      height: 4px;
+      -webkit-appearance: none;
+      appearance: none;
+      background: #333;
+      border-radius: 2px;
+      outline: none;
+    }
+
+    .track-volume::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 12px;
+      height: 12px;
+      background: var(--accent-primary);
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .track-volume::-moz-range-thumb {
+      width: 12px;
+      height: 12px;
+      background: var(--accent-primary);
+      border-radius: 50%;
+      cursor: pointer;
+      border: none;
+    }
+
+    /* Main Canvas Area */
+    .main-canvas {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      background: var(--bg-primary);
+    }
+
+    /* Toolbar */
+    .toolbar {
+      height: 50px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      padding: 0 1rem;
+      gap: 1rem;
+    }
+
+    .tool-group {
+      display: flex;
+      gap: 0.25rem;
+      padding: 0 0.5rem;
+      border-right: 1px solid var(--border-color);
+    }
+
+    .tool-btn {
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--border-color);
+      background: var(--bg-tertiary);
+      color: var(--text-secondary);
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      font-size: 1rem;
+    }
+
+    .tool-btn:hover {
+      background: #2a2a2a;
+      color: var(--text-primary);
+      border-color: var(--accent-primary);
+    }
+
+    .tool-btn.active {
+      background: var(--accent-primary);
+      color: white;
+      border-color: var(--accent-primary);
+    }
+
+    /* Transport Controls */
+    .transport {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .transport-btn {
+      width: 40px;
+      height: 40px;
+      border: none;
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      font-size: 1.1rem;
+    }
+
+    .transport-btn:hover {
+      background: #2a2a2a;
+      transform: scale(1.05);
+    }
+
+    .transport-btn.record {
+      background: var(--danger);
+    }
+
+    .transport-btn.record:hover {
+      background: #d32f2f;
+    }
+
+    .transport-btn.record.active {
+      animation: pulse 1s infinite;
+    }
+
+    .transport-btn.play {
+      background: var(--success);
+    }
+
+    .transport-btn.play:hover {
+      background: #45a049;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.7; }
+    }
+
+    .time-display {
+      padding: 0.5rem 1rem;
+      background: var(--bg-primary);
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
+      font-weight: 600;
+      min-width: 100px;
+      text-align: center;
+    }
+
+    .bpm-control {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1rem;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+    }
+
+    .bpm-control input {
+      width: 60px;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      text-align: center;
+    }
+
+    /* Timeline Area */
+    .timeline-container {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+
+    .timeline-ruler {
+      height: 40px;
+      background: var(--bg-secondary);
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+      overflow-x: auto;
+    }
+
+    .ruler-markers {
+      height: 100%;
+      display: flex;
+      position: relative;
+    }
+
+    .ruler-mark {
+      min-width: 60px;
+      height: 100%;
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      padding-left: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    .timeline-tracks {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .timeline-track {
+      height: 80px;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .track-label {
+      width: 150px;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      position: sticky;
+      left: 0;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .track-label-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .track-label-type {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+
+    .track-content {
+      flex: 1;
+      height: 100%;
+      position: relative;
+      min-width: 3000px;
+    }
+
+    .audio-region {
+      position: absolute;
+      height: 60px;
+      top: 10px;
+      background: linear-gradient(135deg, var(--accent-primary) 0%, #ff8c5a 100%);
+      border-radius: 6px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      cursor: move;
+      display: flex;
+      align-items: center;
+      padding: 0 0.75rem;
+      font-size: 0.8rem;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .audio-region-waveform {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.3;
+    }
+
+    .audio-region-name {
+      position: relative;
+      z-index: 1;
+      font-weight: 500;
+    }
+
+    /* Right Sidebar */
+    .right-sidebar {
+      width: 300px;
+      background: var(--bg-secondary);
+      border-left: 1px solid var(--border-color);
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+    }
+
+    .instrument-panel {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .panel-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Virtual Piano */
+    .virtual-piano {
+      background: var(--bg-tertiary);
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .piano-keys-container {
+      display: flex;
+      justify-content: center;
+      position: relative;
+      height: 120px;
+      margin-top: 0.5rem;
+    }
+
+    .white-key {
+      width: 32px;
+      height: 120px;
+      background: linear-gradient(180deg, #fff 0%, #f0f0f0 100%);
+      border: 1px solid #333;
+      border-radius: 0 0 4px 4px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.1s;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 6px;
+      font-size: 9px;
+      color: #666;
+    }
+
+    .white-key:hover {
+      background: linear-gradient(180deg, #f0f0f0 0%, #e0e0e0 100%);
+    }
+
+    .white-key:active, .white-key.active {
+      background: linear-gradient(180deg, #e0e0e0 0%, #d0d0d0 100%);
+      transform: translateY(2px);
+    }
+
+    .black-key {
+      width: 20px;
+      height: 75px;
+      background: linear-gradient(180deg, #2a2a2a 0%, #000 100%);
+      border: 1px solid var(--accent-primary);
+      border-radius: 0 0 3px 3px;
+      cursor: pointer;
+      position: absolute;
+      z-index: 10;
+      transition: all 0.1s;
+    }
+
+    .black-key:hover {
+      background: linear-gradient(180deg, #3a3a3a 0%, #1a1a1a 100%);
+    }
+
+    .black-key:active, .black-key.active {
+      background: linear-gradient(180deg, #1a1a1a 0%, #000 100%);
+      transform: translateY(2px);
+    }
+
+    /* Effects Panel */
+    .effects-panel {
+      padding: 1rem;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .effect-item {
+      padding: 0.75rem;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .effect-name {
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .effect-toggle {
+      width: 40px;
+      height: 20px;
+      background: #333;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .effect-toggle.active {
+      background: var(--accent-primary);
+    }
+
+    .effect-toggle::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      top: 2px;
+      left: 2px;
+      transition: left 0.2s;
+    }
+
+    .effect-toggle.active::after {
+      left: 22px;
+    }
+
+    /* Library Panel */
+    .library-panel {
+      padding: 1rem;
+    }
+
+    .library-item {
+      padding: 0.75rem;
+      background: var(--bg-tertiary);
+      border-radius: 6px;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .library-item:hover {
+      background: #2a2a2a;
+      transform: translateX(2px);
+    }
+
+    .library-item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .library-item-name {
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .library-item-meta {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+
+    .library-item-actions {
+      display: flex;
+      gap: 0.25rem;
+    }
+
+    /* Upload Button */
+    .upload-btn {
+      width: 100%;
+      padding: 0.75rem;
+      background: linear-gradient(135deg, var(--accent-primary) 0%, #ff8c5a 100%);
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+      margin-bottom: 1rem;
+    }
+
+    .upload-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+    }
+
+    /* Waveform Canvas */
+    .waveform-display {
+      width: 100%;
+      height: 60px;
+      background: var(--bg-primary);
+      border-radius: 6px;
+      margin-top: 0.5rem;
+    }
+
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-primary);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--bg-tertiary);
+      border-radius: 5px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #333;
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .left-sidebar {
+        width: 200px;
+      }
+      .right-sidebar {
+        width: 250px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .left-sidebar,
+      .right-sidebar {
+        position: absolute;
+        z-index: 50;
+        height: calc(100vh - 60px);
+        transform: translateX(-100%);
+        transition: transform 0.3s;
+      }
+      
+      .left-sidebar.show {
+        transform: translateX(0);
+      }
+      
+      .right-sidebar {
+        right: 0;
+        transform: translateX(100%);
+      }
+      
+      .right-sidebar.show {
+        transform: translateX(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Navigation -->
+  <div class="top-nav">
+    <div class="logo-section">
+      <img src="../assets/images/logo.jpg" alt="Arise Band">
+      <h4>Arise Studio</h4>
+    </div>
+
+    <div class="project-info">
+      <div class="project-name">
+        <i class="bi bi-music-note-beamed"></i>
+        <span id="projectName">Untitled Project</span>
+        <i class="bi bi-pencil" style="font-size: 0.8rem;"></i>
+      </div>
+    </div>
+
+    <div class="top-nav-actions">
+      <button class="nav-btn" id="undoBtn">
+        <i class="bi bi-arrow-counterclockwise"></i>
+        Undo
+      </button>
+      <button class="nav-btn" id="redoBtn">
+        <i class="bi bi-arrow-clockwise"></i>
+        Redo
+      </button>
+      <button class="nav-btn" id="saveBtn">
+        <i class="bi bi-cloud-upload"></i>
+        Save
+      </button>
+      <button class="nav-btn primary" id="exportBtn">
+        <i class="bi bi-download"></i>
+        Export
+      </button>
+      <button class="nav-btn" id="settingsBtn">
+        <i class="bi bi-gear"></i>
+      </button>
+      <button class="nav-btn" id="backToDashboard">
+        <i class="bi bi-box-arrow-left"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Studio Layout -->
+  <div class="studio-layout">
+    <!-- Left Sidebar -->
+    <div class="left-sidebar">
+      <!-- Voice Parts -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Voice Parts</div>
+        <div class="sidebar-item active" data-voice="lead">
+          <i class="bi bi-mic-fill"></i>
+          <span>Lead Vocal</span>
+        </div>
+        <div class="sidebar-item" data-voice="soprano">
+          <i class="bi bi-music-note"></i>
+          <span>Soprano</span>
+        </div>
+        <div class="sidebar-item" data-voice="alto">
+          <i class="bi bi-music-note"></i>
+          <span>Alto</span>
+        </div>
+        <div class="sidebar-item" data-voice="tenor">
+          <i class="bi bi-music-note"></i>
+          <span>Tenor</span>
+        </div>
+        <div class="sidebar-item" data-voice="bass">
+          <i class="bi bi-music-note"></i>
+          <span>Bass</span>
+        </div>
+        <div class="sidebar-item" data-voice="harmony">
+          <i class="bi bi-music-note-list"></i>
+          <span>Harmony</span>
+        </div>
+      </div>
+
+      <!-- Tracks -->
+      <div class="sidebar-section">
+        <div class="sidebar-section-title">Tracks</div>
+        <div id="tracksList">
+          <p style="color: var(--text-secondary); font-size: 0.85rem; text-align: center; padding: 1rem 0;">
+            No tracks yet. Start recording!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Canvas -->
+    <div class="main-canvas">
+      <!-- Toolbar -->
+      <div class="toolbar">
+        <!-- Transport Controls -->
+        <div class="transport">
+          <button class="transport-btn" id="rewindBtn" title="Rewind">
+            <i class="bi bi-skip-start-fill"></i>
+          </button>
+          <button class="transport-btn play" id="playBtn" title="Play/Pause">
+            <i class="bi bi-play-fill"></i>
+          </button>
+          <button class="transport-btn" id="stopBtn" title="Stop">
+            <i class="bi bi-stop-fill"></i>
+          </button>
+          <button class="transport-btn record" id="recordBtn" title="Record">
+            <i class="bi bi-record-circle"></i>
+          </button>
+        </div>
+
+        <div class="time-display" id="timeDisplay">00:00:00</div>
+
+        <!-- Tool Group -->
+        <div class="tool-group">
+          <button class="tool-btn active" id="selectTool" title="Select">
+            <i class="bi bi-cursor"></i>
+          </button>
+          <button class="tool-btn" id="pencilTool" title="Draw">
+            <i class="bi bi-pencil"></i>
+          </button>
+          <button class="tool-btn" id="splitTool" title="Split">
+            <i class="bi bi-scissors"></i>
+          </button>
+          <button class="tool-btn" id="eraserTool" title="Erase">
+            <i class="bi bi-eraser"></i>
+          </button>
+        </div>
+
+        <!-- BPM Control -->
+        <div class="bpm-control">
+          <i class="bi bi-speedometer2"></i>
+          <input type="number" id="bpmInput" value="120" min="40" max="200">
+          <span style="font-size: 0.85rem;">BPM</span>
+        </div>
+
+        <!-- Metronome -->
+        <button class="tool-btn" id="metronomeBtn" title="Metronome">
+          <i class="bi bi-heart-pulse"></i>
+        </button>
+
+        <!-- Loop Toggle -->
+        <button class="tool-btn" id="loopBtn" title="Loop">
+          <i class="bi bi-arrow-repeat"></i>
+        </button>
+      </div>
+
+      <!-- Timeline Container -->
+      <div class="timeline-container">
+        <!-- Timeline Ruler -->
+        <div class="timeline-ruler">
+          <div class="ruler-markers" id="rulerMarkers">
+            <!-- Generated by JS -->
+          </div>
+        </div>
+
+        <!-- Timeline Tracks -->
+        <div class="timeline-tracks" id="timelineTracks">
+          <div class="timeline-track">
+            <div class="track-label">
+              <div class="track-label-name">Backing Track</div>
+              <div class="track-label-type">Audio</div>
+            </div>
+            <div class="track-content" id="backingTrackContent">
+              <!-- Audio regions added here -->
+            </div>
+          </div>
+          <!-- More tracks added dynamically -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Sidebar -->
+    <div class="right-sidebar">
+      <!-- Virtual Piano -->
+      <div class="instrument-panel">
+        <div class="panel-title">
+          <i class="bi bi-music-note-beamed"></i>
+          Virtual Piano
+        </div>
+        <div class="virtual-piano">
+          <div class="piano-keys-container" id="pianoKeys">
+            <!-- Piano keys generated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Effects Panel -->
+      <div class="effects-panel">
+        <div class="panel-title">
+          <i class="bi bi-sliders"></i>
+          Effects
+        </div>
+        <div class="effect-item">
+          <div class="effect-name">
+            <i class="bi bi-soundwave"></i>
+            Reverb
+          </div>
+          <div class="effect-toggle" id="reverbToggle"></div>
+        </div>
+        <div class="effect-item">
+          <div class="effect-name">
+            <i class="bi bi-broadcast"></i>
+            Echo
+          </div>
+          <div class="effect-toggle" id="echoToggle"></div>
+        </div>
+        <div class="effect-item">
+          <div class="effect-name">
+            <i class="bi bi-box"></i>
+            Compressor
+          </div>
+          <div class="effect-toggle" id="compressorToggle"></div>
+        </div>
+        <div class="effect-item">
+          <div class="effect-name">
+            <i class="bi bi-filter"></i>
+            EQ
+          </div>
+          <div class="effect-toggle" id="eqToggle"></div>
+        </div>
+      </div>
+
+      <!-- Library Panel -->
+      <div class="library-panel">
+        <div class="panel-title">
+          <i class="bi bi-folder2-open"></i>
+          Library
+        </div>
+        
+        <!-- Upload Options -->
+        <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+          <button class="upload-btn" id="uploadLocalBtn" style="flex: 1; font-size: 0.85rem; padding: 0.6rem;">
+            <i class="bi bi-folder-fill"></i>
+            Local File
+          </button>
+          <button class="upload-btn" id="uploadStreamBtn" style="flex: 1; font-size: 0.85rem; padding: 0.6rem; background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);">
+            <i class="bi bi-link-45deg"></i>
+            Stream URL
+          </button>
+        </div>
+        
+        <input type="file" id="fileInput" accept="audio/*" multiple style="display: none;">
+        
+        <div id="libraryList">
+          <!-- Library items added here -->
+        </div>
+        
+        <!-- Add Track Button -->
+        <button class="upload-btn" id="addTrackBtn" style="margin-top: 1rem; background: linear-gradient(135deg, #0dcaf0 0%, #0aa2c0 100%);">
+          <i class="bi bi-plus-circle-fill"></i>
+          Add Audio Track
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Check authentication
+    const memberLogin = localStorage.getItem('ariseBandMemberLogin');
+    if (!memberLogin) {
+      window.location.href = 'band-members.html';
+    }
+
+    // Initialize saved data
+    let savedTracks = JSON.parse(localStorage.getItem('ariseBandTracks') || '[]');
+    let savedLoops = JSON.parse(localStorage.getItem('ariseBandLoops') || '[]');
+    let currentProject = JSON.parse(localStorage.getItem('ariseBandCurrentProject') || '{"name": "Untitled Project", "tracks": []}');
+
+    // Update project name
+    document.getElementById('projectName').textContent = currentProject.name;
+
+    // Audio Context
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    let mediaRecorder;
+    let recordedChunks = [];
+    let isRecording = false;
+    let isPlaying = false;
+    let currentTime = 0;
+    let animationId;
+
+    // Generate Piano Keys
+    const pianoKeys = document.getElementById('pianoKeys');
+    const notes = [
+      { note: 'C4', freq: 261.63, type: 'white', key: 'A' },
+      { note: 'C#4', freq: 277.18, type: 'black', key: 'W', offset: 24 },
+      { note: 'D4', freq: 293.66, type: 'white', key: 'S' },
+      { note: 'D#4', freq: 311.13, type: 'black', key: 'E', offset: 56 },
+      { note: 'E4', freq: 329.63, type: 'white', key: 'D' },
+      { note: 'F4', freq: 349.23, type: 'white', key: 'F' },
+      { note: 'F#4', freq: 369.99, type: 'black', key: 'T', offset: 120 },
+      { note: 'G4', freq: 392.00, type: 'white', key: 'G' },
+      { note: 'G#4', freq: 415.30, type: 'black', key: 'Y', offset: 152 },
+      { note: 'A4', freq: 440.00, type: 'white', key: 'H' },
+      { note: 'A#4', freq: 466.16, type: 'black', key: 'U', offset: 184 },
+      { note: 'B4', freq: 493.88, type: 'white', key: 'J' },
+      { note: 'C5', freq: 523.25, type: 'white', key: 'K' }
+    ];
+
+    notes.forEach((note, index) => {
+      const key = document.createElement('div');
+      key.className = note.type === 'white' ? 'white-key' : 'black-key';
+      key.dataset.freq = note.freq;
+      key.dataset.note = note.note;
+      
+      if (note.type === 'black') {
+        key.style.left = note.offset + 'px';
+      }
+      
+      key.addEventListener('mousedown', () => playNote(note.freq, key));
+      key.addEventListener('mouseup', () => stopNote(key));
+      key.addEventListener('mouseleave', () => stopNote(key));
+      
+      pianoKeys.appendChild(key);
+    });
+
+    // Piano Note Playing
+    let oscillator = null;
+    let gainNode = null;
+
+    function playNote(frequency, keyElement) {
+      oscillator = audioContext.createOscillator();
+      gainNode = audioContext.createGain();
+      
+      oscillator.type = 'sine';
+      oscillator.frequency.value = frequency;
+      
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.start(audioContext.currentTime);
+      keyElement.classList.add('active');
+    }
+
+    function stopNote(keyElement) {
+      if (oscillator) {
+        oscillator.stop();
+        oscillator = null;
+      }
+      keyElement.classList.remove('active');
+    }
+
+    // Keyboard shortcuts for piano
+    document.addEventListener('keydown', (e) => {
+      const key = e.key.toUpperCase();
+      const note = notes.find(n => n.key === key);
+      if (note) {
+        const keyElement = document.querySelector(`[data-note="${note.note}"]`);
+        if (keyElement && !keyElement.classList.contains('active')) {
+          playNote(note.freq, keyElement);
+        }
+      }
+    });
+
+    document.addEventListener('keyup', (e) => {
+      const key = e.key.toUpperCase();
+      const note = notes.find(n => n.key === key);
+      if (note) {
+        const keyElement = document.querySelector(`[data-note="${note.note}"]`);
+        if (keyElement) {
+          stopNote(keyElement);
+        }
+      }
+    });
+
+    // Generate Timeline Ruler
+    const rulerMarkers = document.getElementById('rulerMarkers');
+    for (let i = 0; i < 100; i++) {
+      const mark = document.createElement('div');
+      mark.className = 'ruler-mark';
+      mark.textContent = i;
+      rulerMarkers.appendChild(mark);
+    }
+
+    // Transport Controls
+    const playBtn = document.getElementById('playBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const recordBtn = document.getElementById('recordBtn');
+    const rewindBtn = document.getElementById('rewindBtn');
+    const timeDisplay = document.getElementById('timeDisplay');
+
+    playBtn.addEventListener('click', togglePlay);
+    stopBtn.addEventListener('click', stop);
+    recordBtn.addEventListener('click', toggleRecord);
+    rewindBtn.addEventListener('click', rewind);
+
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      const icon = playBtn.querySelector('i');
+      
+      if (isPlaying) {
+        icon.className = 'bi bi-pause-fill';
+        startPlayback();
+      } else {
+        icon.className = 'bi bi-play-fill';
+        pausePlayback();
+      }
+    }
+
+    function stop() {
+      isPlaying = false;
+      currentTime = 0;
+      updateTimeDisplay();
+      playBtn.querySelector('i').className = 'bi bi-play-fill';
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    }
+
+    function rewind() {
+      currentTime = 0;
+      updateTimeDisplay();
+    }
+
+    function startPlayback() {
+      const startTime = Date.now() - (currentTime * 1000);
+      
+      function animate() {
+        currentTime = (Date.now() - startTime) / 1000;
+        updateTimeDisplay();
+        
+        if (isPlaying) {
+          animationId = requestAnimationFrame(animate);
+        }
+      }
+      
+      animate();
+    }
+
+    function pausePlayback() {
+      if (animationId) {
+        cancelAnimationFrame(animationId);
+      }
+    }
+
+    function updateTimeDisplay() {
+      const hours = Math.floor(currentTime / 3600);
+      const minutes = Math.floor((currentTime % 3600) / 60);
+      const seconds = Math.floor(currentTime % 60);
+      
+      timeDisplay.textContent = 
+        String(hours).padStart(2, '0') + ':' +
+        String(minutes).padStart(2, '0') + ':' +
+        String(seconds).padStart(2, '0');
+    }
+
+    // Recording
+    async function toggleRecord() {
+      if (!isRecording) {
+        await startRecording();
+      } else {
+        stopRecording();
+      }
+    }
+
+    async function startRecording() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        recordedChunks = [];
+
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data.size > 0) {
+            recordedChunks.push(e.data);
+          }
+        };
+
+        mediaRecorder.onstop = () => {
+          const blob = new Blob(recordedChunks, { type: 'audio/webm' });
+          const trackName = prompt('Name your recording:', 'Recording ' + (savedTracks.length + 1));
+          
+          if (trackName) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              const newTrack = {
+                id: Date.now(),
+                name: trackName,
+                data: e.target.result,
+                timestamp: new Date().toLocaleString(),
+                voicePart: document.querySelector('.sidebar-item.active').dataset.voice
+              };
+              
+              savedTracks.push(newTrack);
+              localStorage.setItem('ariseBandTracks', JSON.stringify(savedTracks));
+              addTrackToTimeline(newTrack);
+              updateTracksList();
+            };
+            reader.readAsDataURL(blob);
+          }
+        };
+
+        mediaRecorder.start();
+        isRecording = true;
+        recordBtn.classList.add('active');
+        
+        // Start playback timer
+        if (!isPlaying) {
+          togglePlay();
+        }
+      } catch (error) {
+        alert('Microphone access denied. Please allow microphone access to record.');
+        console.error('Recording error:', error);
+      }
+    }
+
+    function stopRecording() {
+      if (mediaRecorder && isRecording) {
+        mediaRecorder.stop();
+        isRecording = false;
+        recordBtn.classList.remove('active');
+        
+        // Stop all tracks
+        mediaRecorder.stream.getTracks().forEach(track => track.stop());
+      }
+    }
+
+    // Add track to timeline
+    function addTrackToTimeline(track) {
+      const timelineTracks = document.getElementById('timelineTracks');
+      
+      const trackRow = document.createElement('div');
+      trackRow.className = 'timeline-track';
+      trackRow.innerHTML = `
+        <div class="track-label">
+          <div class="track-label-name">${track.name}</div>
+          <div class="track-label-type">${track.voicePart}</div>
+        </div>
+        <div class="track-content">
+          <div class="audio-region" style="left: ${currentTime * 60}px; width: 300px;">
+            <canvas class="audio-region-waveform"></canvas>
+            <span class="audio-region-name">${track.name}</span>
+          </div>
+        </div>
+      `;
+      
+      timelineTracks.appendChild(trackRow);
+    }
+
+    // Update tracks list in sidebar
+    function updateTracksList() {
+      const tracksList = document.getElementById('tracksList');
+      
+      if (savedTracks.length === 0) {
+        tracksList.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.85rem; text-align: center; padding: 1rem 0;">No tracks yet. Start recording!</p>';
+        return;
+      }
+      
+      tracksList.innerHTML = '';
+      
+      savedTracks.forEach((track, index) => {
+        const trackItem = document.createElement('div');
+        trackItem.className = 'track-item';
+        trackItem.innerHTML = `
+          <div class="track-header">
+            <span class="track-name">${track.name}</span>
+            <div class="track-controls">
+              <button class="track-btn" onclick="toggleMute(${index})" title="Mute">
+                <i class="bi bi-volume-up"></i>
+              </button>
+              <button class="track-btn" onclick="toggleSolo(${index})" title="Solo">
+                <i class="bi bi-music-note"></i>
+              </button>
+              <button class="track-btn" onclick="deleteTrack(${index})" title="Delete">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+          <input type="range" class="track-volume" min="0" max="100" value="80">
+        `;
+        tracksList.appendChild(trackItem);
+      });
+    }
+
+    window.toggleMute = function(index) {
+      const btn = event.target.closest('.track-btn');
+      btn.classList.toggle('active');
+    };
+
+    window.toggleSolo = function(index) {
+      const btn = event.target.closest('.track-btn');
+      btn.classList.toggle('active');
+    };
+
+    window.deleteTrack = function(index) {
+      if (confirm('Delete this track?')) {
+        savedTracks.splice(index, 1);
+        localStorage.setItem('ariseBandTracks', JSON.stringify(savedTracks));
+        updateTracksList();
+      }
+    };
+
+    // Upload backing track from local file
+    const uploadLocalBtn = document.getElementById('uploadLocalBtn');
+    const uploadStreamBtn = document.getElementById('uploadStreamBtn');
+    const fileInput = document.getElementById('fileInput');
+
+    if (uploadLocalBtn) {
+      uploadLocalBtn.addEventListener('click', () => {
+        fileInput.click();
+      });
+    }
+
+    if (fileInput) {
+      fileInput.addEventListener('change', (e) => {
+        const files = e.target.files;
+        if (!files || files.length === 0) return;
+
+        // Process each selected file
+        Array.from(files).forEach((file, index) => {
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            // Get audio duration
+            const audio = new Audio(event.target.result);
+            audio.addEventListener('loadedmetadata', () => {
+              const minutes = Math.floor(audio.duration / 60);
+              const seconds = Math.floor(audio.duration % 60);
+              const durationStr = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+              
+              const newLoop = {
+                id: Date.now() + index,
+                name: file.name.replace(/\.[^/.]+$/, ''),
+                data: event.target.result,
+                timestamp: new Date().toLocaleString(),
+                duration: durationStr,
+                type: 'local'
+              };
+
+              savedLoops.push(newLoop);
+              localStorage.setItem('ariseBandLoops', JSON.stringify(savedLoops));
+              updateLibraryList();
+              
+              // Show success notification
+              showNotification(`✓ ${file.name} uploaded successfully!`, 'success');
+            });
+          };
+
+          reader.readAsDataURL(file);
+        });
+
+        fileInput.value = '';
+      });
+    }
+
+    // Upload from stream URL
+    if (uploadStreamBtn) {
+      uploadStreamBtn.addEventListener('click', () => {
+        const url = prompt('Enter audio stream URL:\n(e.g., https://example.com/audio.mp3)');
+        if (!url) return;
+
+        // Validate URL format
+        try {
+          new URL(url);
+        } catch (e) {
+          alert('Invalid URL format. Please enter a valid URL.');
+          return;
+        }
+
+        // Test if URL is accessible
+        const audio = new Audio(url);
+        
+        audio.addEventListener('loadedmetadata', () => {
+          const minutes = Math.floor(audio.duration / 60);
+          const seconds = Math.floor(audio.duration % 60);
+          const durationStr = `${minutes}:${seconds.toString().padStart(2, '0')}`;
+          
+          const fileName = url.split('/').pop().split('?')[0] || 'Stream Audio';
+          
+          const newLoop = {
+            id: Date.now(),
+            name: fileName.replace(/\.[^/.]+$/, ''),
+            data: url,
+            timestamp: new Date().toLocaleString(),
+            duration: durationStr,
+            type: 'stream'
+          };
+
+          savedLoops.push(newLoop);
+          localStorage.setItem('ariseBandLoops', JSON.stringify(savedLoops));
+          updateLibraryList();
+          
+          showNotification(`✓ Stream added: ${newLoop.name}`, 'success');
+        });
+
+        audio.addEventListener('error', () => {
+          alert('Failed to load audio from URL. Please check:\n• URL is correct\n• Audio file is accessible\n• CORS is enabled on the server');
+        });
+      });
+    }
+
+    // Add backing track to timeline from library
+    window.addToTimeline = function(index) {
+      const loop = savedLoops[index];
+      if (!loop) return;
+
+      const backingTrackContent = document.getElementById('backingTrackContent');
+      const region = document.createElement('div');
+      region.className = 'audio-region';
+      region.style.left = '60px'; // Start position
+      region.style.width = '500px';
+      region.dataset.trackId = loop.id;
+      region.innerHTML = `
+        <canvas class="audio-region-waveform"></canvas>
+        <span class="audio-region-name">${loop.name}</span>
+      `;
+      
+      // Make draggable
+      makeDraggable(region);
+      
+      backingTrackContent.appendChild(region);
+      showNotification(`✓ ${loop.name} added to timeline`, 'success');
+    };
+
+    // Make audio regions draggable
+    function makeDraggable(element) {
+      let pos1 = 0, pos3 = 0;
+      
+      element.addEventListener('mousedown', dragMouseDown);
+      
+      function dragMouseDown(e) {
+        e.preventDefault();
+        pos3 = e.clientX;
+        document.addEventListener('mouseup', closeDragElement);
+        document.addEventListener('mousemove', elementDrag);
+      }
+      
+      function elementDrag(e) {
+        e.preventDefault();
+        pos1 = pos3 - e.clientX;
+        pos3 = e.clientX;
+        const newLeft = element.offsetLeft - pos1;
+        if (newLeft >= 0) {
+          element.style.left = newLeft + 'px';
+        }
+      }
+      
+      function closeDragElement() {
+        document.removeEventListener('mouseup', closeDragElement);
+        document.removeEventListener('mousemove', elementDrag);
+      }
+    }
+
+    // Show notification
+    function showNotification(message, type = 'info') {
+      const notification = document.createElement('div');
+      notification.style.cssText = `
+        position: fixed;
+        top: 80px;
+        right: 20px;
+        background: ${type === 'success' ? 'var(--success)' : 'var(--accent-primary)'};
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        z-index: 1000;
+        animation: slideIn 0.3s ease;
+      `;
+      notification.textContent = message;
+      document.body.appendChild(notification);
+      
+      setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => notification.remove(), 300);
+      }, 3000);
+    }
+
+    // Add custom animation
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideIn {
+        from { transform: translateX(400px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      @keyframes slideOut {
+        from { transform: translateX(0); opacity: 1; }
+        to { transform: translateX(400px); opacity: 0; }
+      }
+    `;
+    document.head.appendChild(style);
+
+    // Update library list
+    function updateLibraryList() {
+      const libraryList = document.getElementById('libraryList');
+      
+      if (savedLoops.length === 0) {
+        libraryList.innerHTML = '<p style="color: var(--text-secondary); font-size: 0.85rem; text-align: center; padding: 1rem 0;">No files yet. Upload tracks!</p>';
+        return;
+      }
+      
+      libraryList.innerHTML = '';
+      
+      savedLoops.forEach((loop, index) => {
+        const item = document.createElement('div');
+        item.className = 'library-item';
+        
+        const typeIcon = loop.type === 'stream' ? 
+          '<i class="bi bi-wifi" style="color: var(--warning); font-size: 0.7rem;" title="Stream"></i>' : 
+          '<i class="bi bi-file-music" style="color: var(--accent-secondary); font-size: 0.7rem;" title="Local file"></i>';
+        
+        item.innerHTML = `
+          <div class="library-item-info">
+            <div class="library-item-name">${typeIcon} ${loop.name}</div>
+            <div class="library-item-meta">${loop.duration || '0:00'} • ${loop.timestamp}</div>
+          </div>
+          <div class="library-item-actions">
+            <button class="track-btn" onclick="playLibraryItem(${index})" title="Play">
+              <i class="bi bi-play-fill"></i>
+            </button>
+            <button class="track-btn" onclick="addToTimeline(${index})" title="Add to Timeline">
+              <i class="bi bi-plus-square"></i>
+            </button>
+            <button class="track-btn" onclick="deleteLibraryItem(${index})" title="Delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        `;
+        libraryList.appendChild(item);
+      });
+    }
+
+    window.playLibraryItem = function(index) {
+      const loop = savedLoops[index];
+      const audio = new Audio(loop.data);
+      audio.play();
+    };
+
+    window.deleteLibraryItem = function(index) {
+      if (confirm('Delete this file?')) {
+        savedLoops.splice(index, 1);
+        localStorage.setItem('ariseBandLoops', JSON.stringify(savedLoops));
+        updateLibraryList();
+        showNotification('File deleted', 'info');
+      }
+    };
+
+    // Add new audio track dynamically
+    let trackCounter = 1;
+    const addTrackBtn = document.getElementById('addTrackBtn');
+    
+    if (addTrackBtn) {
+      addTrackBtn.addEventListener('click', () => {
+        const trackName = prompt('Enter track name:', `Audio Track ${trackCounter}`);
+        if (!trackName) return;
+
+        const timelineTracks = document.getElementById('timelineTracks');
+        
+        const trackRow = document.createElement('div');
+        trackRow.className = 'timeline-track';
+        trackRow.dataset.trackId = `track-${Date.now()}`;
+        trackRow.innerHTML = `
+          <div class="track-label">
+            <div class="track-label-name">${trackName}</div>
+            <div class="track-label-type">Audio</div>
+          </div>
+          <div class="track-content" data-track-content="${trackName}">
+            <!-- Audio regions can be added here -->
+          </div>
+        `;
+        
+        timelineTracks.appendChild(trackRow);
+        trackCounter++;
+        
+        showNotification(`✓ Track "${trackName}" added`, 'success');
+        
+        // Add to tracks list in sidebar
+        addToTracksList(trackName);
+      });
+    }
+
+    // Add track to sidebar list
+    function addToTracksList(trackName) {
+      const tracksList = document.getElementById('tracksList');
+      
+      // Remove "no tracks" message if exists
+      if (tracksList.querySelector('p')) {
+        tracksList.innerHTML = '';
+      }
+      
+      const trackItem = document.createElement('div');
+      trackItem.className = 'track-item';
+      trackItem.innerHTML = `
+        <div class="track-header">
+          <span class="track-name">${trackName}</span>
+          <div class="track-controls">
+            <button class="track-btn" onclick="toggleTrackMute(this)" title="Mute">
+              <i class="bi bi-volume-up"></i>
+            </button>
+            <button class="track-btn" onclick="toggleTrackSolo(this)" title="Solo">
+              <i class="bi bi-music-note"></i>
+            </button>
+            <button class="track-btn" onclick="deleteTrackFromList(this)" title="Delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        </div>
+        <input type="range" class="track-volume" min="0" max="100" value="80">
+      `;
+      tracksList.appendChild(trackItem);
+    }
+
+    window.toggleTrackMute = function(btn) {
+      btn.classList.toggle('active');
+      const icon = btn.querySelector('i');
+      if (btn.classList.contains('active')) {
+        icon.className = 'bi bi-volume-mute';
+      } else {
+        icon.className = 'bi bi-volume-up';
+      }
+    };
+
+    window.toggleTrackSolo = function(btn) {
+      btn.classList.toggle('active');
+    };
+
+    window.deleteTrackFromList = function(btn) {
+      if (confirm('Delete this track?')) {
+        btn.closest('.track-item').remove();
+        showNotification('Track removed', 'info');
+      }
+    };
+
+    // Effect toggles
+    document.querySelectorAll('.effect-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function() {
+        this.classList.toggle('active');
+      });
+    });
+
+    // Tool selection
+    document.querySelectorAll('.tool-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        if (!this.id.includes('metronome') && !this.id.includes('loop')) {
+          document.querySelectorAll('.tool-btn').forEach(b => b.classList.remove('active'));
+          this.classList.add('active');
+        } else {
+          this.classList.toggle('active');
+        }
+      });
+    });
+
+    // Voice part selection
+    document.querySelectorAll('.sidebar-item[data-voice]').forEach(item => {
+      item.addEventListener('click', function() {
+        document.querySelectorAll('.sidebar-item[data-voice]').forEach(i => i.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+
+    // BPM Control
+    const bpmInput = document.getElementById('bpmInput');
+    let metronomeInterval;
+    let metronomeActive = false;
+
+    document.getElementById('metronomeBtn').addEventListener('click', function() {
+      metronomeActive = !metronomeActive;
+      this.classList.toggle('active');
+      
+      if (metronomeActive) {
+        startMetronome();
+      } else {
+        stopMetronome();
+      }
+    });
+
+    function startMetronome() {
+      const bpm = parseInt(bpmInput.value);
+      const interval = 60000 / bpm;
+      
+      metronomeInterval = setInterval(() => {
+        const beep = audioContext.createOscillator();
+        const beepGain = audioContext.createGain();
+        
+        beep.frequency.value = 1000;
+        beepGain.gain.value = 0.1;
+        
+        beep.connect(beepGain);
+        beepGain.connect(audioContext.destination);
+        
+        beep.start(audioContext.currentTime);
+        beep.stop(audioContext.currentTime + 0.05);
+      }, interval);
+    }
+
+    function stopMetronome() {
+      if (metronomeInterval) {
+        clearInterval(metronomeInterval);
+      }
+    }
+
+    // Save project
+    document.getElementById('saveBtn').addEventListener('click', () => {
+      currentProject.tracks = savedTracks;
+      localStorage.setItem('ariseBandCurrentProject', JSON.stringify(currentProject));
+      
+      const btn = document.getElementById('saveBtn');
+      const originalContent = btn.innerHTML;
+      btn.innerHTML = '<i class="bi bi-check-circle"></i> Saved!';
+      btn.style.background = 'var(--success)';
+      
+      setTimeout(() => {
+        btn.innerHTML = originalContent;
+        btn.style.background = '';
+      }, 2000);
+    });
+
+    // Export project
+    document.getElementById('exportBtn').addEventListener('click', () => {
+      if (savedTracks.length === 0) {
+        alert('No tracks to export. Record something first!');
+        return;
+      }
+      
+      // Download all tracks
+      savedTracks.forEach((track, index) => {
+        setTimeout(() => {
+          const a = document.createElement('a');
+          a.href = track.data;
+          a.download = `${currentProject.name}-${track.name}.webm`;
+          a.click();
+        }, index * 500);
+      });
+    });
+
+    // Back to dashboard
+    document.getElementById('backToDashboard').addEventListener('click', () => {
+      window.location.href = 'member-dashboard.html';
+    });
+
+    // Project name editing
+    document.getElementById('projectName').parentElement.addEventListener('click', () => {
+      const newName = prompt('Enter project name:', currentProject.name);
+      if (newName && newName.trim()) {
+        currentProject.name = newName.trim();
+        document.getElementById('projectName').textContent = currentProject.name;
+        localStorage.setItem('ariseBandCurrentProject', JSON.stringify(currentProject));
+      }
+    });
+
+    // Initialize
+    updateTracksList();
+    updateLibraryList();
+    updateTimeDisplay();
+  </script>
+</body>
+</html>

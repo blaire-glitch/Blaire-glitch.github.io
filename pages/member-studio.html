@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Practice Studio - Arise Band</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../styles/styles.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      min-height: 100vh;
+      color: #fff;
+    }
+    .studio-container {
+      background: rgba(45, 45, 45, 0.95);
+      border: 2px solid #0dcaf0;
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 2rem auto;
+      max-width: 1400px;
+    }
+    .piano-container {
+      background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+      border: 2px solid #6a1b9a;
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .piano-keys {
+      display: flex;
+      justify-content: center;
+      gap: 2px;
+      position: relative;
+      height: 200px;
+      margin-bottom: 1rem;
+    }
+    .white-key {
+      width: 60px;
+      height: 200px;
+      background: linear-gradient(180deg, #ffffff 0%, #f0f0f0 100%);
+      border: 2px solid #333;
+      border-radius: 0 0 8px 8px;
+      cursor: pointer;
+      position: relative;
+      transition: all 0.1s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 10px;
+      font-size: 12px;
+      color: #666;
+      font-weight: bold;
+    }
+    .white-key:hover {
+      background: linear-gradient(180deg, #f0f0f0 0%, #e0e0e0 100%);
+      transform: translateY(2px);
+    }
+    .white-key:active, .white-key.active {
+      background: linear-gradient(180deg, #e0e0e0 0%, #d0d0d0 100%);
+      transform: translateY(4px);
+      box-shadow: inset 0 3px 10px rgba(0,0,0,0.3);
+    }
+    .black-key {
+      width: 40px;
+      height: 120px;
+      background: linear-gradient(180deg, #2a2a2a 0%, #000000 100%);
+      border: 2px solid #0dcaf0;
+      border-radius: 0 0 6px 6px;
+      cursor: pointer;
+      position: absolute;
+      z-index: 10;
+      transition: all 0.1s ease;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 8px;
+      font-size: 10px;
+      color: #0dcaf0;
+      font-weight: bold;
+    }
+    .black-key:hover {
+      background: linear-gradient(180deg, #3a3a3a 0%, #1a1a1a 100%);
+      transform: translateY(2px);
+    }
+    .black-key:active, .black-key.active {
+      background: linear-gradient(180deg, #1a1a1a 0%, #000000 100%);
+      transform: translateY(3px);
+      box-shadow: inset 0 2px 8px rgba(0,0,0,0.5);
+    }
+    .recording-controls {
+      background: linear-gradient(135deg, #6a1b9a 0%, #8e24aa 100%);
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    .control-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: none;
+      font-size: 2rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
+    .control-btn:hover {
+      transform: scale(1.1);
+    }
+    .record-btn {
+      background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+      color: #fff;
+    }
+    .record-btn.recording {
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.7); }
+      50% { box-shadow: 0 0 0 20px rgba(220, 53, 69, 0); }
+    }
+    .play-btn {
+      background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+      color: #fff;
+    }
+    .stop-btn {
+      background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+      color: #fff;
+    }
+    .download-btn {
+      background: linear-gradient(135deg, #0dcaf0 0%, #0aa2c0 100%);
+      color: #fff;
+    }
+    .metronome-container {
+      background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+      border: 2px solid #ffd580;
+      border-radius: 15px;
+      padding: 2rem;
+    }
+    .bpm-display {
+      font-size: 3rem;
+      font-weight: bold;
+      color: #ffd580;
+      text-align: center;
+    }
+    .metronome-indicator {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #666;
+      margin: 1rem auto;
+      transition: all 0.1s ease;
+    }
+    .metronome-indicator.beat {
+      background: #ffd580;
+      box-shadow: 0 0 30px rgba(255, 213, 128, 0.8);
+      transform: scale(1.2);
+    }
+    .waveform-container {
+      background: #000;
+      border: 2px solid #0dcaf0;
+      border-radius: 10px;
+      padding: 1rem;
+      min-height: 100px;
+      margin: 1rem 0;
+    }
+    .recordings-list {
+      max-height: 300px;
+      overflow-y: auto;
+    }
+    .recording-item {
+      background: rgba(13, 202, 240, 0.1);
+      border-left: 3px solid #0dcaf0;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .track-item {
+      background: rgba(106, 27, 154, 0.2);
+      border: 1px solid #6a1b9a;
+      border-radius: 8px;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    .track-controls {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    .voice-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .voice-lead { background: linear-gradient(135deg, #ffd580 0%, #ffc107 100%); color: #000; }
+    .voice-soprano { background: linear-gradient(135deg, #e91e63 0%, #c2185b 100%); color: #fff; }
+    .voice-alto { background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); color: #fff; }
+    .voice-tenor { background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); color: #fff; }
+    .voice-bass { background: linear-gradient(135deg, #4caf50 0%, #388e3c 100%); color: #fff; }
+    .voice-harmony1 { background: linear-gradient(135deg, #00bcd4 0%, #0097a7 100%); color: #fff; }
+    .voice-harmony2 { background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%); color: #fff; }
+    .voice-harmony3 { background: linear-gradient(135deg, #795548 0%, #5d4037 100%); color: #fff; }
+    .voice-adlib { background: linear-gradient(135deg, #ff5722 0%, #e64a19 100%); color: #fff; }
+    .volume-control {
+      width: 150px;
+    }
+    .solo-btn, .mute-btn {
+      width: 50px;
+      height: 35px;
+      font-size: 0.85rem;
+    }
+    .loop-item {
+      background: rgba(255, 213, 128, 0.1);
+      border: 1px solid #ffd580;
+      border-radius: 5px;
+      padding: 0.75rem;
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+    }
+    .loop-item:hover {
+      background: rgba(255, 213, 128, 0.2);
+      transform: translateX(5px);
+    }
+    .loop-item.active {
+      background: rgba(13, 202, 240, 0.2);
+      border-color: #0dcaf0;
+    }
+    .loop-marker {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      cursor: ew-resize;
+      z-index: 10;
+    }
+    .loop-marker-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background: rgba(255, 213, 128, 0.8);
+      box-shadow: 0 0 10px rgba(255, 213, 128, 0.5);
+    }
+    .loop-start-marker .loop-marker-line {
+      left: 0;
+      background: rgba(0, 255, 0, 0.8);
+      box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+    }
+    .loop-end-marker .loop-marker-line {
+      right: 0;
+      background: rgba(255, 0, 0, 0.8);
+      box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+    }
+    .loop-marker-handle {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 30px;
+      height: 30px;
+      background: rgba(255, 213, 128, 0.9);
+      border: 2px solid #ffd580;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      transition: all 0.2s ease;
+    }
+    .loop-start-marker .loop-marker-handle {
+      left: -15px;
+      background: rgba(0, 255, 0, 0.9);
+      border-color: #00ff00;
+      color: #000;
+    }
+    .loop-end-marker .loop-marker-handle {
+      right: -15px;
+      background: rgba(255, 0, 0, 0.9);
+      border-color: #ff0000;
+      color: #fff;
+    }
+    .loop-marker:hover .loop-marker-handle {
+      transform: translateY(-50%) scale(1.2);
+    }
+    .loop-marker-label {
+      position: absolute;
+      top: -25px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #ffd580;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      white-space: nowrap;
+    }
+    .loop-start-marker .loop-marker-label {
+      left: 0;
+      color: #00ff00;
+    }
+    .loop-end-marker .loop-marker-label {
+      right: 0;
+      color: #ff0000;
+    }
+    .loop-playhead {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      z-index: 5;
+      pointer-events: none;
+    }
+    .playhead-line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: rgba(13, 202, 240, 0.9);
+      box-shadow: 0 0 8px rgba(13, 202, 240, 0.8);
+    }
+    .navbar {
+      background: rgba(26, 26, 26, 0.95) !important;
+      backdrop-filter: blur(10px);
+    }
+    .volume-slider {
+      width: 100%;
+      accent-color: #0dcaf0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold text-info" href="../index.html">
+        <i class="bi bi-music-note-beamed me-2"></i>ARISE BAND
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="member-dashboard.html">
+              <i class="bi bi-speedometer2 me-1"></i>Dashboard
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="member-studio.html">
+              <i class="bi bi-mic-fill me-1"></i>Studio
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="logoutBtn">
+              <i class="bi bi-box-arrow-right me-1"></i>Logout
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Studio Content -->
+  <div class="container-fluid">
+    <div class="studio-container">
+      <h2 class="text-center mb-4 text-info">
+        <i class="bi bi-mic-fill me-2"></i>Practice Studio
+      </h2>
+
+      <div class="row">
+        <!-- Left Column: Piano & Recording -->
+        <div class="col-lg-8">
+          <!-- Piano Section -->
+          <div class="piano-container">
+            <h4 class="text-center mb-3 text-warning">
+              <i class="bi bi-music-note-beamed me-2"></i>Piano (for Pitching)
+            </h4>
+            <div class="piano-keys" id="pianoKeys">
+              <!-- White Keys -->
+              <div class="white-key" data-note="C4" data-freq="261.63">C</div>
+              <div class="black-key" style="left: 42px;" data-note="C#4" data-freq="277.18">C#</div>
+              <div class="white-key" data-note="D4" data-freq="293.66">D</div>
+              <div class="black-key" style="left: 106px;" data-note="D#4" data-freq="311.13">D#</div>
+              <div class="white-key" data-note="E4" data-freq="329.63">E</div>
+              <div class="white-key" data-note="F4" data-freq="349.23">F</div>
+              <div class="black-key" style="left: 234px;" data-note="F#4" data-freq="369.99">F#</div>
+              <div class="white-key" data-note="G4" data-freq="392.00">G</div>
+              <div class="black-key" style="left: 298px;" data-note="G#4" data-freq="415.30">G#</div>
+              <div class="white-key" data-note="A4" data-freq="440.00">A</div>
+              <div class="black-key" style="left: 362px;" data-note="A#4" data-freq="466.16">A#</div>
+              <div class="white-key" data-note="B4" data-freq="493.88">B</div>
+              <div class="white-key" data-note="C5" data-freq="523.25">C</div>
+            </div>
+            <div class="text-center">
+              <label class="text-white me-2">Piano Volume:</label>
+              <input type="range" class="volume-slider" id="pianoVolume" min="0" max="100" value="70" style="width: 200px;">
+              <span class="text-info ms-2" id="pianoVolumeValue">70%</span>
+            </div>
+          </div>
+
+          <!-- Recording Controls -->
+          <div class="recording-controls">
+            <h4 class="text-center mb-4 text-white">
+              <i class="bi bi-vinyl-fill me-2"></i>Multitrack Vocal Recording
+            </h4>
+            
+            <!-- Backing Track Selector -->
+            <div class="mb-3 p-3" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border-radius: 12px; border: 2px solid #ffd580;">
+              <div class="d-flex align-items-center justify-content-between mb-3">
+                <label class="text-warning mb-0 fw-bold">
+                  <i class="bi bi-music-note-beamed me-2"></i>Backing Track
+                </label>
+                <button class="btn btn-sm btn-outline-warning" id="uploadBackingTrackBtn">
+                  <i class="bi bi-cloud-upload me-1"></i>Upload New
+                </button>
+              </div>
+              
+              <!-- Hidden file input -->
+              <input type="file" id="backingTrackFileInput" accept="audio/*" style="display: none;">
+              
+              <!-- Upload Progress Area (hidden by default) -->
+              <div id="backingUploadProgress" class="mb-3" style="display: none;">
+                <div class="d-flex align-items-center gap-2 mb-2">
+                  <div class="spinner-border spinner-border-sm text-warning" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <span class="text-white small">Uploading: <span id="backingUploadFileName"></span></span>
+                </div>
+                <div class="progress" style="height: 4px;">
+                  <div class="progress-bar bg-warning" id="backingProgressBar" role="progressbar" style="width: 0%"></div>
+                </div>
+              </div>
+              
+              <!-- Track Selector -->
+              <div class="d-flex gap-2 align-items-center mb-2">
+                <select class="form-select bg-dark text-white border-warning flex-grow-1" id="recordingBackingTrackSelect" style="border-radius: 8px;">
+                  <option value="">🎤 No backing track (a cappella)</option>
+                </select>
+                <button class="btn btn-warning" id="playRecordingBackingBtn" disabled title="Preview backing track" style="width: 45px; height: 45px; border-radius: 50%;">
+                  <i class="bi bi-play-fill"></i>
+                </button>
+                <button class="btn btn-secondary" id="stopRecordingBackingBtn" disabled title="Stop preview" style="width: 45px; height: 45px; border-radius: 50%;">
+                  <i class="bi bi-stop-fill"></i>
+                </button>
+              </div>
+              
+              <!-- Waveform Preview (shown when track is selected) -->
+              <div id="backingWaveformPreview" class="mb-2" style="display: none;">
+                <canvas id="backingPreviewCanvas" width="400" height="40" style="width: 100%; height: 40px; background: #000; border-radius: 6px; display: block;"></canvas>
+              </div>
+              
+              <audio id="recordingBackingAudio" style="display: none;"></audio>
+              
+              <!-- Volume Control -->
+              <div class="d-flex align-items-center gap-2 mt-2">
+                <i class="bi bi-volume-down text-warning"></i>
+                <input type="range" class="volume-slider flex-grow-1" id="recordingBackingVolume" min="0" max="100" value="60" style="height: 6px; border-radius: 3px;">
+                <i class="bi bi-volume-up text-warning"></i>
+                <span class="text-warning small fw-bold ms-2" id="recordingBackingVolumeValue" style="min-width: 35px;">60%</span>
+              </div>
+              
+              <!-- Track Info -->
+              <div id="backingTrackInfo" class="mt-2 text-center" style="display: none;">
+                <small class="text-muted">
+                  <i class="bi bi-info-circle me-1"></i>
+                  <span id="backingTrackDuration"></span>
+                </small>
+              </div>
+            </div>
+            
+            <!-- Voice Part Selection -->
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label class="text-white mb-2">
+                  <i class="bi bi-person-fill me-1"></i>Voice Part:
+                </label>
+                <select class="form-select bg-dark text-white border-info" id="voicePartSelect">
+                  <option value="lead">Lead Vocal</option>
+                  <option value="soprano">Soprano</option>
+                  <option value="alto">Alto</option>
+                  <option value="tenor">Tenor</option>
+                  <option value="bass">Bass</option>
+                  <option value="harmony1">Harmony 1</option>
+                  <option value="harmony2">Harmony 2</option>
+                  <option value="harmony3">Harmony 3</option>
+                  <option value="adlib">Ad-lib/Runs</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="text-white mb-2">
+                  <i class="bi bi-tag-fill me-1"></i>Track Name:
+                </label>
+                <input type="text" class="form-control bg-dark text-white border-info" id="trackNameInput" placeholder="e.g., Amazing Grace - Lead">
+              </div>
+            </div>
+
+            <div class="row text-center mb-3">
+              <div class="col-3">
+                <button class="control-btn record-btn" id="recordBtn" title="Start Recording">
+                  <i class="bi bi-record-circle"></i>
+                </button>
+                <p class="mt-2 small">Record</p>
+              </div>
+              <div class="col-3">
+                <button class="control-btn stop-btn" id="stopBtn" title="Stop" disabled>
+                  <i class="bi bi-stop-circle"></i>
+                </button>
+                <p class="mt-2 small">Stop</p>
+              </div>
+              <div class="col-3">
+                <button class="control-btn play-btn" id="playBtn" title="Play Track" disabled>
+                  <i class="bi bi-play-circle"></i>
+                </button>
+                <p class="mt-2 small">Play</p>
+              </div>
+              <div class="col-3">
+                <button class="control-btn download-btn" id="downloadBtn" title="Download Track" disabled>
+                  <i class="bi bi-download"></i>
+                </button>
+                <p class="mt-2 small">Download</p>
+              </div>
+            </div>
+
+            <!-- Waveform Display -->
+            <div class="waveform-container">
+              <canvas id="waveformCanvas" width="800" height="100"></canvas>
+            </div>
+
+            <!-- Recording Status -->
+            <div class="text-center">
+              <p class="mb-1" id="recordingStatus">Ready to record</p>
+              <p class="mb-0 text-warning" id="recordingTimer">00:00</p>
+            </div>
+          </div>
+
+          <!-- Multitrack Mixer -->
+          <div class="piano-container">
+            <h5 class="text-center mb-3 text-warning">
+              <i class="bi bi-sliders me-2"></i>Multitrack Mixer
+            </h5>
+            <div class="mb-3">
+              <button class="btn btn-success w-100 mb-2" id="playAllTracksBtn" disabled>
+                <i class="bi bi-play-fill me-2"></i>Play All Tracks Together
+              </button>
+              <button class="btn btn-info w-100 mb-2" id="stopAllTracksBtn" disabled>
+                <i class="bi bi-stop-fill me-2"></i>Stop All Tracks
+              </button>
+              <button class="btn btn-warning w-100" id="exportMixBtn" disabled>
+                <i class="bi bi-download me-2"></i>Export Mix (All Tracks)
+              </button>
+            </div>
+            <div id="tracksMixer" class="mt-3">
+              <p class="text-muted text-center">No tracks recorded yet. Record your first vocal track above!</p>
+            </div>
+          </div>
+
+          <!-- Saved Recordings -->
+          <div class="recordings-list" id="recordingsList">
+            <h5 class="text-info mb-3">
+              <i class="bi bi-folder-fill me-2"></i>Individual Recordings
+            </h5>
+            <p class="text-muted">No recordings yet. Start recording to save your practice sessions!</p>
+          </div>
+        </div>
+
+        <!-- Right Column: Metronome & Loop Player -->
+        <div class="col-lg-4">
+          <!-- Metronome -->
+          <div class="metronome-container mb-4">
+            <h4 class="text-center mb-3 text-warning">
+              <i class="bi bi-alarm me-2"></i>Click Track
+            </h4>
+            <div class="metronome-indicator" id="metronomeIndicator"></div>
+            <div class="bpm-display" id="bpmDisplay">120</div>
+            <div class="text-center mb-3">
+              <input type="range" class="volume-slider" id="bpmSlider" min="40" max="200" value="120">
+            </div>
+            <div class="text-center">
+              <button class="btn btn-warning w-100 mb-2" id="metronomeBtn">
+                <i class="bi bi-play-fill me-2"></i>Start Click Track
+              </button>
+              <label class="text-white me-2">Click Volume:</label>
+              <input type="range" class="volume-slider" id="metronomeVolume" min="0" max="100" value="50">
+              <span class="text-info ms-2" id="metronomeVolumeValue">50%</span>
+            </div>
+          </div>
+
+          <!-- Loop Player -->
+          <div class="metronome-container">
+            <h4 class="text-center mb-3 text-info">
+              <i class="bi bi-arrow-repeat me-2"></i>Loop Player
+            </h4>
+            <div class="mb-3">
+              <label class="text-white mb-2">Upload New Loop:</label>
+              <input type="file" class="form-control bg-dark text-white border-info" id="loopFileInput" accept="audio/*">
+            </div>
+            <div class="mb-3">
+              <label class="text-white mb-2">Loop Name:</label>
+              <input type="text" class="form-control bg-dark text-white border-info" id="loopNameInput" placeholder="e.g., Amazing Grace Backing">
+            </div>
+            <button class="btn btn-success w-100 mb-3" id="saveLoopBtn" disabled>
+              <i class="bi bi-save me-2"></i>Save to Library
+            </button>
+            
+            <hr class="border-info">
+            
+            <h5 class="text-center mb-3 text-warning">
+              <i class="bi bi-music-note-list me-2"></i>Loop Library
+            </h5>
+            <div class="mb-3" id="loopLibrary" style="max-height: 200px; overflow-y: auto;">
+              <p class="text-muted small text-center">No loops saved yet. Upload and save loops to build your library!</p>
+            </div>
+            
+            <hr class="border-info">
+            
+            <div class="mb-3">
+              <audio id="loopAudio" controls class="w-100" style="filter: invert(1) hue-rotate(180deg);"></audio>
+            </div>
+            
+            <!-- Loop Point Controls with Waveform -->
+            <div class="mb-3" id="loopPointControls" style="display: none;">
+              <label class="text-warning mb-2">
+                <i class="bi bi-scissors me-1"></i>Set Loop Points - Drag Sliders:
+              </label>
+              
+              <!-- Waveform Display -->
+              <div class="position-relative mb-3" style="background: #000; border: 2px solid #ffd580; border-radius: 10px; padding: 10px;">
+                <canvas id="loopWaveformCanvas" width="400" height="100" style="width: 100%; height: 100px; display: block;"></canvas>
+                
+                <!-- Loop Start Marker -->
+                <div id="loopStartMarker" class="loop-marker loop-start-marker" style="left: 0%;">
+                  <div class="loop-marker-line"></div>
+                  <div class="loop-marker-handle">
+                    <i class="bi bi-caret-right-fill"></i>
+                  </div>
+                  <div class="loop-marker-label">Start</div>
+                </div>
+                
+                <!-- Loop End Marker -->
+                <div id="loopEndMarker" class="loop-marker loop-end-marker" style="left: 100%;">
+                  <div class="loop-marker-line"></div>
+                  <div class="loop-marker-handle">
+                    <i class="bi bi-caret-left-fill"></i>
+                  </div>
+                  <div class="loop-marker-label">End</div>
+                </div>
+                
+                <!-- Playhead -->
+                <div id="loopPlayhead" class="loop-playhead" style="left: 0%;">
+                  <div class="playhead-line"></div>
+                </div>
+              </div>
+              
+              <!-- Time Display -->
+              <div class="d-flex justify-content-between mb-2">
+                <small class="text-info">
+                  <i class="bi bi-play-fill"></i> Start: <span id="loopStartTime">0.0</span>s
+                </small>
+                <small class="text-warning">
+                  Position: <span id="currentTimeDisplay">0.0</span>s / <span id="durationDisplay">0.0</span>s
+                </small>
+                <small class="text-info">
+                  <i class="bi bi-stop-fill"></i> End: <span id="loopEndTime">0.0</span>s
+                </small>
+              </div>
+              
+              <!-- Control Buttons -->
+              <div class="d-flex gap-2">
+                <button class="btn btn-sm btn-warning flex-grow-1" id="previewLoopBtn">
+                  <i class="bi bi-play-fill me-1"></i>Preview Loop
+                </button>
+                <button class="btn btn-sm btn-success flex-grow-1" id="saveLoopPointsBtn">
+                  <i class="bi bi-check-lg me-1"></i>Save Points
+                </button>
+                <button class="btn btn-sm btn-secondary" id="cancelLoopPointsBtn">
+                  <i class="bi bi-x-lg me-1"></i>Cancel
+                </button>
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label class="text-white me-2">Loop Volume:</label>
+              <input type="range" class="volume-slider" id="loopVolume" min="0" max="100" value="80">
+              <span class="text-info ms-2" id="loopVolumeValue">80%</span>
+            </div>
+            <button class="btn btn-info w-100 mb-2" id="loopBtn" disabled>
+              <i class="bi bi-arrow-repeat me-2"></i>Enable Loop
+            </button>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="autoLoopCheckbox" checked>
+              <label class="form-check-label text-white" for="autoLoopCheckbox">
+                Auto-repeat enabled
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Check if user is logged in
+    const loginData = localStorage.getItem('ariseBandMemberLogin');
+    if (!loginData) {
+      alert('Please login to access the studio');
+      window.location.href = 'band-members.html';
+    }
+
+    // Logout functionality
+    document.getElementById('logoutBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('ariseBandMemberLogin');
+        alert('Logged out successfully!');
+        window.location.href = '../index.html';
+      }
+    });
+
+    // Audio Context for Piano and Recording
+    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+    let mediaRecorder;
+    let audioChunks = [];
+    let recordedBlob;
+    let recordingStartTime;
+    let timerInterval;
+    let animationId;
+    
+    // Multitrack system
+    let tracks = [];
+    let currentTrackId = 0;
+    let playingTracks = [];
+
+    // Piano functionality
+    const pianoVolumeSlider = document.getElementById('pianoVolume');
+    const pianoVolumeValue = document.getElementById('pianoVolumeValue');
+    let pianoVolume = 0.7;
+
+    pianoVolumeSlider.addEventListener('input', function() {
+      pianoVolume = this.value / 100;
+      pianoVolumeValue.textContent = this.value + '%';
+    });
+
+    const pianoKeys = document.querySelectorAll('.white-key, .black-key');
+    pianoKeys.forEach(key => {
+      key.addEventListener('click', () => playNote(parseFloat(key.dataset.freq)));
+      
+      // Keyboard support
+      key.addEventListener('mousedown', () => key.classList.add('active'));
+      key.addEventListener('mouseup', () => key.classList.remove('active'));
+      key.addEventListener('mouseleave', () => key.classList.remove('active'));
+    });
+
+    // Keyboard mapping for piano
+    const keyMap = {
+      'a': 'C4', 'w': 'C#4', 's': 'D4', 'e': 'D#4', 'd': 'E4',
+      'f': 'F4', 't': 'F#4', 'g': 'G4', 'y': 'G#4', 'h': 'A4',
+      'u': 'A#4', 'j': 'B4', 'k': 'C5'
+    };
+
+    document.addEventListener('keydown', (e) => {
+      const note = keyMap[e.key.toLowerCase()];
+      if (note) {
+        const key = Array.from(pianoKeys).find(k => k.dataset.note === note);
+        if (key && !key.classList.contains('active')) {
+          key.classList.add('active');
+          playNote(parseFloat(key.dataset.freq));
+        }
+      }
+    });
+
+    document.addEventListener('keyup', (e) => {
+      const note = keyMap[e.key.toLowerCase()];
+      if (note) {
+        const key = Array.from(pianoKeys).find(k => k.dataset.note === note);
+        if (key) {
+          key.classList.remove('active');
+        }
+      }
+    });
+
+    function playNote(frequency) {
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.value = frequency;
+      oscillator.type = 'sine';
+      
+      gainNode.gain.setValueAtTime(pianoVolume, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 1);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 1);
+    }
+
+    // Recording functionality
+    const recordBtn = document.getElementById('recordBtn');
+    const stopBtn = document.getElementById('stopBtn');
+    const playBtn = document.getElementById('playBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+    const recordingStatus = document.getElementById('recordingStatus');
+    const recordingTimer = document.getElementById('recordingTimer');
+    const waveformCanvas = document.getElementById('waveformCanvas');
+    const canvasCtx = waveformCanvas.getContext('2d');
+
+    recordBtn.addEventListener('click', startRecording);
+    stopBtn.addEventListener('click', stopRecording);
+    playBtn.addEventListener('click', playRecording);
+    downloadBtn.addEventListener('click', downloadRecording);
+
+    async function startRecording() {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+
+        mediaRecorder.ondataavailable = (event) => {
+          audioChunks.push(event.data);
+        };
+
+        mediaRecorder.onstop = () => {
+          recordedBlob = new Blob(audioChunks, { type: 'audio/wav' });
+          playBtn.disabled = false;
+          downloadBtn.disabled = false;
+          addRecordingToList(recordedBlob);
+          
+          // Stop backing track if it was playing
+          if (!recordingBackingAudio.paused) {
+            recordingBackingAudio.pause();
+            recordingBackingAudio.currentTime = 0;
+            playRecordingBackingBtn.disabled = false;
+            stopRecordingBackingBtn.disabled = true;
+            playRecordingBackingBtn.classList.add('btn-warning');
+            playRecordingBackingBtn.classList.remove('btn-success');
+          }
+        };
+
+        mediaRecorder.start();
+        recordingStartTime = Date.now();
+        startTimer();
+        visualizeAudio(stream);
+
+        recordBtn.disabled = true;
+        recordBtn.classList.add('recording');
+        stopBtn.disabled = false;
+        
+        // Update status based on whether backing track is selected
+        if (recordingBackingTrackSelect.value) {
+          const trackName = recordingBackingTrackSelect.options[recordingBackingTrackSelect.selectedIndex].text;
+          recordingStatus.textContent = `Recording with backing: ${trackName}`;
+          
+          // Auto-start backing track if selected and not playing
+          if (recordingBackingAudio.paused && recordingBackingAudio.src) {
+            recordingBackingAudio.currentTime = 0;
+            recordingBackingAudio.play();
+            playRecordingBackingBtn.disabled = true;
+            stopRecordingBackingBtn.disabled = false;
+            playRecordingBackingBtn.classList.add('btn-success');
+            playRecordingBackingBtn.classList.remove('btn-warning');
+          }
+        } else {
+          recordingStatus.textContent = 'Recording in progress...';
+        }
+      } catch (error) {
+        alert('Microphone access denied. Please allow microphone access to record.');
+        console.error('Recording error:', error);
+      }
+    }
+
+    function stopRecording() {
+      if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+        mediaRecorder.stop();
+        mediaRecorder.stream.getTracks().forEach(track => track.stop());
+        stopTimer();
+        cancelAnimationFrame(animationId);
+
+        recordBtn.disabled = false;
+        recordBtn.classList.remove('recording');
+        stopBtn.disabled = true;
+        recordingStatus.textContent = 'Recording saved!';
+      }
+    }
+
+    function playRecording() {
+      if (recordedBlob) {
+        const audioUrl = URL.createObjectURL(recordedBlob);
+        const audio = new Audio(audioUrl);
+        audio.play();
+        recordingStatus.textContent = 'Playing recording...';
+        audio.onended = () => {
+          recordingStatus.textContent = 'Ready to record';
+        };
+      }
+    }
+
+    function downloadRecording() {
+      if (recordedBlob) {
+        const url = URL.createObjectURL(recordedBlob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `arise-recording-${Date.now()}.wav`;
+        a.click();
+        recordingStatus.textContent = 'Recording downloaded!';
+      }
+    }
+
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        const elapsed = Date.now() - recordingStartTime;
+        const minutes = Math.floor(elapsed / 60000);
+        const seconds = Math.floor((elapsed % 60000) / 1000);
+        recordingTimer.textContent = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+      }, 1000);
+    }
+
+    function stopTimer() {
+      clearInterval(timerInterval);
+    }
+
+    function visualizeAudio(stream) {
+      const audioCtx = new AudioContext();
+      const analyser = audioCtx.createAnalyser();
+      const source = audioCtx.createMediaStreamSource(stream);
+      source.connect(analyser);
+      analyser.fftSize = 2048;
+      const bufferLength = analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+
+      function draw() {
+        animationId = requestAnimationFrame(draw);
+        analyser.getByteTimeDomainData(dataArray);
+
+        canvasCtx.fillStyle = '#000';
+        canvasCtx.fillRect(0, 0, waveformCanvas.width, waveformCanvas.height);
+        canvasCtx.lineWidth = 2;
+        canvasCtx.strokeStyle = '#0dcaf0';
+        canvasCtx.beginPath();
+
+        const sliceWidth = waveformCanvas.width / bufferLength;
+        let x = 0;
+
+        for (let i = 0; i < bufferLength; i++) {
+          const v = dataArray[i] / 128.0;
+          const y = v * waveformCanvas.height / 2;
+
+          if (i === 0) {
+            canvasCtx.moveTo(x, y);
+          } else {
+            canvasCtx.lineTo(x, y);
+          }
+
+          x += sliceWidth;
+        }
+
+        canvasCtx.lineTo(waveformCanvas.width, waveformCanvas.height / 2);
+        canvasCtx.stroke();
+      }
+
+      draw();
+    }
+
+    function addRecordingToList(blob) {
+      const voicePart = document.getElementById('voicePartSelect').value;
+      const trackName = document.getElementById('trackNameInput').value || `${voicePart.charAt(0).toUpperCase() + voicePart.slice(1)} Track`;
+      const timestamp = new Date().toLocaleString();
+      
+      // Add to tracks array
+      const trackId = currentTrackId++;
+      const track = {
+        id: trackId,
+        name: trackName,
+        voicePart: voicePart,
+        blob: blob,
+        url: URL.createObjectURL(blob),
+        timestamp: timestamp,
+        volume: 1.0,
+        muted: false,
+        solo: false
+      };
+      tracks.push(track);
+      
+      // Update mixer
+      updateMixer();
+      
+      // Add to individual recordings list
+      const listContainer = document.getElementById('recordingsList');
+      if (listContainer.querySelector('.text-muted')) {
+        listContainer.innerHTML = '<h5 class="text-info mb-3"><i class="bi bi-folder-fill me-2"></i>Individual Recordings</h5>';
+      }
+
+      const recordingItem = document.createElement('div');
+      recordingItem.className = 'recording-item';
+      recordingItem.innerHTML = `
+        <div>
+          <strong>${trackName}</strong>
+          <br><small class="text-muted">${timestamp}</small>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-success me-2" onclick="playStoredRecording(this)">
+            <i class="bi bi-play-fill"></i>
+          </button>
+          <button class="btn btn-sm btn-info" onclick="downloadStoredRecording(this)">
+            <i class="bi bi-download"></i>
+          </button>
+        </div>
+      `;
+      recordingItem.dataset.blob = track.url;
+      listContainer.appendChild(recordingItem);
+      
+      // Enable multitrack controls
+      document.getElementById('playAllTracksBtn').disabled = false;
+      document.getElementById('exportMixBtn').disabled = false;
+    }
+    
+    function updateMixer() {
+      const mixerContainer = document.getElementById('tracksMixer');
+      
+      if (tracks.length === 0) {
+        mixerContainer.innerHTML = '<p class="text-muted text-center">No tracks recorded yet. Record your first vocal track above!</p>';
+        return;
+      }
+      
+      mixerContainer.innerHTML = '';
+      
+      tracks.forEach((track, index) => {
+        const trackItem = document.createElement('div');
+        trackItem.className = 'track-item';
+        trackItem.innerHTML = `
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <div class="d-flex align-items-center gap-2">
+              <span class="voice-badge voice-${track.voicePart}">${track.voicePart.toUpperCase()}</span>
+              <strong class="text-white">${track.name}</strong>
+            </div>
+            <div class="track-controls">
+              <button class="btn btn-sm btn-warning solo-btn" onclick="toggleSolo(${track.id})" id="solo-${track.id}">
+                <i class="bi bi-star"></i>
+              </button>
+              <button class="btn btn-sm btn-secondary mute-btn" onclick="toggleMute(${track.id})" id="mute-${track.id}">
+                <i class="bi bi-volume-mute"></i>
+              </button>
+              <button class="btn btn-sm btn-success" onclick="playTrack(${track.id})">
+                <i class="bi bi-play-fill"></i>
+              </button>
+              <button class="btn btn-sm btn-danger" onclick="deleteTrack(${track.id})">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+          <div class="d-flex align-items-center gap-2">
+            <label class="text-white small" style="min-width: 50px;">Volume:</label>
+            <input type="range" class="volume-slider volume-control" min="0" max="100" value="100" 
+                   onchange="updateTrackVolume(${track.id}, this.value)" id="volume-${track.id}">
+            <span class="text-info small" id="volume-label-${track.id}">100%</span>
+          </div>
+        `;
+        mixerContainer.appendChild(trackItem);
+      });
+    }
+    
+    window.toggleSolo = function(trackId) {
+      const track = tracks.find(t => t.id === trackId);
+      if (track) {
+        track.solo = !track.solo;
+        const btn = document.getElementById(`solo-${trackId}`);
+        if (track.solo) {
+          btn.classList.remove('btn-warning');
+          btn.classList.add('btn-danger');
+          // Mute all other tracks
+          tracks.forEach(t => {
+            if (t.id !== trackId) {
+              t.muted = true;
+              const muteBtn = document.getElementById(`mute-${t.id}`);
+              if (muteBtn) {
+                muteBtn.classList.remove('btn-secondary');
+                muteBtn.classList.add('btn-danger');
+              }
+            }
+          });
+        } else {
+          btn.classList.remove('btn-danger');
+          btn.classList.add('btn-warning');
+          // Unmute all tracks
+          tracks.forEach(t => {
+            t.muted = false;
+            const muteBtn = document.getElementById(`mute-${t.id}`);
+            if (muteBtn) {
+              muteBtn.classList.remove('btn-danger');
+              muteBtn.classList.add('btn-secondary');
+            }
+          });
+        }
+      }
+    };
+    
+    window.toggleMute = function(trackId) {
+      const track = tracks.find(t => t.id === trackId);
+      if (track) {
+        track.muted = !track.muted;
+        const btn = document.getElementById(`mute-${trackId}`);
+        if (track.muted) {
+          btn.classList.remove('btn-secondary');
+          btn.classList.add('btn-danger');
+        } else {
+          btn.classList.remove('btn-danger');
+          btn.classList.add('btn-secondary');
+        }
+      }
+    };
+    
+    window.updateTrackVolume = function(trackId, value) {
+      const track = tracks.find(t => t.id === trackId);
+      if (track) {
+        track.volume = value / 100;
+        document.getElementById(`volume-label-${trackId}`).textContent = value + '%';
+      }
+    };
+    
+    window.playTrack = function(trackId) {
+      const track = tracks.find(t => t.id === trackId);
+      if (track) {
+        const audio = new Audio(track.url);
+        audio.volume = track.muted ? 0 : track.volume;
+        audio.play();
+      }
+    };
+    
+    window.deleteTrack = function(trackId) {
+      if (confirm('Are you sure you want to delete this track?')) {
+        tracks = tracks.filter(t => t.id !== trackId);
+        updateMixer();
+        
+        if (tracks.length === 0) {
+          document.getElementById('playAllTracksBtn').disabled = true;
+          document.getElementById('exportMixBtn').disabled = true;
+        }
+      }
+    };
+    
+    // Play all tracks together
+    document.getElementById('playAllTracksBtn').addEventListener('click', function() {
+      playingTracks = [];
+      tracks.forEach(track => {
+        if (!track.muted) {
+          const audio = new Audio(track.url);
+          audio.volume = track.volume;
+          audio.play();
+          playingTracks.push(audio);
+        }
+      });
+      
+      document.getElementById('stopAllTracksBtn').disabled = false;
+      recordingStatus.textContent = 'Playing all tracks...';
+      
+      // Auto-disable stop button when all tracks finish
+      if (playingTracks.length > 0) {
+        playingTracks[0].addEventListener('ended', function() {
+          document.getElementById('stopAllTracksBtn').disabled = true;
+          recordingStatus.textContent = 'Ready to record';
+        });
+      }
+    });
+    
+    // Stop all tracks
+    document.getElementById('stopAllTracksBtn').addEventListener('click', function() {
+      playingTracks.forEach(audio => {
+        audio.pause();
+        audio.currentTime = 0;
+      });
+      playingTracks = [];
+      this.disabled = true;
+      recordingStatus.textContent = 'Ready to record';
+    });
+    
+    // Export mix (simplified - downloads all tracks)
+    document.getElementById('exportMixBtn').addEventListener('click', function() {
+      if (tracks.length === 0) return;
+      
+      alert(`Exporting ${tracks.length} tracks. Each track will be downloaded separately. Use a DAW (Digital Audio Workstation) to mix them together.`);
+      
+      tracks.forEach((track, index) => {
+        setTimeout(() => {
+          const a = document.createElement('a');
+          a.href = track.url;
+          a.download = `arise-multitrack-${index + 1}-${track.voicePart}-${track.name}.wav`;
+          a.click();
+        }, index * 500); // Stagger downloads
+      });
+    });
+
+    window.playStoredRecording = function(btn) {
+      const url = btn.closest('.recording-item').dataset.blob;
+      const audio = new Audio(url);
+      audio.play();
+    };
+
+    window.downloadStoredRecording = function(btn) {
+      const url = btn.closest('.recording-item').dataset.blob;
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `arise-recording-${Date.now()}.wav`;
+      a.click();
+    };
+
+    // Metronome functionality
+    const metronomeBtn = document.getElementById('metronomeBtn');
+    const bpmSlider = document.getElementById('bpmSlider');
+    const bpmDisplay = document.getElementById('bpmDisplay');
+    const metronomeIndicator = document.getElementById('metronomeIndicator');
+    const metronomeVolumeSlider = document.getElementById('metronomeVolume');
+    const metronomeVolumeValue = document.getElementById('metronomeVolumeValue');
+    let metronomeInterval;
+    let isMetronomePlaying = false;
+    let metronomeBPM = 120;
+    let metronomeVolume = 0.5;
+
+    metronomeVolumeSlider.addEventListener('input', function() {
+      metronomeVolume = this.value / 100;
+      metronomeVolumeValue.textContent = this.value + '%';
+    });
+
+    bpmSlider.addEventListener('input', function() {
+      metronomeBPM = this.value;
+      bpmDisplay.textContent = this.value;
+      if (isMetronomePlaying) {
+        stopMetronome();
+        startMetronome();
+      }
+    });
+
+    metronomeBtn.addEventListener('click', function() {
+      if (isMetronomePlaying) {
+        stopMetronome();
+      } else {
+        startMetronome();
+      }
+    });
+
+    function startMetronome() {
+      isMetronomePlaying = true;
+      metronomeBtn.innerHTML = '<i class="bi bi-pause-fill me-2"></i>Stop Click Track';
+      metronomeBtn.classList.remove('btn-warning');
+      metronomeBtn.classList.add('btn-danger');
+
+      const interval = 60000 / metronomeBPM;
+      metronomeInterval = setInterval(() => {
+        playMetronomeClick();
+        flashIndicator();
+      }, interval);
+    }
+
+    function stopMetronome() {
+      isMetronomePlaying = false;
+      clearInterval(metronomeInterval);
+      metronomeBtn.innerHTML = '<i class="bi bi-play-fill me-2"></i>Start Click Track';
+      metronomeBtn.classList.remove('btn-danger');
+      metronomeBtn.classList.add('btn-warning');
+    }
+
+    function playMetronomeClick() {
+      const oscillator = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      oscillator.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      oscillator.frequency.value = 1000;
+      oscillator.type = 'sine';
+      
+      gainNode.gain.setValueAtTime(metronomeVolume, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+      
+      oscillator.start(audioContext.currentTime);
+      oscillator.stop(audioContext.currentTime + 0.1);
+    }
+
+    function flashIndicator() {
+      metronomeIndicator.classList.add('beat');
+      setTimeout(() => {
+        metronomeIndicator.classList.remove('beat');
+      }, 100);
+    }
+
+    // Loop Player functionality
+    const loopFileInput = document.getElementById('loopFileInput');
+    const loopAudio = document.getElementById('loopAudio');
+    const loopBtn = document.getElementById('loopBtn');
+    const autoLoopCheckbox = document.getElementById('autoLoopCheckbox');
+    const loopVolumeSlider = document.getElementById('loopVolume');
+    const loopVolumeValue = document.getElementById('loopVolumeValue');
+    const saveLoopBtn = document.getElementById('saveLoopBtn');
+    const loopNameInput = document.getElementById('loopNameInput');
+    const loopLibraryContainer = document.getElementById('loopLibrary');
+    
+    let currentLoopFile = null;
+    let savedLoops = JSON.parse(localStorage.getItem('ariseBandLoops') || '[]');
+    let currentActiveLoop = null;
+    let currentLoopIndex = null;
+    let loopCheckInterval = null;
+
+    // Load saved loops on page load
+    displayLoopLibrary();
+    updateRecordingBackingTrackList();
+    
+    // Loop point controls
+    const loopPointControls = document.getElementById('loopPointControls');
+    const loopWaveformCanvas = document.getElementById('loopWaveformCanvas');
+    const loopWaveformCtx = loopWaveformCanvas ? loopWaveformCanvas.getContext('2d') : null;
+    const loopStartMarker = document.getElementById('loopStartMarker');
+    const loopEndMarker = document.getElementById('loopEndMarker');
+    const loopPlayhead = document.getElementById('loopPlayhead');
+    const loopStartTime = document.getElementById('loopStartTime');
+    const loopEndTime = document.getElementById('loopEndTime');
+    const previewLoopBtn = document.getElementById('previewLoopBtn');
+    const saveLoopPointsBtn = document.getElementById('saveLoopPointsBtn');
+    const cancelLoopPointsBtn = document.getElementById('cancelLoopPointsBtn');
+    const currentTimeDisplay = document.getElementById('currentTimeDisplay');
+    const durationDisplay = document.getElementById('durationDisplay');
+    
+    let isDraggingStart = false;
+    let isDraggingEnd = false;
+    let loopDuration = 0;
+    let loopStartPos = 0;
+    let loopEndPos = 1;
+    
+    // Recording backing track
+    const recordingBackingTrackSelect = document.getElementById('recordingBackingTrackSelect');
+    const recordingBackingAudio = document.getElementById('recordingBackingAudio');
+    const playRecordingBackingBtn = document.getElementById('playRecordingBackingBtn');
+    const stopRecordingBackingBtn = document.getElementById('stopRecordingBackingBtn');
+    const recordingBackingVolume = document.getElementById('recordingBackingVolume');
+    const recordingBackingVolumeValue = document.getElementById('recordingBackingVolumeValue');
+    const uploadBackingTrackBtn = document.getElementById('uploadBackingTrackBtn');
+    const backingTrackFileInput = document.getElementById('backingTrackFileInput');
+    const backingUploadProgress = document.getElementById('backingUploadProgress');
+    const backingUploadFileName = document.getElementById('backingUploadFileName');
+    const backingProgressBar = document.getElementById('backingProgressBar');
+    const backingWaveformPreview = document.getElementById('backingWaveformPreview');
+    const backingPreviewCanvas = document.getElementById('backingPreviewCanvas');
+    const backingTrackInfo = document.getElementById('backingTrackInfo');
+    const backingTrackDuration = document.getElementById('backingTrackDuration');
+    let recordingBackingTrackId = null;
+
+    loopVolumeSlider.addEventListener('input', function() {
+      loopAudio.volume = this.value / 100;
+      loopVolumeValue.textContent = this.value + '%';
+    });
+
+    loopFileInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        currentLoopFile = file;
+        const url = URL.createObjectURL(file);
+        loopAudio.src = url;
+        loopBtn.disabled = false;
+        loopAudio.volume = loopVolumeSlider.value / 100;
+        saveLoopBtn.disabled = false;
+        
+        // Auto-fill loop name from filename
+        if (!loopNameInput.value) {
+          loopNameInput.value = file.name.replace(/\.[^/.]+$/, '');
+        }
+      }
+    });
+
+    // Save loop to library
+    saveLoopBtn.addEventListener('click', function() {
+      if (!currentLoopFile) return;
+      
+      const loopName = loopNameInput.value.trim() || currentLoopFile.name;
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        const loopData = {
+          id: Date.now(),
+          name: loopName,
+          data: e.target.result,
+          type: currentLoopFile.type,
+          timestamp: new Date().toLocaleString()
+        };
+        
+        savedLoops.push(loopData);
+        localStorage.setItem('ariseBandLoops', JSON.stringify(savedLoops));
+        
+        displayLoopLibrary();
+        
+        alert(`Loop "${loopName}" saved to library!`);
+        loopNameInput.value = '';
+        loopFileInput.value = '';
+        currentLoopFile = null;
+        saveLoopBtn.disabled = true;
+      };
+      
+      reader.readAsDataURL(currentLoopFile);
+    });
+    
+    // Upload backing track button
+    uploadBackingTrackBtn.addEventListener('click', function() {
+      backingTrackFileInput.click();
+    });
+    
+    // Handle backing track file selection
+    backingTrackFileInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      // Show upload progress
+      backingUploadProgress.style.display = 'block';
+      backingUploadFileName.textContent = file.name;
+      
+      // Simulate upload progress (in a real app, this would track actual upload)
+      let progress = 0;
+      const uploadInterval = setInterval(() => {
+        progress += 10;
+        backingProgressBar.style.width = progress + '%';
+        
+        if (progress >= 100) {
+          clearInterval(uploadInterval);
+          
+          // Read file and add to loop library
+          const reader = new FileReader();
+          reader.onload = function(event) {
+            const audioData = event.target.result;
+            
+            // Auto-generate name from filename (remove extension)
+            const autoName = file.name.replace(/\.[^/.]+$/, '');
+            
+            // Save to loop library
+            const newLoop = {
+              id: Date.now(),
+              name: autoName + ' (Backing)',
+              data: audioData,
+              timestamp: new Date().toLocaleString(),
+              loopStart: undefined,
+              loopEnd: undefined
+            };
+            
+            savedLoops.push(newLoop);
+            localStorage.setItem('ariseBandLoops', JSON.stringify(savedLoops));
+            displayLoopLibrary();
+            
+            // Select the newly uploaded track
+            recordingBackingTrackSelect.value = savedLoops.length - 1;
+            
+            // Trigger change event to load the track
+            const changeEvent = new Event('change');
+            recordingBackingTrackSelect.dispatchEvent(changeEvent);
+            
+            // Hide upload progress after a moment
+            setTimeout(() => {
+              backingUploadProgress.style.display = 'none';
+              backingProgressBar.style.width = '0%';
+              
+              // Success notification
+              uploadBackingTrackBtn.innerHTML = '<i class="bi bi-check-circle me-1"></i>Uploaded!';
+              uploadBackingTrackBtn.classList.remove('btn-outline-warning');
+              uploadBackingTrackBtn.classList.add('btn-success');
+              
+              setTimeout(() => {
+                uploadBackingTrackBtn.innerHTML = '<i class="bi bi-cloud-upload me-1"></i>Upload New';
+                uploadBackingTrackBtn.classList.add('btn-outline-warning');
+                uploadBackingTrackBtn.classList.remove('btn-success');
+              }, 2000);
+            }, 500);
+          };
+          
+          reader.readAsDataURL(file);
+        }
+      }, 100);
+      
+      // Reset file input
+      backingTrackFileInput.value = '';
+    });
+    
+    // Draw backing track waveform preview
+    function drawBackingWaveform(audioElement) {
+      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      const canvas = backingPreviewCanvas;
+      const ctx = canvas.getContext('2d');
+      
+      fetch(audioElement.src)
+        .then(response => response.arrayBuffer())
+        .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
+        .then(audioBuffer => {
+          const rawData = audioBuffer.getChannelData(0);
+          const samples = 400;
+          const blockSize = Math.floor(rawData.length / samples);
+          const filteredData = [];
+          
+          for (let i = 0; i < samples; i++) {
+            let blockStart = blockSize * i;
+            let sum = 0;
+            for (let j = 0; j < blockSize; j++) {
+              sum += Math.abs(rawData[blockStart + j]);
+            }
+            filteredData.push(sum / blockSize);
+          }
+          
+          const multiplier = Math.pow(Math.max(...filteredData), -1);
+          const normalizedData = filteredData.map(n => n * multiplier);
+          
+          // Draw waveform
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.fillStyle = '#ffd580';
+          
+          const width = canvas.width / samples;
+          const height = canvas.height;
+          
+          for (let i = 0; i < normalizedData.length; i++) {
+            const x = width * i;
+            const h = normalizedData[i] * height * 0.8;
+            const y = (height - h) / 2;
+            ctx.fillRect(x, y, width - 1, h);
+          }
+        })
+        .catch(err => console.error('Error drawing waveform:', err));
+    }
+    
+    // Update recording backing track list
+    function updateRecordingBackingTrackList() {
+      const currentSelection = recordingBackingTrackSelect.value;
+      recordingBackingTrackSelect.innerHTML = '<option value="">🎤 No backing track (a cappella)</option>';
+      
+      savedLoops.forEach((loop, index) => {
+        const option = document.createElement('option');
+        option.value = index;
+        option.textContent = '🎵 ' + loop.name;
+        if (currentSelection == index) {
+          option.selected = true;
+        }
+        recordingBackingTrackSelect.appendChild(option);
+      });
+      
+      // Enable/disable play button
+      playRecordingBackingBtn.disabled = !recordingBackingTrackSelect.value;
+    }
+    
+    // Recording backing track controls
+    recordingBackingVolume.addEventListener('input', function() {
+      recordingBackingAudio.volume = this.value / 100;
+      recordingBackingVolumeValue.textContent = this.value + '%';
+    });
+    
+    recordingBackingTrackSelect.addEventListener('change', function() {
+      const index = this.value;
+      
+      if (index === '') {
+        recordingBackingAudio.pause();
+        recordingBackingAudio.src = '';
+        playRecordingBackingBtn.disabled = true;
+        stopRecordingBackingBtn.disabled = true;
+        recordingBackingTrackId = null;
+        backingWaveformPreview.style.display = 'none';
+        backingTrackInfo.style.display = 'none';
+        return;
+      }
+      
+      const loop = savedLoops[index];
+      if (loop) {
+        recordingBackingAudio.src = loop.data;
+        recordingBackingAudio.volume = recordingBackingVolume.value / 100;
+        recordingBackingTrackId = index;
+        playRecordingBackingBtn.disabled = false;
+        
+        // Show waveform preview and info
+        backingWaveformPreview.style.display = 'block';
+        backingTrackInfo.style.display = 'block';
+        
+        // Wait for metadata to load
+        recordingBackingAudio.addEventListener('loadedmetadata', function() {
+          const duration = recordingBackingAudio.duration;
+          const minutes = Math.floor(duration / 60);
+          const seconds = Math.floor(duration % 60);
+          backingTrackDuration.textContent = `Duration: ${minutes}:${seconds.toString().padStart(2, '0')}`;
+          
+          // Draw waveform
+          drawBackingWaveform(recordingBackingAudio);
+        }, { once: true });
+        
+        // Set up loop points if they exist
+        if (loop.loopStart !== undefined && loop.loopEnd !== undefined) {
+          recordingBackingAudio.addEventListener('timeupdate', function checkBackingLoop() {
+            if (recordingBackingAudio.currentTime >= loop.loopEnd) {
+              recordingBackingAudio.currentTime = loop.loopStart;
+            }
+          });
+        } else {
+          recordingBackingAudio.loop = true;
+        }
+      }
+    });
+    
+    playRecordingBackingBtn.addEventListener('click', function() {
+      if (recordingBackingAudio.src) {
+        recordingBackingAudio.play();
+        this.disabled = true;
+        stopRecordingBackingBtn.disabled = false;
+        
+        // Visual feedback
+        this.classList.add('btn-success');
+        this.classList.remove('btn-warning');
+      }
+    });
+    
+    stopRecordingBackingBtn.addEventListener('click', function() {
+      recordingBackingAudio.pause();
+      recordingBackingAudio.currentTime = 0;
+      playRecordingBackingBtn.disabled = false;
+      this.disabled = true;
+      
+      // Reset visual feedback
+      playRecordingBackingBtn.classList.add('btn-warning');
+      playRecordingBackingBtn.classList.remove('btn-success');
+    });
+    
+    // Auto-stop backing track when it ends (if not looping)
+    recordingBackingAudio.addEventListener('ended', function() {
+      playRecordingBackingBtn.disabled = false;
+      stopRecordingBackingBtn.disabled = true;
+      playRecordingBackingBtn.classList.add('btn-warning');
+      playRecordingBackingBtn.classList.remove('btn-success');
+    });
+
+    function displayLoopLibrary() {
+      if (savedLoops.length === 0) {
+        loopLibraryContainer.innerHTML = '<p class="text-muted small text-center">No loops saved yet. Upload and save loops to build your library!</p>';
+        return;
+      }
+      
+      loopLibraryContainer.innerHTML = '';
+      
+      savedLoops.forEach((loop, index) => {
+        const loopItem = document.createElement('div');
+        loopItem.className = 'loop-item';
+        loopItem.id = `loop-${loop.id}`;
+        
+        // Check if loop has custom loop points
+        const hasLoopPoints = loop.loopStart !== undefined && loop.loopEnd !== undefined;
+        const loopPointsText = hasLoopPoints ? `Loop: ${loop.loopStart.toFixed(1)}s - ${loop.loopEnd.toFixed(1)}s` : 'Full track';
+        
+        loopItem.innerHTML = `
+          <div class="flex-grow-1">
+            <strong class="text-white d-block">${loop.name}</strong>
+            <small class="text-muted d-block">${loop.timestamp}</small>
+            <small class="text-info"><i class="bi bi-arrow-repeat me-1"></i>${loopPointsText}</small>
+          </div>
+          <div class="d-flex gap-1">
+            <button class="btn btn-sm btn-warning" onclick="setLoopPoints(${index})" title="Set loop points">
+              <i class="bi bi-scissors"></i>
+            </button>
+            <button class="btn btn-sm btn-success" onclick="loadLoop(${index})" title="Load this loop">
+              <i class="bi bi-play-fill"></i>
+            </button>
+            <button class="btn btn-sm btn-info" onclick="downloadLoop(${index})" title="Download">
+              <i class="bi bi-download"></i>
+            </button>
+            <button class="btn btn-sm btn-danger" onclick="deleteLoop(${index})" title="Delete">
+              <i class="bi bi-trash"></i>
+            </button>
+          </div>
+        `;
+        loopLibraryContainer.appendChild(loopItem);
+      });
+      
+      // Update recording backing track list when library changes
+      updateRecordingBackingTrackList();
+    }
+
+    window.loadLoop = function(index) {
+      const loop = savedLoops[index];
+      if (loop) {
+        loopAudio.src = loop.data;
+        loopBtn.disabled = false;
+        loopAudio.volume = loopVolumeSlider.value / 100;
+        currentLoopIndex = index;
+        
+        // Highlight active loop
+        document.querySelectorAll('.loop-item').forEach(item => item.classList.remove('active'));
+        document.getElementById(`loop-${loop.id}`).classList.add('active');
+        currentActiveLoop = loop.id;
+        
+        // Wait for metadata to load before setting up loop
+        loopAudio.addEventListener('loadedmetadata', function setupLoopOnLoad() {
+          loopDuration = loopAudio.duration;
+          
+          // Set up loop points if they exist - read from saved loop data
+          if (loop.loopStart !== undefined && loop.loopEnd !== undefined) {
+            const startTime = loop.loopStart;
+            const endTime = loop.loopEnd;
+            setupCustomLoop(startTime, endTime);
+            recordingStatus.textContent = `Playing: ${loop.name} (Loop: ${startTime.toFixed(1)}s - ${endTime.toFixed(1)}s)`;
+          } else {
+            clearCustomLoop();
+            recordingStatus.textContent = `Playing: ${loop.name}`;
+          }
+          
+          loopAudio.removeEventListener('loadedmetadata', setupLoopOnLoad);
+        });
+        
+        // If metadata already loaded
+        if (loopAudio.readyState >= 1) {
+          loopDuration = loopAudio.duration;
+          
+          if (loop.loopStart !== undefined && loop.loopEnd !== undefined) {
+            const startTime = loop.loopStart;
+            const endTime = loop.loopEnd;
+            setupCustomLoop(startTime, endTime);
+            recordingStatus.textContent = `Playing: ${loop.name} (Loop: ${startTime.toFixed(1)}s - ${endTime.toFixed(1)}s)`;
+          } else {
+            clearCustomLoop();
+            recordingStatus.textContent = `Playing: ${loop.name}`;
+          }
+        }
+        
+        // Auto-play
+        loopAudio.play();
+        loopBtn.innerHTML = '<i class="bi bi-pause-fill me-2"></i>Pause Loop';
+        loopBtn.classList.remove('btn-info');
+        loopBtn.classList.add('btn-warning');
+      }
+    };
+    
+    window.setLoopPoints = function(index) {
+      const loop = savedLoops[index];
+      if (loop) {
+        // Load the loop first if not already loaded
+        if (currentLoopIndex !== index) {
+          loopAudio.src = loop.data;
+          currentLoopIndex = index;
+          currentActiveLoop = loop.id;
+        }
+        
+        // Show loop point controls
+        loopPointControls.style.display = 'block';
+        
+        // Wait for audio to load
+        loopAudio.addEventListener('loadedmetadata', function initLoop() {
+          loopDuration = loopAudio.duration;
+          durationDisplay.textContent = loopDuration.toFixed(1);
+          
+          // Pre-fill existing loop points if available
+          if (loop.loopStart !== undefined && loop.loopEnd !== undefined) {
+            loopStartPos = loop.loopStart / loopDuration;
+            loopEndPos = loop.loopEnd / loopDuration;
+          } else {
+            loopStartPos = 0;
+            loopEndPos = 1;
+          }
+          
+          updateMarkerPositions();
+          drawLoopWaveform();
+          
+          loopAudio.removeEventListener('loadedmetadata', initLoop);
+        });
+        
+        // If metadata already loaded
+        if (loopAudio.readyState >= 1) {
+          loopDuration = loopAudio.duration;
+          durationDisplay.textContent = loopDuration.toFixed(1);
+          
+          if (loop.loopStart !== undefined && loop.loopEnd !== undefined) {
+            loopStartPos = loop.loopStart / loopDuration;
+            loopEndPos = loop.loopEnd / loopDuration;
+          } else {
+            loopStartPos = 0;
+            loopEndPos = 1;
+          }
+          
+          updateMarkerPositions();
+          drawLoopWaveform();
+        }
+      }
+    };
+    
+    // Draw waveform
+    function drawLoopWaveform() {
+      if (!loopWaveformCtx) return;
+      
+      const width = loopWaveformCanvas.width;
+      const height = loopWaveformCanvas.height;
+      
+      // Clear canvas
+      loopWaveformCtx.fillStyle = '#000';
+      loopWaveformCtx.fillRect(0, 0, width, height);
+      
+      // Draw loop region highlight
+      const startX = loopStartPos * width;
+      const endX = loopEndPos * width;
+      loopWaveformCtx.fillStyle = 'rgba(255, 213, 128, 0.2)';
+      loopWaveformCtx.fillRect(startX, 0, endX - startX, height);
+      
+      // Draw center line
+      loopWaveformCtx.strokeStyle = '#333';
+      loopWaveformCtx.lineWidth = 1;
+      loopWaveformCtx.beginPath();
+      loopWaveformCtx.moveTo(0, height / 2);
+      loopWaveformCtx.lineTo(width, height / 2);
+      loopWaveformCtx.stroke();
+      
+      // Draw waveform (simulated)
+      try {
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const source = audioCtx.createMediaElementSource(loopAudio);
+        const analyser = audioCtx.createAnalyser();
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+        analyser.fftSize = 2048;
+        
+        const bufferLength = analyser.frequencyBinCount;
+        const dataArray = new Uint8Array(bufferLength);
+        analyser.getByteTimeDomainData(dataArray);
+        
+        loopWaveformCtx.strokeStyle = '#0dcaf0';
+        loopWaveformCtx.lineWidth = 2;
+        loopWaveformCtx.beginPath();
+        
+        const sliceWidth = width / bufferLength;
+        let x = 0;
+        
+        for (let i = 0; i < bufferLength; i++) {
+          const v = dataArray[i] / 128.0;
+          const y = v * height / 2;
+          
+          if (i === 0) {
+            loopWaveformCtx.moveTo(x, y);
+          } else {
+            loopWaveformCtx.lineTo(x, y);
+          }
+          
+          x += sliceWidth;
+        }
+        
+        loopWaveformCtx.stroke();
+      } catch (e) {
+        // Fallback: draw simple waveform pattern
+        loopWaveformCtx.strokeStyle = '#0dcaf0';
+        loopWaveformCtx.lineWidth = 2;
+        loopWaveformCtx.beginPath();
+        
+        for (let i = 0; i < width; i += 2) {
+          const y = height / 2 + Math.sin(i / 10) * Math.random() * 30;
+          if (i === 0) {
+            loopWaveformCtx.moveTo(i, y);
+          } else {
+            loopWaveformCtx.lineTo(i, y);
+          }
+        }
+        
+        loopWaveformCtx.stroke();
+      }
+    }
+    
+    // Update marker positions
+    function updateMarkerPositions() {
+      loopStartMarker.style.left = (loopStartPos * 100) + '%';
+      loopEndMarker.style.left = (loopEndPos * 100) + '%';
+      
+      const startTime = loopStartPos * loopDuration;
+      const endTime = loopEndPos * loopDuration;
+      
+      loopStartTime.textContent = startTime.toFixed(1);
+      loopEndTime.textContent = endTime.toFixed(1);
+      
+      drawLoopWaveform();
+    }
+    
+    // Drag handlers for start marker
+    loopStartMarker.addEventListener('mousedown', function(e) {
+      isDraggingStart = true;
+      e.preventDefault();
+    });
+    
+    // Drag handlers for end marker
+    loopEndMarker.addEventListener('mousedown', function(e) {
+      isDraggingEnd = true;
+      e.preventDefault();
+    });
+    
+    // Global mouse move handler
+    document.addEventListener('mousemove', function(e) {
+      if (!isDraggingStart && !isDraggingEnd) return;
+      
+      const canvas = loopWaveformCanvas.parentElement;
+      const rect = canvas.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const position = Math.max(0, Math.min(1, x / rect.width));
+      
+      if (isDraggingStart) {
+        loopStartPos = Math.min(position, loopEndPos - 0.01);
+        updateMarkerPositions();
+      } else if (isDraggingEnd) {
+        loopEndPos = Math.max(position, loopStartPos + 0.01);
+        updateMarkerPositions();
+      }
+    });
+    
+    // Global mouse up handler
+    document.addEventListener('mouseup', function() {
+      isDraggingStart = false;
+      isDraggingEnd = false;
+    });
+    
+    // Update current time display and playhead
+    loopAudio.addEventListener('timeupdate', function() {
+      currentTimeDisplay.textContent = loopAudio.currentTime.toFixed(1);
+      
+      if (loopDuration > 0 && loopPointControls.style.display !== 'none') {
+        const playheadPos = (loopAudio.currentTime / loopDuration) * 100;
+        loopPlayhead.style.left = playheadPos + '%';
+      }
+    });
+    
+    // Preview loop with custom points
+    previewLoopBtn.addEventListener('click', function() {
+      const startTime = loopStartPos * loopDuration;
+      const endTime = loopEndPos * loopDuration;
+      
+      if (endTime <= startTime) {
+        alert('End marker must be after start marker!');
+        return;
+      }
+      
+      // Clear any existing loop
+      clearCustomLoop();
+      
+      // Set audio to start position
+      loopAudio.currentTime = startTime;
+      loopAudio.play();
+      
+      // Setup custom loop with the marker positions
+      setupCustomLoop(startTime, endTime);
+      
+      // Update button to show it's previewing
+      previewLoopBtn.innerHTML = '<i class="bi bi-pause-fill me-1"></i>Previewing...';
+      previewLoopBtn.classList.remove('btn-warning');
+      previewLoopBtn.classList.add('btn-success');
+      
+      // Reset button after audio starts
+      setTimeout(() => {
+        previewLoopBtn.innerHTML = '<i class="bi bi-play-fill me-1"></i>Preview Loop';
+        previewLoopBtn.classList.remove('btn-success');
+        previewLoopBtn.classList.add('btn-warning');
+      }, 1000);
+    });
+    
+    // Save loop points
+    saveLoopPointsBtn.addEventListener('click', function() {
+      if (currentLoopIndex === null) return;
+      
+      const startTime = loopStartPos * loopDuration;
+      const endTime = loopEndPos * loopDuration;
+      
+      if (endTime <= startTime) {
+        alert('End marker must be after start marker!');
+        return;
+      }
+      
+      // Update loop with custom points based on current marker positions
+      savedLoops[currentLoopIndex].loopStart = startTime;
+      savedLoops[currentLoopIndex].loopEnd = endTime;
+      localStorage.setItem('ariseBandLoops', JSON.stringify(savedLoops));
+      
+      // Setup the custom loop with the saved positions
+      setupCustomLoop(startTime, endTime);
+      
+      // Update display
+      displayLoopLibrary();
+      loopPointControls.style.display = 'none';
+      
+      // Reset marker positions
+      loopStartPos = 0;
+      loopEndPos = 1;
+      
+      alert(`Loop points saved!\n\nStart: ${startTime.toFixed(1)}s\nEnd: ${endTime.toFixed(1)}s\nLoop length: ${(endTime - startTime).toFixed(1)}s`);
+    });
+    
+    // Cancel loop points
+    cancelLoopPointsBtn.addEventListener('click', function() {
+      loopPointControls.style.display = 'none';
+      loopStartPos = 0;
+      loopEndPos = 1;
+    });
+    
+    function setupCustomLoop(startTime, endTime) {
+      // Clear any existing interval
+      clearCustomLoop();
+      
+      // Validate times
+      if (endTime <= startTime || !loopDuration) {
+        return;
+      }
+      
+      // Set up interval to check loop position every 50ms
+      loopCheckInterval = setInterval(() => {
+        if (!loopAudio.paused && loopAudio.currentTime >= endTime) {
+          // Loop back to start
+          loopAudio.currentTime = startTime;
+          
+          // Visual feedback - flash the markers
+          loopStartMarker.style.opacity = '0.5';
+          setTimeout(() => {
+            loopStartMarker.style.opacity = '1';
+          }, 100);
+        }
+      }, 50);
+    }
+    
+    function clearCustomLoop() {
+      if (loopCheckInterval) {
+        clearInterval(loopCheckInterval);
+        loopCheckInterval = null;
+      }
+    }
+    
+    // Clear custom loop when audio is paused or ended
+    loopAudio.addEventListener('pause', function() {
+      if (!autoLoopCheckbox.checked) {
+        clearCustomLoop();
+      }
+    });
+
+    window.downloadLoop = function(index) {
+      const loop = savedLoops[index];
+      if (loop) {
+        const a = document.createElement('a');
+        a.href = loop.data;
+        a.download = `${loop.name}.${loop.type.split('/')[1]}`;
+        a.click();
+      }
+    };
+
+    window.deleteLoop = function(index) {
+      const loop = savedLoops[index];
+      if (confirm(`Are you sure you want to delete "${loop.name}"?`)) {
+        savedLoops.splice(index, 1);
+        localStorage.setItem('ariseBandLoops', JSON.stringify(savedLoops));
+        displayLoopLibrary();
+        
+        // If deleted loop was playing, stop it
+        if (currentActiveLoop === loop.id) {
+          clearCustomLoop();
+          loopAudio.pause();
+          loopAudio.src = '';
+          loopBtn.disabled = true;
+          loopBtn.innerHTML = '<i class="bi bi-arrow-repeat me-2"></i>Enable Loop';
+          loopBtn.classList.remove('btn-warning');
+          loopBtn.classList.add('btn-info');
+          currentActiveLoop = null;
+          currentLoopIndex = null;
+        }
+        
+        loopPointControls.style.display = 'none';
+      }
+    };
+
+    autoLoopCheckbox.addEventListener('change', function() {
+      loopAudio.loop = this.checked;
+    });
+
+    loopBtn.addEventListener('click', function() {
+      if (loopAudio.paused) {
+        loopAudio.play();
+        loopBtn.innerHTML = '<i class="bi bi-pause-fill me-2"></i>Pause Loop';
+        loopBtn.classList.remove('btn-info');
+        loopBtn.classList.add('btn-warning');
+        
+        // Resume custom loop if it exists
+        if (currentLoopIndex !== null) {
+          const loop = savedLoops[currentLoopIndex];
+          if (loop && loop.loopStart !== undefined && loop.loopEnd !== undefined) {
+            setupCustomLoop(loop.loopStart, loop.loopEnd);
+          }
+        }
+      } else {
+        loopAudio.pause();
+        loopBtn.innerHTML = '<i class="bi bi-arrow-repeat me-2"></i>Enable Loop';
+        loopBtn.classList.remove('btn-warning');
+        loopBtn.classList.add('btn-info');
+      }
+    });
+
+    loopAudio.addEventListener('ended', function() {
+      if (!autoLoopCheckbox.checked) {
+        loopBtn.innerHTML = '<i class="bi bi-arrow-repeat me-2"></i>Enable Loop';
+        loopBtn.classList.remove('btn-warning');
+        loopBtn.classList.add('btn-info');
+      }
+    });
+
+    // Set loop enabled by default
+    loopAudio.loop = true;
+  </script>
+</body>
+</html>

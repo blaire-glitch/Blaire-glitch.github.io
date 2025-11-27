@@ -328,15 +328,11 @@
       // Store in localStorage (temporary solution)
       localStorage.setItem('ariseBandMemberLogin', JSON.stringify(loginData));
       
-      // Show success message
-      alert('Login functionality is being set up. Please contact band management for access credentials.');
+      // Show success message and redirect to dashboard
+      alert('Login successful! Redirecting to your dashboard...');
       
-      // Close modal
-      const modal = bootstrap.Modal.getInstance(document.getElementById('memberLoginModal'));
-      modal.hide();
-      
-      // Reset form
-      this.reset();
+      // Redirect to dashboard
+      window.location.href = 'member-dashboard.html';
     });
 
     // Band Member Signup Handler
