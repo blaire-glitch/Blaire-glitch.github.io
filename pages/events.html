@@ -11,6 +11,78 @@
     <link rel="stylesheet" href="../styles/styles.css" />
     <link rel="stylesheet" href="../styles/pages.css" />
     <link rel="stylesheet" href="../styles/loader.css" />
+    <style>
+      /* Floating Support Button */
+      .floating-support-btn {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-image: url('../assets/images/logo.jpg');
+        background-size: cover;
+        background-position: center;
+        border: 3px solid #0dcaf0;
+        box-shadow: 0 8px 20px rgba(13, 202, 240, 0.4);
+        cursor: pointer;
+        z-index: 1000;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 8px;
+        animation: pulse 2s infinite;
+      }
+
+      .floating-support-btn:hover {
+        transform: scale(1.1);
+        box-shadow: 0 12px 30px rgba(13, 202, 240, 0.6);
+        border-color: #ffd580;
+      }
+
+      .support-btn-text {
+        background: rgba(13, 202, 240, 0.95);
+        color: #1a1a1a;
+        padding: 4px 10px;
+        border-radius: 15px;
+        font-weight: bold;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        white-space: nowrap;
+      }
+
+      .floating-support-btn:hover .support-btn-text {
+        background: rgba(255, 213, 128, 0.95);
+        color: #1a1a1a;
+      }
+
+      @keyframes pulse {
+        0%, 100% {
+          box-shadow: 0 8px 20px rgba(13, 202, 240, 0.4);
+        }
+        50% {
+          box-shadow: 0 8px 30px rgba(13, 202, 240, 0.7);
+        }
+      }
+
+      /* Mobile Responsive */
+      @media (max-width: 768px) {
+        .floating-support-btn {
+          width: 80px;
+          height: 80px;
+          bottom: 20px;
+          right: 20px;
+        }
+
+        .support-btn-text {
+          font-size: 9px;
+          padding: 3px 8px;
+        }
+      }
+    </style>
   </head>
   <body>
     <!-- Page Loader -->
@@ -218,6 +290,11 @@
       </div>
     </section>
 
+    <!-- Floating Support Button -->
+    <button id="supportButton" class="floating-support-btn" type="button" data-bs-toggle="modal" data-bs-target="#merchandiseModal">
+      <span class="support-btn-text">Support Us</span>
+    </button>
+
     <!-- Merchandise Exit Popup Modal -->
     <div class="modal fade" id="merchandiseModal" tabindex="-1" aria-labelledby="merchandiseModalLabel" aria-hidden="true" data-bs-backdrop="static">
       <div class="modal-dialog modal-dialog-centered modal-lg">
@@ -238,8 +315,8 @@
               <!-- Merchandise Items -->
               <div class="col-md-4">
                 <div class="card bg-transparent border-info h-100">
+                  <img src="../assets/images/tshirt.jpg" class="card-img-top" alt="Arise Band T-Shirts">
                   <div class="card-body text-center">
-                    <i class="bi bi-emoji-sunglasses" style="font-size: 3rem; color: #0dcaf0;"></i>
                     <h5 class="card-title mt-3 text-info">T-Shirts</h5>
                     <p class="card-text">Premium quality band tees</p>
                     <p class="fw-bold text-warning">KSh 1,500</p>
@@ -249,8 +326,8 @@
               
               <div class="col-md-4">
                 <div class="card bg-transparent border-info h-100">
+                  <img src="../assets/images/cap.png" class="card-img-top" alt="Arise Band Caps">
                   <div class="card-body text-center">
-                    <i class="bi bi-circle" style="font-size: 3rem; color: #0dcaf0;"></i>
                     <h5 class="card-title mt-3 text-info">Caps</h5>
                     <p class="card-text">Stylish branded caps</p>
                     <p class="fw-bold text-warning">KSh 800</p>
@@ -502,7 +579,7 @@
           setInterval(showMerchandisePopup, 45000);
         }, 45000); // 45 seconds
         
-        // Order Form Submission Handler
+        // Order Form Submission Handler - WhatsApp Integration
         const submitBtn = document.getElementById('submitOrderBtn');
         if (submitBtn) {
           submitBtn.addEventListener('click', function() {
@@ -510,26 +587,73 @@
             
             if (form.checkValidity()) {
               // Collect form data
-              const orderData = {
-                name: document.getElementById('orderName').value,
-                phone: document.getElementById('orderPhone').value,
-                email: document.getElementById('orderEmail').value,
-                location: document.getElementById('orderLocation').value,
-                itemType: document.getElementById('orderType').value,
-                quantity: document.getElementById('orderQuantity').value,
-                size: document.getElementById('orderSize').value || 'N/A',
-                notes: document.getElementById('orderNotes').value || 'None',
-                paymentMethod: document.getElementById('orderPayment').value,
-                timestamp: new Date().toLocaleString()
+              const name = document.getElementById('orderName').value;
+              const phone = document.getElementById('orderPhone').value;
+              const email = document.getElementById('orderEmail').value;
+              const location = document.getElementById('orderLocation').value;
+              const itemType = document.getElementById('orderType').value;
+              const quantity = document.getElementById('orderQuantity').value;
+              const size = document.getElementById('orderSize').value || 'N/A';
+              const notes = document.getElementById('orderNotes').value || 'None';
+              const paymentMethod = document.getElementById('orderPayment').value;
+              
+              // Format item type
+              const itemNames = {
+                'tshirt': 'T-Shirt',
+                'cap': 'Cap',
+                'ticket': 'Event Ticket',
+                'multiple': 'Multiple Items'
               };
               
-              // Save to localStorage (in a real app, this would be sent to a backend)
+              const paymentNames = {
+                'mpesa': 'M-Pesa',
+                'cash': 'Cash on Delivery',
+                'bank': 'Bank Transfer'
+              };
+              
+              // Create WhatsApp message
+              const orderRef = 'ORD-' + Date.now();
+              const message = `🎵 *ARISE BAND MERCHANDISE ORDER*\n\n` +
+                `📦 *Order Reference:* ${orderRef}\n` +
+                `📅 *Date:* ${new Date().toLocaleString()}\n\n` +
+                `👤 *Customer Details:*\n` +
+                `Name: ${name}\n` +
+                `Phone: ${phone}\n` +
+                `Email: ${email}\n` +
+                `Location: ${location}\n\n` +
+                `🛍️ *Order Details:*\n` +
+                `Item: ${itemNames[itemType]}\n` +
+                `Quantity: ${quantity}\n` +
+                `Size: ${size}\n` +
+                `Notes: ${notes}\n\n` +
+                `💳 *Payment Method:* ${paymentNames[paymentMethod]}\n\n` +
+                `Thank you for supporting Arise Band! 🙏`;
+              
+              // Your WhatsApp Business number (replace with actual number)
+              // Format: country code + number (no + or spaces)
+              // Example: 254712345678 for Kenya
+              const whatsappNumber = '254722104985'; // Arise Band WhatsApp
+              
+              // Encode message for URL
+              const encodedMessage = encodeURIComponent(message);
+              
+              // Create WhatsApp URL
+              const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+              
+              // Save to localStorage for backup
               let orders = JSON.parse(localStorage.getItem('bandOrders') || '[]');
-              orders.push(orderData);
+              orders.push({
+                reference: orderRef,
+                name, phone, email, location, itemType, quantity, size, notes, paymentMethod,
+                timestamp: new Date().toISOString()
+              });
               localStorage.setItem('bandOrders', JSON.stringify(orders));
               
+              // Open WhatsApp
+              window.open(whatsappURL, '_blank');
+              
               // Show success message
-              alert('✅ Thank you! Your order has been received.\n\nWe will contact you within 24 hours at ' + orderData.phone + ' to confirm your order and provide payment details.\n\nOrder Reference: ORD-' + Date.now());
+              alert('✅ Opening WhatsApp to send your order!\n\nYour order reference is: ' + orderRef + '\n\nPlease send the message to complete your order.');
               
               // Close modal and reset form
               bootstrap.Modal.getInstance(document.getElementById('orderFormModal')).hide();
