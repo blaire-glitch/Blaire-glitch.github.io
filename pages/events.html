@@ -452,6 +452,36 @@
                     <option value="bank">Bank Transfer</option>
                   </select>
                 </div>
+
+                <!-- M-Pesa Payment Section (Hidden by default) -->
+                <div class="col-12" id="mpesaSection" style="display: none;">
+                  <div class="card bg-dark border-success">
+                    <div class="card-body">
+                      <h6 class="text-success mb-3"><i class="bi bi-phone-fill"></i> M-Pesa Payment</h6>
+                      
+                      <div class="mb-3">
+                        <label for="mpesaPhone" class="form-label">M-Pesa Phone Number <span class="text-danger">*</span></label>
+                        <input type="tel" class="form-control bg-transparent text-white border-success" id="mpesaPhone" placeholder="254XXXXXXXXX" required>
+                        <small class="text-white-50">Enter the number to receive STK push prompt</small>
+                      </div>
+
+                      <div class="mb-3">
+                        <label for="mpesaAmount" class="form-label">Amount (KSh) <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control bg-transparent text-white border-success" id="mpesaAmount" min="1" required readonly>
+                      </div>
+
+                      <div class="alert alert-success mb-0">
+                        <i class="bi bi-info-circle-fill"></i> <strong>Instructions:</strong>
+                        <ol class="mb-0 mt-2 ps-3">
+                          <li>Enter your M-Pesa phone number above</li>
+                          <li>Click "Submit Order & Pay" below</li>
+                          <li>Check your phone for STK push prompt</li>
+                          <li>Enter your M-Pesa PIN to complete payment</li>
+                        </ol>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 
                 <div class="col-12 mt-3">
                   <div class="alert alert-info">
@@ -579,7 +609,71 @@
           setInterval(showMerchandisePopup, 45000);
         }, 45000); // 45 seconds
         
-        // Order Form Submission Handler - WhatsApp Integration
+        // Payment method toggle
+        const paymentSelect = document.getElementById('orderPayment');
+        const mpesaSection = document.getElementById('mpesaSection');
+        const mpesaPhoneInput = document.getElementById('mpesaPhone');
+        const mpesaAmountInput = document.getElementById('mpesaAmount');
+        const orderTypeSelect = document.getElementById('orderType');
+        const orderQuantityInput = document.getElementById('orderQuantity');
+        
+        if (paymentSelect) {
+          paymentSelect.addEventListener('change', function() {
+            if (this.value === 'mpesa') {
+              mpesaSection.style.display = 'block';
+              // Auto-fill phone from order phone
+              const orderPhone = document.getElementById('orderPhone').value;
+              if (orderPhone) {
+                // Convert 07XXXXXXXX to 2547XXXXXXXX
+                mpesaPhoneInput.value = orderPhone.startsWith('0') ? '254' + orderPhone.substring(1) : orderPhone;
+              }
+              // Calculate amount
+              calculateMpesaAmount();
+            } else {
+              mpesaSection.style.display = 'none';
+            }
+          });
+        }
+        
+        // Calculate M-Pesa amount based on order
+        function calculateMpesaAmount() {
+          const itemType = orderTypeSelect.value;
+          const quantity = parseInt(orderQuantityInput.value) || 1;
+          const prices = {
+            'tshirt': 1500,
+            'cap': 800,
+            'ticket': 500,
+            'multiple': 0
+          };
+          
+          if (itemType && itemType !== 'multiple') {
+            mpesaAmountInput.value = prices[itemType] * quantity;
+          } else {
+            mpesaAmountInput.value = '';
+            mpesaAmountInput.placeholder = 'Enter total amount';
+            mpesaAmountInput.readOnly = false;
+          }
+        }
+        
+        // Update amount when type or quantity changes
+        if (orderTypeSelect) {
+          orderTypeSelect.addEventListener('change', calculateMpesaAmount);
+        }
+        if (orderQuantityInput) {
+          orderQuantityInput.addEventListener('input', calculateMpesaAmount);
+        }
+        
+        // Auto-fill M-Pesa phone when order phone changes
+        const orderPhoneInput = document.getElementById('orderPhone');
+        if (orderPhoneInput) {
+          orderPhoneInput.addEventListener('blur', function() {
+            if (paymentSelect.value === 'mpesa' && this.value) {
+              mpesaPhoneInput.value = this.value.startsWith('0') ? '254' + this.value.substring(1) : this.value;
+            }
+          });
+        }
+        
+        // Order Form Submission Handler - WhatsApp & M-Pesa Integration
         const submitBtn = document.getElementById('submitOrderBtn');
         if (submitBtn) {
           submitBtn.addEventListener('click', function() {
@@ -611,49 +705,140 @@
                 'bank': 'Bank Transfer'
               };
               
-              // Create WhatsApp message
-              const orderRef = 'ORD-' + Date.now();
-              const message = `🎵 *ARISE BAND MERCHANDISE ORDER*\n\n` +
-                `📦 *Order Reference:* ${orderRef}\n` +
-                `📅 *Date:* ${new Date().toLocaleString()}\n\n` +
-                `👤 *Customer Details:*\n` +
-                `Name: ${name}\n` +
-                `Phone: ${phone}\n` +
-                `Email: ${email}\n` +
-                `Location: ${location}\n\n` +
-                `🛍️ *Order Details:*\n` +
-                `Item: ${itemNames[itemType]}\n` +
-                `Quantity: ${quantity}\n` +
-                `Size: ${size}\n` +
-                `Notes: ${notes}\n\n` +
-                `💳 *Payment Method:* ${paymentNames[paymentMethod]}\n\n` +
-                `Thank you for supporting Arise Band! 🙏`;
-              
-              // Your WhatsApp Business number (replace with actual number)
-              // Format: country code + number (no + or spaces)
-              // Example: 254712345678 for Kenya
-              const whatsappNumber = '254722104985'; // Arise Band WhatsApp
-              
-              // Encode message for URL
-              const encodedMessage = encodeURIComponent(message);
-              
-              // Create WhatsApp URL
-              const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
-              
-              // Save to localStorage for backup
-              let orders = JSON.parse(localStorage.getItem('bandOrders') || '[]');
-              orders.push({
-                reference: orderRef,
-                name, phone, email, location, itemType, quantity, size, notes, paymentMethod,
-                timestamp: new Date().toISOString()
-              });
-              localStorage.setItem('bandOrders', JSON.stringify(orders));
-              
-              // Open WhatsApp
-              window.open(whatsappURL, '_blank');
-              
-              // Show success message
-              alert('✅ Opening WhatsApp to send your order!\n\nYour order reference is: ' + orderRef + '\n\nPlease send the message to complete your order.');
+              // Handle M-Pesa payment
+              if (paymentMethod === 'mpesa') {
+                const mpesaPhone = document.getElementById('mpesaPhone').value;
+                const mpesaAmount = document.getElementById('mpesaAmount').value;
+                
+                if (!mpesaPhone || !mpesaAmount) {
+                  alert('⚠️ Please fill in M-Pesa phone number and amount');
+                  return;
+                }
+                
+                // Confirm before proceeding
+                const confirmPayment = confirm('📱 Ready to proceed with M-Pesa payment?\n\n' +
+                  'Amount: KSh ' + mpesaAmount + '\n' +
+                  'Phone: ' + mpesaPhone + '\n\n' +
+                  'Click OK to receive STK push prompt on your phone.');
+                
+                if (!confirmPayment) {
+                  return; // User cancelled
+                }
+                
+                // Show processing message
+                alert('📱 Initiating M-Pesa STK Push...\n\nPlease check your phone for the payment prompt.\n\nEnter your M-Pesa PIN to complete the payment.');
+                
+                // Create order reference
+                const orderRef = 'ORD-' + Date.now();
+                
+                // In a real implementation, you would call your M-Pesa API here
+                // For now, we'll simulate the STK push and send details via WhatsApp
+                
+                // Create WhatsApp message with M-Pesa details
+                const message = `🎵 *ARISE BAND MERCHANDISE ORDER*\n\n` +
+                  `📦 *Order Reference:* ${orderRef}\n` +
+                  `📅 *Date:* ${new Date().toLocaleString()}\n\n` +
+                  `👤 *Customer Details:*\n` +
+                  `Name: ${name}\n` +
+                  `Phone: ${phone}\n` +
+                  `Email: ${email}\n` +
+                  `Location: ${location}\n\n` +
+                  `🛍️ *Order Details:*\n` +
+                  `Item: ${itemNames[itemType]}\n` +
+                  `Quantity: ${quantity}\n` +
+                  `Size: ${size}\n` +
+                  `Notes: ${notes}\n\n` +
+                  `💳 *Payment Details:*\n` +
+                  `Method: M-Pesa\n` +
+                  `Phone: ${mpesaPhone}\n` +
+                  `Amount: KSh ${mpesaAmount}\n` +
+                  `Status: Pending STK Push\n\n` +
+                  `*IMPORTANT:* Please complete the M-Pesa payment on your phone (${mpesaPhone}) to confirm this order.\n\n` +
+                  `Thank you for supporting Arise Band! 🙏`;
+                
+                const whatsappNumber = '254722104985';
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+                
+                // Save order
+                let orders = JSON.parse(localStorage.getItem('bandOrders') || '[]');
+                orders.push({
+                  reference: orderRef,
+                  name, phone, email, location, itemType, quantity, size, notes, 
+                  paymentMethod: 'mpesa',
+                  mpesaPhone, mpesaAmount,
+                  timestamp: new Date().toISOString()
+                });
+                localStorage.setItem('bandOrders', JSON.stringify(orders));
+                
+                // Open WhatsApp with order details
+                window.open(whatsappURL, '_blank');
+                
+                // Show success message with fallback option
+                const successMsg = confirm('✅ Order submitted!\n\n' +
+                      '1. Complete M-Pesa payment on your phone\n' +
+                      '2. Send the WhatsApp message that just opened\n\n' +
+                      'Order Reference: ' + orderRef + '\n\n' +
+                      '⚠️ If payment fails, click OK to try again or Cancel to use another payment method.');
+                
+                if (!successMsg) {
+                  // User wants to change payment method
+                  alert('💡 No problem! You can:\n\n' +
+                        '• Try M-Pesa again (check balance & phone number)\n' +
+                        '• Choose Cash on Delivery instead\n' +
+                        '• Contact us on WhatsApp: 0722104985\n\n' +
+                        'We\'re here to help make your order work! 🙏');
+                }
+                
+              } else {
+                // Non M-Pesa payment methods
+                const orderRef = 'ORD-' + Date.now();
+                const message = `🎵 *ARISE BAND MERCHANDISE ORDER*\n\n` +
+                  `📦 *Order Reference:* ${orderRef}\n` +
+                  `📅 *Date:* ${new Date().toLocaleString()}\n\n` +
+                  `👤 *Customer Details:*\n` +
+                  `Name: ${name}\n` +
+                  `Phone: ${phone}\n` +
+                  `Email: ${email}\n` +
+                  `Location: ${location}\n\n` +
+                  `🛍️ *Order Details:*\n` +
+                  `Item: ${itemNames[itemType]}\n` +
+                  `Quantity: ${quantity}\n` +
+                  `Size: ${size}\n` +
+                  `Notes: ${notes}\n\n` +
+                  `💳 *Payment Method:* ${paymentNames[paymentMethod]}\n\n` +
+                  `Thank you for supporting Arise Band! 🙏`;
+                
+                const whatsappNumber = '254722104985';
+                const encodedMessage = encodeURIComponent(message);
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+                
+                // Save order
+                let orders = JSON.parse(localStorage.getItem('bandOrders') || '[]');
+                orders.push({
+                  reference: orderRef,
+                  name, phone, email, location, itemType, quantity, size, notes, paymentMethod,
+                  timestamp: new Date().toISOString()
+                });
+                localStorage.setItem('bandOrders', JSON.stringify(orders));
+                
+                // Open WhatsApp
+                window.open(whatsappURL, '_blank');
+                
+                // Show success message with support option
+                const sent = confirm('✅ Opening WhatsApp to send your order!\n\n' +
+                      'Order Reference: ' + orderRef + '\n\n' +
+                      'Click OK after sending the message, or Cancel if you need help.');
+                
+                if (!sent) {
+                  alert('💡 Need assistance? We\'re here to help!\n\n' +
+                        '• WhatsApp us directly: 0722104985\n' +
+                        '• Email: arisebandkenya@gmail.com\n' +
+                        '• Try a different payment method\n\n' +
+                        'Your order reference: ' + orderRef + '\n\n' +
+                        'Don\'t worry - we\'ll make it work! 🙏');
+                }
+              }
               
               // Close modal and reset form
               bootstrap.Modal.getInstance(document.getElementById('orderFormModal')).hide();

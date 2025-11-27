@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Payments - Arise Band_KE</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../styles/styles.css" />
+  <link rel="stylesheet" href="../styles/pages.css" />
+  <link rel="stylesheet" href="../styles/loader.css" />
+  <style>
+    .payment-hero {
+      background: linear-gradient(135deg, #6a1b9a 0%, #1a1a1a 100%);
+      padding: 80px 0 60px;
+      color: white;
+    }
+
+    .payment-card {
+      background: #2d2d2d;
+      border: 2px solid #0dcaf0;
+      border-radius: 15px;
+      padding: 30px;
+      margin-bottom: 30px;
+      transition: all 0.3s ease;
+    }
+
+    .payment-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(13, 202, 240, 0.3);
+      border-color: #ffd580;
+    }
+
+    .payment-icon {
+      font-size: 3rem;
+      color: #0dcaf0;
+      margin-bottom: 20px;
+    }
+
+    .payment-method-badge {
+      display: inline-block;
+      padding: 5px 15px;
+      background: rgba(13, 202, 240, 0.2);
+      border: 1px solid #0dcaf0;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+    }
+
+    .secure-badge {
+      background: rgba(40, 167, 69, 0.2);
+      color: #28a745;
+      padding: 3px 10px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      display: inline-block;
+    }
+
+    .payment-form {
+      background: #1a1a1a;
+      border: 2px solid #0dcaf0;
+      border-radius: 15px;
+      padding: 30px;
+    }
+
+    .form-control, .form-select {
+      background: #2d2d2d;
+      border: 1px solid #0dcaf0;
+      color: white;
+    }
+
+    .form-control:focus, .form-select:focus {
+      background: #2d2d2d;
+      border-color: #ffd580;
+      color: white;
+      box-shadow: 0 0 0 0.2rem rgba(255, 213, 128, 0.25);
+    }
+
+    .btn-payment {
+      background: linear-gradient(135deg, #0dcaf0 0%, #0099cc 100%);
+      border: none;
+      color: #1a1a1a;
+      padding: 12px 30px;
+      font-weight: bold;
+      border-radius: 25px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-payment:hover {
+      background: linear-gradient(135deg, #ffd580 0%, #ffc107 100%);
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(255, 213, 128, 0.4);
+    }
+
+    .info-box {
+      background: rgba(13, 202, 240, 0.1);
+      border-left: 4px solid #0dcaf0;
+      padding: 15px;
+      margin: 20px 0;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Page Loader -->
+  <div class="page-loader">
+    <div class="loader-content">
+      <img src="../assets/images/logo.jpg" alt="Arise Band_KE" class="loader-logo">
+      <div class="loader-text">ARISE BAND_KE</div>
+      <div class="loader-spinner"></div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="../index.html">
+        <img src="../assets/images/logo.jpg" alt="Arise Band_KE Logo" class="navbar-logo">
+        <span class="ms-2">Arise Band_KE</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="band-members.html">Band Members</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="events.html">Events</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="gallery.html">Gallery</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="online-payments.html">Support Us</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="payment-hero">
+    <div class="container text-center">
+      <h1 class="display-4 fw-bold mb-3">
+        <i class="bi bi-heart-fill text-danger"></i> Support Arise Band
+      </h1>
+      <p class="lead mb-4">Make a secure online donation to support our ministry of worship and outreach</p>
+      <div class="secure-badge">
+        <i class="bi bi-shield-check me-2"></i>Secure Payment Gateway
+      </div>
+    </div>
+  </section>
+
+  <!-- Payment Methods Section -->
+  <section class="py-5 bg-dark text-white">
+    <div class="container">
+      <div class="row mb-5">
+        <div class="col-12 text-center">
+          <h2 class="mb-3">Choose Your Payment Method</h2>
+          <p class="text-white-50">Select your preferred way to give</p>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <!-- M-Pesa Card -->
+        <div class="col-md-4">
+          <div class="payment-card text-center">
+            <i class="bi bi-phone-fill payment-icon"></i>
+            <span class="payment-method-badge">Most Popular</span>
+            <h4 class="text-white mb-3">M-Pesa</h4>
+            <p class="text-white-50 mb-4">Quick and secure mobile money payment</p>
+            <button class="btn btn-payment w-100" onclick="showPaymentForm('mpesa')">
+              <i class="bi bi-arrow-right-circle me-2"></i>Pay with M-Pesa
+            </button>
+          </div>
+        </div>
+
+        <!-- Bank Transfer Card -->
+        <div class="col-md-4">
+          <div class="payment-card text-center">
+            <i class="bi bi-bank payment-icon"></i>
+            <span class="payment-method-badge">Direct Transfer</span>
+            <h4 class="text-white mb-3">Bank Transfer</h4>
+            <p class="text-white-50 mb-4">Transfer directly to our bank account</p>
+            <button class="btn btn-payment w-100" onclick="showPaymentForm('bank')">
+              <i class="bi bi-arrow-right-circle me-2"></i>Bank Details
+            </button>
+          </div>
+        </div>
+
+        <!-- PayPal/Card Card -->
+        <div class="col-md-4">
+          <div class="payment-card text-center">
+            <i class="bi bi-credit-card payment-icon"></i>
+            <span class="payment-method-badge">International</span>
+            <h4 class="text-white mb-3">Card Payment</h4>
+            <p class="text-white-50 mb-4">Pay with credit/debit card or PayPal</p>
+            <button class="btn btn-payment w-100" onclick="showPaymentForm('card')">
+              <i class="bi bi-arrow-right-circle me-2"></i>Pay with Card
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Forms -->
+      <div class="row mt-5">
+        <div class="col-lg-8 mx-auto">
+          <!-- M-Pesa Form -->
+          <div id="mpesaForm" class="payment-form" style="display: none;">
+            <div class="text-center mb-4">
+              <h3 class="text-white"><i class="bi bi-phone-fill text-success me-2"></i>M-Pesa Payment</h3>
+              <p class="text-white-50">Enter your details to receive STK push</p>
+            </div>
+
+            <form id="mpesaPaymentForm">
+              <div class="mb-3">
+                <label for="mpesaName" class="form-label text-white">Full Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="mpesaName" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="mpesaPhoneNum" class="form-label text-white">M-Pesa Phone Number <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control" id="mpesaPhoneNum" placeholder="254XXXXXXXXX" required>
+                <small class="text-white-50">Number that will receive STK push</small>
+              </div>
+
+              <div class="mb-3">
+                <label for="mpesaAmountInput" class="form-label text-white">Amount (KSh) <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" id="mpesaAmountInput" min="10" placeholder="Enter amount" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="mpesaEmail" class="form-label text-white">Email</label>
+                <input type="email" class="form-control" id="mpesaEmail" placeholder="For receipt">
+              </div>
+
+              <div class="mb-4">
+                <label for="mpesaMessage" class="form-label text-white">Message (Optional)</label>
+                <textarea class="form-control" id="mpesaMessage" rows="3" placeholder="Leave a message of support..."></textarea>
+              </div>
+
+              <div class="info-box">
+                <i class="bi bi-info-circle-fill text-info me-2"></i>
+                <small class="text-white">You will receive an STK push prompt on your phone. Enter your M-Pesa PIN to complete the transaction.</small>
+              </div>
+
+              <div class="d-grid gap-2 d-md-flex justify-content-md-between mt-4">
+                <button type="button" class="btn btn-secondary" onclick="hidePaymentForm()">
+                  <i class="bi bi-arrow-left me-2"></i>Back
+                </button>
+                <button type="submit" class="btn btn-payment">
+                  <i class="bi bi-send-fill me-2"></i>Send Payment Request
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Bank Transfer Info -->
+          <div id="bankForm" class="payment-form" style="display: none;">
+            <div class="text-center mb-4">
+              <h3 class="text-white"><i class="bi bi-bank text-primary me-2"></i>Bank Transfer Details</h3>
+              <p class="text-white-50">Use these details to make a direct bank transfer</p>
+            </div>
+
+            <div class="info-box bg-info bg-opacity-10 border-info">
+              <h5 class="text-white mb-3">Bank Account Information</h5>
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <strong class="text-info">Bank Name:</strong><br>
+                  <span class="text-white">Kenya Commercial Bank (KCB)</span>
+                </div>
+                <div class="col-md-6">
+                  <strong class="text-info">Account Name:</strong><br>
+                  <span class="text-white">Arise Band Kenya</span>
+                </div>
+                <div class="col-md-6">
+                  <strong class="text-info">Account Number:</strong><br>
+                  <span class="text-white">1234567890</span>
+                </div>
+                <div class="col-md-6">
+                  <strong class="text-info">Branch:</strong><br>
+                  <span class="text-white">Busia Branch</span>
+                </div>
+                <div class="col-12">
+                  <strong class="text-info">Swift Code (International):</strong><br>
+                  <span class="text-white">KCBLKENXXXX</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="alert alert-warning mt-4">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>
+              <strong>Important:</strong> After making the transfer, please send the transaction details to our WhatsApp: <strong>0722104985</strong> or email: <strong>arisebandkenya@gmail.com</strong>
+            </div>
+
+            <div class="d-grid mt-4">
+              <button type="button" class="btn btn-secondary" onclick="hidePaymentForm()">
+                <i class="bi bi-arrow-left me-2"></i>Back to Payment Methods
+              </button>
+            </div>
+          </div>
+
+          <!-- Card Payment Form -->
+          <div id="cardForm" class="payment-form" style="display: none;">
+            <div class="text-center mb-4">
+              <h3 class="text-white"><i class="bi bi-credit-card text-warning me-2"></i>Card Payment</h3>
+              <p class="text-white-50">Secure payment via PayPal</p>
+            </div>
+
+            <form id="cardPaymentForm">
+              <div class="mb-3">
+                <label for="cardName" class="form-label text-white">Full Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="cardName" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="cardEmail" class="form-label text-white">Email <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="cardEmail" required>
+              </div>
+
+              <div class="mb-3">
+                <label for="cardAmount" class="form-label text-white">Amount (USD) <span class="text-danger">*</span></label>
+                <input type="number" class="form-control" id="cardAmount" min="1" placeholder="Enter amount in USD" required>
+                <small class="text-white-50">Approximately KSh 1 = USD 0.0077</small>
+              </div>
+
+              <div class="mb-4">
+                <label for="cardMessage" class="form-label text-white">Message (Optional)</label>
+                <textarea class="form-control" id="cardMessage" rows="3" placeholder="Leave a message of support..."></textarea>
+              </div>
+
+              <div class="info-box">
+                <i class="bi bi-shield-check text-success me-2"></i>
+                <small class="text-white">Payments are processed securely through PayPal. You will be redirected to complete your payment.</small>
+              </div>
+
+              <div class="d-grid gap-2 d-md-flex justify-content-md-between mt-4">
+                <button type="button" class="btn btn-secondary" onclick="hidePaymentForm()">
+                  <i class="bi bi-arrow-left me-2"></i>Back
+                </button>
+                <button type="submit" class="btn btn-payment">
+                  <i class="bi bi-paypal me-2"></i>Continue to PayPal
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Section -->
+  <section class="py-5" style="background: #1a1a1a;">
+    <div class="container">
+      <div class="row text-center text-white">
+        <div class="col-12 mb-4">
+          <h2 class="mb-3">Your Support Makes a Difference</h2>
+          <p class="text-white-50">Here's how your giving helps our ministry</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <i class="bi bi-music-note-beamed" style="font-size: 3rem; color: #0dcaf0;"></i>
+          <h5 class="mt-3">Worship Events</h5>
+          <p class="text-white-50">Fund concerts, outreach programs, and community worship nights</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <i class="bi bi-mic-fill" style="font-size: 3rem; color: #ffd580;"></i>
+          <h5 class="mt-3">Equipment & Studio</h5>
+          <p class="text-white-50">Maintain and upgrade our instruments and recording equipment</p>
+        </div>
+        <div class="col-md-4 mb-3">
+          <i class="bi bi-people-fill" style="font-size: 3rem; color: #0dcaf0;"></i>
+          <h5 class="mt-3">Community Outreach</h5>
+          <p class="text-white-50">Support missions, youth programs, and charitable initiatives</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <h5 class="text-info mb-3">Arise Band_KE</h5>
+          <p class="text-white-50">Lifting hearts and communities through worship</p>
+          <p class="text-white-50">
+            <i class="bi bi-envelope me-2"></i>arisebandkenya@gmail.com<br>
+            <i class="bi bi-whatsapp me-2"></i>+254 722 104985
+          </p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <h5 class="text-info mb-3">Quick Links</h5>
+          <ul class="list-unstyled">
+            <li class="mb-2"><a href="../index.html" class="text-white-50 text-decoration-none hover-link">Home</a></li>
+            <li class="mb-2"><a href="events.html" class="text-white-50 text-decoration-none hover-link">Events</a></li>
+            <li class="mb-2"><a href="band-members.html" class="text-white-50 text-decoration-none hover-link">Band Members</a></li>
+            <li class="mb-2"><a href="gallery.html" class="text-white-50 text-decoration-none hover-link">Gallery</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12 text-center">
+          <p class="text-white-50 mb-0">&copy; 2025 Arise Band_KE. All rights reserved.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    // Page loader
+    window.addEventListener('load', function() {
+      setTimeout(() => {
+        document.querySelector('.page-loader').style.display = 'none';
+      }, 800);
+    });
+
+    // Show payment form
+    function showPaymentForm(type) {
+      // Hide all forms
+      document.getElementById('mpesaForm').style.display = 'none';
+      document.getElementById('bankForm').style.display = 'none';
+      document.getElementById('cardForm').style.display = 'none';
+
+      // Show selected form
+      if (type === 'mpesa') {
+        document.getElementById('mpesaForm').style.display = 'block';
+      } else if (type === 'bank') {
+        document.getElementById('bankForm').style.display = 'block';
+      } else if (type === 'card') {
+        document.getElementById('cardForm').style.display = 'block';
+      }
+
+      // Scroll to form
+      setTimeout(() => {
+        document.querySelector('.payment-form[style*="block"]').scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+      }, 100);
+    }
+
+    // Hide payment form
+    function hidePaymentForm() {
+      document.getElementById('mpesaForm').style.display = 'none';
+      document.getElementById('bankForm').style.display = 'none';
+      document.getElementById('cardForm').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // M-Pesa Payment Handler
+    document.getElementById('mpesaPaymentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('mpesaName').value;
+      const phone = document.getElementById('mpesaPhoneNum').value;
+      const amount = document.getElementById('mpesaAmountInput').value;
+      const email = document.getElementById('mpesaEmail').value || 'Not provided';
+      const message = document.getElementById('mpesaMessage').value || 'None';
+
+      if (!name || !phone || !amount) {
+        alert('⚠️ Please fill in all required fields');
+        return;
+      }
+
+      // Format phone number
+      let formattedPhone = phone.replace(/\s+/g, '');
+      if (formattedPhone.startsWith('0')) {
+        formattedPhone = '254' + formattedPhone.substring(1);
+      } else if (!formattedPhone.startsWith('254')) {
+        formattedPhone = '254' + formattedPhone;
+      }
+
+      // Show processing alert
+      alert('📱 Initiating M-Pesa STK Push...\n\nPlease check your phone for the payment prompt.\n\nEnter your M-Pesa PIN to complete the payment.');
+
+      // Create payment reference
+      const paymentRef = 'PAY-' + Date.now();
+
+      // Create WhatsApp message
+      const whatsappMessage = `🎵 *ARISE BAND ONLINE DONATION*\n\n` +
+        `📦 *Payment Reference:* ${paymentRef}\n` +
+        `📅 *Date:* ${new Date().toLocaleString()}\n\n` +
+        `👤 *Donor Details:*\n` +
+        `Name: ${name}\n` +
+        `Phone: ${formattedPhone}\n` +
+        `Email: ${email}\n\n` +
+        `💳 *Payment Details:*\n` +
+        `Method: M-Pesa\n` +
+        `Amount: KSh ${amount}\n` +
+        `Message: ${message}\n` +
+        `Status: Pending STK Push\n\n` +
+        `*IMPORTANT:* Please complete the M-Pesa payment on your phone (${formattedPhone}) to confirm this donation.\n\n` +
+        `Thank you for supporting Arise Band! 🙏`;
+
+      const whatsappNumber = '254722104985';
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+      // Save to localStorage
+      let payments = JSON.parse(localStorage.getItem('bandPayments') || '[]');
+      payments.push({
+        reference: paymentRef,
+        name, phone: formattedPhone, email, amount, message,
+        method: 'mpesa',
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem('bandPayments', JSON.stringify(payments));
+
+      // Open WhatsApp
+      setTimeout(() => {
+        window.open(whatsappURL, '_blank');
+
+        alert('✅ Payment request submitted!\n\n' +
+              '1. Complete M-Pesa payment on your phone\n' +
+              '2. Send the WhatsApp message to confirm\n\n' +
+              'Payment Reference: ' + paymentRef);
+
+        // Reset form
+        this.reset();
+        hidePaymentForm();
+      }, 1500);
+    });
+
+    // Card Payment Handler
+    document.getElementById('cardPaymentForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('cardName').value;
+      const email = document.getElementById('cardEmail').value;
+      const amount = document.getElementById('cardAmount').value;
+      const message = document.getElementById('cardMessage').value || 'None';
+
+      if (!name || !email || !amount) {
+        alert('⚠️ Please fill in all required fields');
+        return;
+      }
+
+      const paymentRef = 'PAY-' + Date.now();
+
+      // Create WhatsApp message
+      const whatsappMessage = `🎵 *ARISE BAND ONLINE DONATION*\n\n` +
+        `📦 *Payment Reference:* ${paymentRef}\n` +
+        `📅 *Date:* ${new Date().toLocaleString()}\n\n` +
+        `👤 *Donor Details:*\n` +
+        `Name: ${name}\n` +
+        `Email: ${email}\n\n` +
+        `💳 *Payment Details:*\n` +
+        `Method: Card/PayPal\n` +
+        `Amount: USD ${amount}\n` +
+        `Message: ${message}\n` +
+        `Status: Processing PayPal\n\n` +
+        `Thank you for supporting Arise Band! 🙏`;
+
+      const whatsappNumber = '254722104985';
+      const encodedMessage = encodeURIComponent(whatsappMessage);
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+
+      // Save to localStorage
+      let payments = JSON.parse(localStorage.getItem('bandPayments') || '[]');
+      payments.push({
+        reference: paymentRef,
+        name, email, amount, message,
+        method: 'card',
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem('bandPayments', JSON.stringify(payments));
+
+      // Open WhatsApp
+      window.open(whatsappURL, '_blank');
+
+      alert('✅ Payment request received!\n\n' +
+            'We will send you PayPal payment instructions shortly.\n\n' +
+            'Payment Reference: ' + paymentRef);
+
+      // Reset form
+      this.reset();
+      hidePaymentForm();
+    });
+  </script>
+</body>
+</html>

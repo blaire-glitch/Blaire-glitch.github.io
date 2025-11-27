@@ -346,7 +346,7 @@
           <button class="btn-vintage" data-bs-toggle="modal" data-bs-target="#mpesaModal" aria-controls="mpesaModal">
             📱 Pledge via M-Pesa
           </button>
-          <button type="button" class="btn btn-outline-vintage btn-lg d-flex align-items-center gap-2" aria-label="Give online" onclick="location.href='online-payments.html'">
+          <button type="button" class="btn btn-outline-vintage btn-lg d-flex align-items-center gap-2" aria-label="Give online" onclick="location.href='pages/online-payments.html'">
             <span aria-hidden="true">🌐</span>
             <span>Give Online</span>
             <small class="text-muted ms-2 secure-badge">Secure</small>
@@ -408,28 +408,30 @@
                 
                 <h6 class="mb-3">Confirm Payment Details</h6>
                 
-                <div class="payment-summary p-3 mb-3 bg-light rounded">
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="text-muted">Amount:</span>
-                    <strong class="text-success" id="confirmAmount">KES 0</strong>
-                  </div>
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="text-muted">Your Phone:</span>
-                    <strong id="confirmPhone">-</strong>
-                  </div>
-                  <div class="d-flex justify-content-between mb-2">
-                    <span class="text-muted">To M-Pesa:</span>
-                    <strong class="text-success">0790190578</strong>
-                  </div>
-                  <div class="d-flex justify-content-between">
-                    <span class="text-muted">Note:</span>
-                    <span id="confirmNote" class="text-end">-</span>
-                  </div>
+                <div class="mb-3">
+                  <label for="mpesaPhoneNumber" class="form-label">M-Pesa Phone Number <span class="text-danger">*</span></label>
+                  <input type="tel" class="form-control" id="mpesaPhoneNumber" placeholder="254XXXXXXXXX" required>
+                  <small class="text-muted">Enter the number to receive STK push prompt</small>
                 </div>
 
-                <div class="alert alert-info">
-                  <i class="bi bi-info-circle me-2"></i>
-                  <small>A payment prompt will be sent to your phone. Enter your M-Pesa PIN to complete the transaction.</small>
+                <div class="mb-3">
+                  <label for="mpesaPledgeAmount" class="form-label">Amount (KSh) <span class="text-danger">*</span></label>
+                  <input type="number" class="form-control" id="mpesaPledgeAmount" min="1" required readonly>
+                </div>
+
+                <div class="mb-3">
+                  <label for="mpesaPledgeNote" class="form-label">Note</label>
+                  <input type="text" class="form-control" id="mpesaPledgeNote" readonly>
+                </div>
+
+                <div class="alert alert-success">
+                  <i class="bi bi-info-circle-fill"></i> <strong>Instructions:</strong>
+                  <ol class="mb-0 mt-2 ps-3">
+                    <li>Verify your M-Pesa phone number above</li>
+                    <li>Click "Send Payment Prompt" below</li>
+                    <li>Check your phone for STK push prompt</li>
+                    <li>Enter your M-Pesa PIN to complete payment</li>
+                  </ol>
                 </div>
               </div>
 
@@ -469,23 +471,35 @@
               <div id="mpesaStep4" class="mpesa-step">
                 <div class="text-center py-4">
                   <div class="error-icon-container mb-3">
-                    <i class="bi bi-x-circle-fill error-icon"></i>
+                    <i class="bi bi-exclamation-triangle-fill text-warning" style="font-size: 3rem;"></i>
                   </div>
-                  <h5 class="text-danger mb-3">Payment Failed</h5>
-                  <p id="errorMessage">The transaction could not be completed.</p>
-                  <div class="alert alert-warning mt-3">
-                    <small><strong>Common Issues:</strong></small>
+                  <h5 class="text-warning mb-3">Payment Could Not Be Completed</h5>
+                  <p class="mb-3">We're sorry, but we couldn't process your M-Pesa payment at this time. Please don't worry - this happens sometimes!</p>
+                  
+                  <div class="alert alert-info">
+                    <i class="bi bi-info-circle-fill me-2"></i>
+                    <strong>What you can do:</strong>
                     <ul class="small text-start mb-0 mt-2">
-                      <li>Insufficient M-Pesa balance</li>
-                      <li>Wrong PIN entered</li>
-                      <li>Request timeout/cancelled</li>
-                      <li>Phone number not registered for M-Pesa</li>
+                      <li>Check your M-Pesa balance and try again</li>
+                      <li>Verify your phone number is correct</li>
+                      <li>Contact us via WhatsApp for alternative payment options</li>
+                      <li>Try making a smaller pledge amount</li>
                     </ul>
                   </div>
+
+                  <div class="alert alert-success mt-3">
+                    <i class="bi bi-heart-fill me-2"></i>
+                    <strong>Don't give up!</strong> Your support means the world to us. We're here to help make it work - reach out to us at <strong>254722104985</strong> on WhatsApp or try again in a few moments.
+                  </div>
+
+                  <p class="text-muted small mb-0">Common reasons: Insufficient balance, incorrect PIN, timeout, or network issues.</p>
                 </div>
               </div>
             </div>
             <div class="modal-footer">
+              <button type="button" class="btn btn-outline-secondary" id="backToStep1Btn">
+                <i class="bi bi-arrow-left me-2"></i>Back
+              </button>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="mpesaCloseBtn">Close</button>
               <button type="button" class="btn btn-success" id="initiatePaymentBtn">
                 <i class="bi bi-send-fill me-2"></i>Send Payment Prompt
@@ -756,13 +770,6 @@
         return false;
       }
       
-      // Store payment details
-      paymentDetails = {
-        amount: amount,
-        phone: phone,
-        note: note || 'Pledge to Arise Band KE'
-      };
-      
       // Format phone number (remove spaces, ensure 254 format)
       let formattedPhone = phone.replace(/\s+/g, '');
       if (formattedPhone.startsWith('0')) {
@@ -773,12 +780,17 @@
         formattedPhone = '254' + formattedPhone;
       }
       
-      paymentDetails.phone = formattedPhone;
+      // Store payment details
+      paymentDetails = {
+        amount: amount,
+        phone: formattedPhone,
+        note: note || 'Pledge to Arise Band KE'
+      };
       
-      // Update confirmation display
-      document.getElementById('confirmAmount').textContent = 'KES ' + amount;
-      document.getElementById('confirmPhone').textContent = phone;
-      document.getElementById('confirmNote').textContent = note || '-';
+      // Auto-fill M-Pesa modal fields
+      document.getElementById('mpesaPhoneNumber').value = formattedPhone;
+      document.getElementById('mpesaPledgeAmount').value = amount;
+      document.getElementById('mpesaPledgeNote').value = note || 'Pledge to Arise Band KE';
       
       // Reset to step 1
       showMpesaStep(1);
@@ -805,46 +817,107 @@
       // Manage buttons
       const initiateBtn = document.getElementById('initiatePaymentBtn');
       const tryAgainBtn = document.getElementById('tryAgainBtn');
+      const backBtn = document.getElementById('backToStep1Btn');
       const closeBtn = document.getElementById('mpesaCloseBtn');
       
       initiateBtn.style.display = step === 1 ? 'inline-block' : 'none';
       tryAgainBtn.style.display = step === 4 ? 'inline-block' : 'none';
+      backBtn.style.display = (step === 2 || step === 3 || step === 4) ? 'inline-block' : 'none';
       closeBtn.textContent = (step === 3 || step === 4) ? 'Close' : 'Cancel';
     }
     
+    // Handle "Back" button
+    document.getElementById('backToStep1Btn').addEventListener('click', function() {
+      showMpesaStep(1);
+    });
+    
     // Initiate STK Push
     async function initiateSTKPush() {
+      // Get the M-Pesa phone number from the modal input
+      const mpesaPhone = document.getElementById('mpesaPhoneNumber').value;
+      const amount = document.getElementById('mpesaPledgeAmount').value;
+      const note = document.getElementById('mpesaPledgeNote').value;
+      
+      if (!mpesaPhone || !amount) {
+        alert('⚠️ Please fill in M-Pesa phone number and amount');
+        return;
+      }
+      
+      // Update payment details with modal values
+      paymentDetails.phone = mpesaPhone;
+      paymentDetails.amount = amount;
+      paymentDetails.note = note || 'Pledge to Arise Band KE';
+      
       console.log('Initiating M-Pesa STK Push...');
       console.log('Payment Details:', paymentDetails);
+      
+      // Show processing alert
+      alert('📱 Initiating M-Pesa STK Push...\n\nPlease check your phone for the payment prompt.\n\nEnter your M-Pesa PIN to complete the payment.');
       
       // Show processing step
       showMpesaStep(2);
       document.getElementById('processingPhone').textContent = paymentDetails.phone;
       
+      // Create order reference
+      const pledgeRef = 'PLEDGE-' + Date.now();
+      
+      // Create WhatsApp message with pledge details
+      const message = `🎵 *ARISE BAND SUPPORT PLEDGE*\n\n` +
+        `📦 *Pledge Reference:* ${pledgeRef}\n` +
+        `📅 *Date:* ${new Date().toLocaleString()}\n\n` +
+        `👤 *Supporter Details:*\n` +
+        `Phone: ${paymentDetails.phone}\n` +
+        `Note: ${paymentDetails.note}\n\n` +
+        `💳 *Payment Details:*\n` +
+        `Method: M-Pesa\n` +
+        `Amount: KES ${paymentDetails.amount}\n` +
+        `Status: Pending STK Push\n\n` +
+        `*IMPORTANT:* Please complete the M-Pesa payment on your phone (${paymentDetails.phone}) to confirm this pledge.\n\n` +
+        `Thank you for supporting Arise Band! 🙏`;
+      
+      const whatsappNumber = '254722104985'; // Arise Band WhatsApp
+      const encodedMessage = encodeURIComponent(message);
+      const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+      
+      // Save pledge to localStorage
+      let pledges = JSON.parse(localStorage.getItem('bandPledges') || '[]');
+      pledges.push({
+        reference: pledgeRef,
+        amount: paymentDetails.amount,
+        phone: paymentDetails.phone,
+        note: paymentDetails.note,
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem('bandPledges', JSON.stringify(pledges));
+      
+      // Open WhatsApp after short delay
+      setTimeout(() => {
+        window.open(whatsappURL, '_blank');
+        
+        // Show success step
+        showMpesaStep(3);
+        document.getElementById('transactionId').textContent = pledgeRef;
+        document.getElementById('receiptAmount').textContent = 'KES ' + paymentDetails.amount;
+        document.getElementById('receiptPhone').textContent = paymentDetails.phone;
+        
+        // Clear form
+        document.getElementById('quickPledgeForm').reset();
+        
+        // Show success message
+        alert('✅ Pledge submitted!\n\n' +
+              '1. Complete M-Pesa payment on your phone\n' +
+              '2. Send the WhatsApp message to confirm\n\n' +
+              'Pledge Reference: ' + pledgeRef);
+      }, 2000);
+      
       try {
-        // Simulate API call (replace with actual M-Pesa Daraja API call)
+        // Simulate API call (replace with actual M-Pesa Daraja API call when ready)
         const response = await sendMpesaRequest(paymentDetails);
         
         if (response.success) {
-          // Show success step
-          setTimeout(() => {
-            showMpesaStep(3);
-            document.getElementById('transactionId').textContent = response.transactionId || 'MPESA-' + Date.now();
-            document.getElementById('receiptAmount').textContent = 'KES ' + paymentDetails.amount;
-            document.getElementById('receiptPhone').textContent = paymentDetails.phone;
-            
-            // Clear form
-            document.getElementById('quickPledgeForm').reset();
-            
-            // Send notification to band
-            sendPledgeNotification(paymentDetails, response.transactionId);
-          }, 3000); // Simulate 3 second processing
+          console.log('M-Pesa request sent successfully');
         } else {
-          // Show error step
-          setTimeout(() => {
-            showMpesaStep(4);
-            document.getElementById('errorMessage').textContent = response.message || 'The transaction could not be completed.';
-          }, 2000);
+          console.log('M-Pesa request failed:', response.message);
         }
       } catch (error) {
         console.error('M-Pesa error:', error);
