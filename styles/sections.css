@@ -3,6 +3,198 @@
    Page sections and layout styles
    ======================================== */
 
+/* === Hero Slideshow Section === */
+.hero-slideshow-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.hero-slideshow-section .carousel {
+  height: 100vh;
+  width: 100%;
+}
+
+.hero-slideshow-section .carousel-item {
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.hero-content {
+  text-align: center;
+  padding: 2rem;
+  z-index: 3;
+}
+
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 5rem;
+  font-weight: 900;
+  color: #ffffff;
+  text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.9),
+               0 0 30px rgba(255, 215, 0, 0.3);
+  margin-bottom: 1.5rem;
+  letter-spacing: 2px;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.hero-subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #ffd700;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  animation: fadeInUp 1.5s ease-out;
+}
+
+.hero-content .btn {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: 50px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  animation: fadeInUp 1.8s ease-out;
+}
+
+.hero-content .btn:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Individual Hero Slide Backgrounds */
+.hero-slide-1 {
+  background-image: url('../assets/images/slide1.jpg');
+  animation: zoomIn 3s ease-in-out;
+}
+
+.hero-slide-2 {
+  background-image: url('../assets/images/slide2.jpg');
+  animation: slideInRight 1s ease-out;
+}
+
+.hero-slide-3 {
+  background-image: url('../assets/images/slide3.jpg');
+  animation: slideInLeft 1s ease-out;
+}
+
+.hero-slide-4 {
+  background-image: url('../assets/images/concert.jpg');
+  animation: fadeInScale 1.5s ease-in-out;
+}
+
+.hero-slide-5 {
+  background-image: url('../assets/images/outreach.jpg');
+  animation: slideInUp 1s ease-out;
+}
+
+.hero-slide-6 {
+  background-image: url('../assets/images/rehearsal.jpg');
+  animation: rotateIn 1.2s ease-out;
+}
+
+.hero-slide-7 {
+  background-image: url('../assets/images/Ariseprac.jpg');
+  animation: slideInDown 1s ease-out;
+}
+
+.hero-slideshow-section .carousel-indicators {
+  bottom: 3rem;
+  z-index: 15;
+}
+
+.hero-slideshow-section .carousel-indicators button {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin: 0 8px;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+.hero-slideshow-section .carousel-indicators button.active {
+  background-color: #ffd700;
+  border-color: #ffd700;
+}
+
+.hero-slideshow-section .carousel-control-prev,
+.hero-slideshow-section .carousel-control-next {
+  width: 10%;
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
+  z-index: 15;
+}
+
+.hero-slideshow-section .carousel-control-prev:hover,
+.hero-slideshow-section .carousel-control-next:hover {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .hero-title {
+    font-size: 3.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+  }
+  
+  .hero-content .btn {
+    font-size: 1rem;
+    padding: 0.75rem 2rem !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-title {
+    font-size: 2rem;
+  }
+  
+  .hero-subtitle {
+    font-size: 1rem;
+  }
+}
+
 /* === Vision & Mission Section === */
 #vision-mission {
   background-image: url('../assets/images/Ariseprac.jpg');
