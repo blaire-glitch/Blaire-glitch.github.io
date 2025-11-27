@@ -3,8 +3,6 @@ permalink: pretty
 
 # Build settings
 markdown: kramdown
-plugins:
-  - jekyll-redirect-from
 
 # Exclude files from processing
 exclude:
@@ -14,9 +12,12 @@ exclude:
   - Gemfile.lock
   - node_modules
   - vendor
+  - "*.md"
 
-# Collections (if needed)
-collections:
-  pages:
-    output: true
-    permalink: /:name/
+# Keep .html files but don't show extension in permalinks
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      permalink: /:basename/
