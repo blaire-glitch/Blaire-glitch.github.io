@@ -44,6 +44,26 @@
   font-weight: 500;
 }
 
+/* === Event List Items === */
+.list-group-item {
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.list-group-item:hover {
+  background-color: #f8f9fa;
+  transform: translateX(5px);
+}
+
+.list-group-item a {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.list-group-item a:hover .fw-bold {
+  color: #0dcaf0 !important;
+}
+
 /* === Carousel Container === */
 .carousel-container {
   width: 400px;
