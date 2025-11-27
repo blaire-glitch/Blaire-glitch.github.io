@@ -57,7 +57,12 @@
 
   <section class="py-5 bg-light">
     <div class="container">
-      <h2 class="text-center mb-5">Meet the Band</h2>
+      <div class="d-flex justify-content-between align-items-center mb-5">
+        <h2 class="mb-0">Meet the Band</h2>
+        <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#memberLoginModal">
+          <i class="bi bi-person-circle me-2"></i>Band Member Login
+        </button>
+      </div>
       <div class="row g-4 justify-content-center">
         <div class="col-md-3 text-center">
           <a href="member-irene.html">
@@ -195,7 +200,213 @@
     </div>
   </div>
 
+  <!-- Band Member Login Modal -->
+  <div class="modal fade" id="memberLoginModal" tabindex="-1" aria-labelledby="memberLoginModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content bg-dark border-info">
+        <div class="modal-header border-info">
+          <h5 class="modal-title text-info" id="memberLoginModalLabel">
+            <i class="bi bi-person-circle me-2"></i>Band Member Access
+          </h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Login/Signup Tabs -->
+          <ul class="nav nav-pills mb-4 justify-content-center" id="memberAuthTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button class="nav-link active" id="login-tab" data-bs-toggle="pill" data-bs-target="#login-panel" type="button" role="tab" aria-controls="login-panel" aria-selected="true">
+                <i class="bi bi-box-arrow-in-right me-1"></i>Login
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="signup-tab" data-bs-toggle="pill" data-bs-target="#signup-panel" type="button" role="tab" aria-controls="signup-panel" aria-selected="false">
+                <i class="bi bi-person-plus me-1"></i>Sign Up
+              </button>
+            </li>
+          </ul>
+
+          <div class="tab-content" id="memberAuthTabsContent">
+            <!-- Login Panel -->
+            <div class="tab-pane fade show active" id="login-panel" role="tabpanel" aria-labelledby="login-tab">
+              <form id="memberLoginForm">
+                <div class="mb-3">
+                  <label for="loginEmail" class="form-label text-white">Email Address</label>
+                  <input type="email" class="form-control bg-secondary text-white border-info" id="loginEmail" placeholder="your.email@arise.com" required>
+                </div>
+                <div class="mb-3">
+                  <label for="loginPassword" class="form-label text-white">Password</label>
+                  <input type="password" class="form-control bg-secondary text-white border-info" id="loginPassword" placeholder="••••••••" required>
+                </div>
+                <div class="mb-3 form-check">
+                  <input type="checkbox" class="form-check-input border-info" id="rememberMe">
+                  <label class="form-check-label text-white-50 small" for="rememberMe">
+                    Remember me
+                  </label>
+                </div>
+                <button type="submit" class="btn btn-info w-100 mb-2">
+                  <i class="bi bi-box-arrow-in-right me-2"></i>Login
+                </button>
+                <div class="text-center">
+                  <a href="#" class="text-info small text-decoration-none">Forgot Password?</a>
+                </div>
+              </form>
+            </div>
+
+            <!-- Sign Up Panel -->
+            <div class="tab-pane fade" id="signup-panel" role="tabpanel" aria-labelledby="signup-tab">
+              <form id="memberSignupForm">
+                <div class="mb-3">
+                  <label for="signupName" class="form-label text-white">Full Name</label>
+                  <input type="text" class="form-control bg-secondary text-white border-info" id="signupName" placeholder="Your Full Name" required>
+                </div>
+                <div class="mb-3">
+                  <label for="signupEmail" class="form-label text-white">Email Address</label>
+                  <input type="email" class="form-control bg-secondary text-white border-info" id="signupEmail" placeholder="your.email@arise.com" required>
+                </div>
+                <div class="mb-3">
+                  <label for="signupPhone" class="form-label text-white">Phone Number</label>
+                  <input type="tel" class="form-control bg-secondary text-white border-info" id="signupPhone" placeholder="254722104985" required>
+                </div>
+                <div class="mb-3">
+                  <label for="signupPassword" class="form-label text-white">Password</label>
+                  <input type="password" class="form-control bg-secondary text-white border-info" id="signupPassword" placeholder="••••••••" required>
+                </div>
+                <div class="mb-3">
+                  <label for="signupConfirmPassword" class="form-label text-white">Confirm Password</label>
+                  <input type="password" class="form-control bg-secondary text-white border-info" id="signupConfirmPassword" placeholder="••••••••" required>
+                </div>
+                <div class="mb-3">
+                  <label for="signupRole" class="form-label text-white">Role in Band</label>
+                  <select class="form-select bg-secondary text-white border-info" id="signupRole" required>
+                    <option value="">Select your role...</option>
+                    <option value="vocalist">Vocalist</option>
+                    <option value="guitarist">Guitarist</option>
+                    <option value="bassist">Bassist</option>
+                    <option value="drummer">Drummer</option>
+                    <option value="keyboardist">Keyboardist</option>
+                    <option value="manager">Manager</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-warning w-100">
+                  <i class="bi bi-person-plus me-2"></i>Create Account
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <div class="alert alert-warning mt-4 mb-0">
+            <i class="bi bi-shield-lock-fill me-2"></i>
+            <strong>For Band Members Only:</strong> This area is restricted to official Arise Band members. Contact management for access approval.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../scripts/main.js"></script>
+  <script>
+    // Band Member Login Handler
+    document.getElementById('memberLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const email = document.getElementById('loginEmail').value;
+      const password = document.getElementById('loginPassword').value;
+      const rememberMe = document.getElementById('rememberMe').checked;
+      
+      // For now, this is a placeholder. In production, this would connect to your authentication backend
+      // You can integrate with Firebase, Auth0, or your own backend API
+      
+      // Simulate login process
+      const loginData = {
+        email: email,
+        timestamp: new Date().toISOString(),
+        rememberMe: rememberMe
+      };
+      
+      // Store in localStorage (temporary solution)
+      localStorage.setItem('ariseBandMemberLogin', JSON.stringify(loginData));
+      
+      // Show success message
+      alert('Login functionality is being set up. Please contact band management for access credentials.');
+      
+      // Close modal
+      const modal = bootstrap.Modal.getInstance(document.getElementById('memberLoginModal'));
+      modal.hide();
+      
+      // Reset form
+      this.reset();
+    });
+
+    // Band Member Signup Handler
+    document.getElementById('memberSignupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('signupName').value;
+      const email = document.getElementById('signupEmail').value;
+      const phone = document.getElementById('signupPhone').value;
+      const password = document.getElementById('signupPassword').value;
+      const confirmPassword = document.getElementById('signupConfirmPassword').value;
+      const role = document.getElementById('signupRole').value;
+      
+      // Validate passwords match
+      if (password !== confirmPassword) {
+        alert('Passwords do not match. Please try again.');
+        return;
+      }
+      
+      // Validate password strength (minimum 8 characters)
+      if (password.length < 8) {
+        alert('Password must be at least 8 characters long.');
+        return;
+      }
+      
+      // Create signup request
+      const signupData = {
+        name: name,
+        email: email,
+        phone: phone,
+        role: role,
+        timestamp: new Date().toISOString()
+      };
+      
+      // Send notification via WhatsApp (to band management)
+      const whatsappNumber = '254722104985';
+      const message = `🎵 NEW BAND MEMBER SIGNUP REQUEST 🎵\n\n` +
+                     `Name: ${name}\n` +
+                     `Email: ${email}\n` +
+                     `Phone: ${phone}\n` +
+                     `Role: ${role}\n\n` +
+                     `Please review and approve this signup request.\n` +
+                     `Time: ${new Date().toLocaleString()}`;
+      
+      const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      
+      // Store signup request
+      localStorage.setItem('ariseBandMemberSignupRequest', JSON.stringify(signupData));
+      
+      // Show success message
+      alert('Signup request submitted! Band management will review your application. You will be contacted via email or phone.');
+      
+      // Open WhatsApp notification (optional - for immediate notification)
+      if (confirm('Would you like to send a direct notification to band management via WhatsApp?')) {
+        window.open(whatsappUrl, '_blank');
+      }
+      
+      // Close modal
+      const modal = bootstrap.Modal.getInstance(document.getElementById('memberLoginModal'));
+      modal.hide();
+      
+      // Reset form
+      this.reset();
+    });
+
+    // Clear forms when modal is closed
+    document.getElementById('memberLoginModal').addEventListener('hidden.bs.modal', function () {
+      document.getElementById('memberLoginForm').reset();
+      document.getElementById('memberSignupForm').reset();
+    });
+  </script>
 </body>
 </html>
