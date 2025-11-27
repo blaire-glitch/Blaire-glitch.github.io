@@ -80,6 +80,40 @@
   const countdownTimer = setInterval(updateCountdown, 1000);
 })();
 
+// === Event 2 Countdown Timer ===
+(function initEvent2Countdown() {
+  const targetDate = new Date(2026, 0, 10, 18, 0, 0); // January 10, 2026, 6:00 PM
+  const el = document.getElementById('countdown-event2');
+  if (!el) return;
+
+  function format(n) {
+    return n.toString().padStart(2, '0');
+  }
+
+  function updateCountdown() {
+    const now = new Date();
+    let diff = targetDate - now;
+    
+    if (diff <= 0) {
+      el.textContent = 'Event started';
+      clearInterval(countdownTimer);
+      return;
+    }
+    
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff -= days * (1000 * 60 * 60 * 24);
+    const hours = Math.floor(diff / (1000 * 60 * 60));
+    diff -= hours * (1000 * 60 * 60);
+    const minutes = Math.floor(diff / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    el.textContent = `${days}d ${format(hours)}h ${format(minutes)}m ${format(seconds)}s`;
+  }
+
+  updateCountdown();
+  const countdownTimer = setInterval(updateCountdown, 1000);
+})();
+
 // === Event Logo Swap Animation ===
 (function initEventLogoSwap() {
   const logoEl = document.getElementById('eventLogo');
@@ -108,6 +142,39 @@
 
   // Pause swapping when modal is open
   const modalEl = document.getElementById('event1Modal');
+  if (modalEl) {
+    modalEl.addEventListener('show.bs.modal', () => clearInterval(swapTimer));
+  }
+})();
+
+// === Event 2 Logo Swap Animation ===
+(function initEvent2LogoSwap() {
+  const logoEl = document.getElementById('eventLogo2');
+  if (!logoEl) return;
+  
+  const sources = ['assets/images/worship.jpg', 'assets/images/logo.jpg'];
+  let idx = 0;
+
+  function swapLogo() {
+    idx = (idx + 1) % sources.length;
+    logoEl.style.opacity = 0;
+    
+    setTimeout(() => {
+      logoEl.src = sources[idx];
+      logoEl.alt = idx === 0 ? 'Community Evening of Worship Poster' : 'Arise Band Logo';
+      
+      // Restart CSS animation
+      logoEl.classList.remove('event-logo');
+      void logoEl.offsetWidth;
+      logoEl.classList.add('event-logo');
+      logoEl.style.opacity = 1;
+    }, 400);
+  }
+
+  const swapTimer = setInterval(swapLogo, 2500);
+
+  // Pause swapping when modal is open
+  const modalEl = document.getElementById('event2Modal');
   if (modalEl) {
     modalEl.addEventListener('show.bs.modal', () => clearInterval(swapTimer));
   }
