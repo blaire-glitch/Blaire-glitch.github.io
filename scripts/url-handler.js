@@ -3,48 +3,49 @@
    Remove .html from URL bar
    ======================================== */
 
-(function removeHtmlExtension() {
-  // Check if URL contains .html
-  const currentUrl = window.location.href;
-  
-  if (currentUrl.includes('.html')) {
-    // Remove .html extension from URL
-    const newUrl = currentUrl.replace(/\.html$/, '');
-    
-    // Replace URL without reloading page
+// Immediately remove .html from URL (runs before page loads)
+(function() {
+  if (window.location.pathname.endsWith('.html')) {
+    const newPath = window.location.pathname.replace(/\.html$/, '');
+    const newUrl = newPath + window.location.search + window.location.hash;
+    window.history.replaceState(null, '', newUrl);
+  }
+})();
+
+// Also run on DOMContentLoaded for safety
+document.addEventListener('DOMContentLoaded', function() {
+  if (window.location.pathname.endsWith('.html')) {
+    const newPath = window.location.pathname.replace(/\.html$/, '');
+    const newUrl = newPath + window.location.search + window.location.hash;
     window.history.replaceState(null, '', newUrl);
   }
   
-  // Handle all internal links to remove .html
-  document.addEventListener('DOMContentLoaded', function() {
-    const links = document.querySelectorAll('a[href*=".html"]');
-    
-    links.forEach(link => {
-      link.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        
-        // Only handle internal links
-        if (href && !href.startsWith('http') && !href.startsWith('//')) {
-          e.preventDefault();
-          
-          // Remove .html from href
-          const cleanHref = href.replace(/\.html$/, '');
-          
-          // Update URL without page reload
-          window.history.pushState(null, '', cleanHref);
-          
-          // Load the page content
-          window.location.href = href;
-        }
-      });
-    });
+  // Update all internal links to remove .html
+  const links = document.querySelectorAll('a[href*=".html"]');
+  links.forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && !href.startsWith('http') && !href.startsWith('//')) {
+      // Update href to remove .html
+      const cleanHref = href.replace(/\.html/g, '');
+      link.setAttribute('href', cleanHref);
+    }
   });
-})();
+});
 
-// Remove .html from URL on page load
+// Also run on full page load
 window.addEventListener('load', function() {
   if (window.location.pathname.endsWith('.html')) {
     const newPath = window.location.pathname.replace(/\.html$/, '');
-    window.history.replaceState(null, '', newPath + window.location.search + window.location.hash);
+    const newUrl = newPath + window.location.search + window.location.hash;
+    window.history.replaceState(null, '', newUrl);
+  }
+});
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function() {
+  if (window.location.pathname.endsWith('.html')) {
+    const newPath = window.location.pathname.replace(/\.html$/, '');
+    const newUrl = newPath + window.location.search + window.location.hash;
+    window.history.replaceState(null, '', newUrl);
   }
 });
