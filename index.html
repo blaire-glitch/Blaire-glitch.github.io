@@ -6,7 +6,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Arise Band_Ke</title>
+  <title>Arise Band_KE — Gospel. Groove. Glory. | Official Website</title>
+  <meta name="description" content="Arise Band_KE is a gospel music ministry from Busia County, Kenya. Worship concerts, community outreach, and faith events. Gospel. Groove. Glory.">
+  <meta name="keywords" content="Arise Band Kenya, gospel music Kenya, worship band Busia, Christian concerts Kenya, gospel band KE">
+  <meta property="og:title" content="Arise Band_KE — Gospel. Groove. Glory.">
+  <meta property="og:description" content="Gospel music ministry lifting hearts through worship, concerts, and community outreach in Kenya.">
+  <meta property="og:image" content="https://artheartinc.it.com/assets/images/logo.jpg">
+  <meta property="og:url" content="https://artheartinc.it.com">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"MusicGroup","name":"Arise Band_KE","url":"https://artheartinc.it.com","logo":"https://artheartinc.it.com/assets/images/logo.jpg","genre":"Gospel","email":"arisebandkenya@gmail.com","sameAs":["https://www.instagram.com/arisebandke","https://www.youtube.com/@AriseBandKE","https://www.facebook.com/arisebandke"],"address":{"@type":"PostalAddress","addressLocality":"Busia","addressCountry":"KE"}}
+  </script>
+  <!-- Google Analytics 4 (replace G-XXXXXXXXXX with your Measurement ID) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
   <link rel="icon" href="assets/images/logo.jpg" type="image/jpeg" sizes="32x32">
   
   <!-- Preconnect to external resources -->
@@ -20,6 +39,8 @@
   
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
   
   <!-- Custom CSS (Modular) -->
   <link rel="stylesheet" href="styles/styles.css" />
@@ -36,8 +57,10 @@
   <!-- URL Handler - Remove .html from URL bar -->
   <script src="scripts/url-handler.js"></script>
   
-  <!-- EmailJS SDK - Deferred -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer></script>
+  <!-- i18n Translations -->
+  <script src="scripts/translations.js" defer></script>
+  <!-- Newsletter -->
+  <script src="scripts/newsletter.js" defer></script>
 </head>
 
 <body>
@@ -54,7 +77,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
     <div class="container">
       <a class="navbar-brand" href="index.html">
-        <img src="assets/images/logo.jpg" alt="Arise Band_KE Logo" class="navbar-logo">
+        <img src="assets/images/logo.jpg" alt="Arise Band_KE Logo" class="navbar-logo" loading="eager" width="40" height="40">
         <span class="ms-2">Arise Band_KE</span>
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -64,22 +87,29 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
           <li class="nav-item">
-            <a class="nav-link active" href="index.html">Home</a>
+            <a class="nav-link active" href="index.html" data-i18n="home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/band-members.html">Band Members</a>
+            <a class="nav-link" href="pages/band-members.html" data-i18n="bandMembers">Band Members</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/events.html">Events</a>
+            <a class="nav-link" href="pages/events.html" data-i18n="events">Events</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/gallery.html">Gallery</a>
+            <a class="nav-link" href="pages/gallery.html" data-i18n="gallery">Gallery</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="pages/fanwall.html">Fan Wall</a>
+            <a class="nav-link" href="pages/fanwall.html" data-i18n="fanWall">Fan Wall</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#contact">Contact</a>
+            <a class="nav-link" href="#contact" data-i18n="contact">Contact</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-label="Language selector">🌍</a>
+            <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+              <li><button class="dropdown-item lang-btn" data-lang="en" onclick="setLang('en')">🇬🇧 English</button></li>
+              <li><button class="dropdown-item lang-btn" data-lang="sw" onclick="setLang('sw')">🇰🇪 Kiswahili</button></li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -176,14 +206,13 @@
 
   <!-- About Section -->
   <section id="about" class="py-5 bg-light">
-
-  </section>
-  <div class="container">
-    <h2 class="text-center mb-4">About Us</h2>
-    <p class="text-center">Arise Band_KE is a vibrant gospel band from Kenya, blending soulful harmonies with powerful
-      messages. We perform live, record original music, and inspire through sound. Our mission is rooted in Isaiah 60:1,
-      "Arise, shine, for your light has come, and the glory of the Lord rises upon you."</p>
-  <p>Founded with a passion for worship and community outreach, Arise Band_Kenya has grown into a vibrant ministry impacting lives through music, prayer, and service. From humble beginnings to powerful concerts and outreach missions, our journey is one of faith, unity, and purpose.</p></div>
+    <div class="container">
+      <h2 class="text-center mb-4">About Us</h2>
+      <p class="text-center">Arise Band_KE is a vibrant gospel band from Kenya, blending soulful harmonies with powerful
+        messages. We perform live, record original music, and inspire through sound. Our mission is rooted in Isaiah 60:1,
+        "Arise, shine, for your light has come, and the glory of the Lord rises upon you."</p>
+      <p>Founded with a passion for worship and community outreach, Arise Band_Kenya has grown into a vibrant ministry impacting lives through music, prayer, and service. From humble beginnings to powerful concerts and outreach missions, our journey is one of faith, unity, and purpose.</p>
+    </div>
   </section>
 
   <!-- Vision & Mission Section -->
@@ -245,17 +274,17 @@
     <div class="row justify-content-center">
       <div class="col-md-4 mb-3">
         <div class="card h-100 shadow-sm">
-          <img src="assets/images/concert.jpg" class="card-img-top" alt="Worship Concert">
+          <img src="assets/images/concert.jpg" class="card-img-top" alt="Arise Band worship concert performance" loading="lazy" width="400" height="267">
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <div class="card h-100 shadow-sm">
-          <img src="assets/images/outreach.jpg" class="card-img-top" alt="Community Outreach">
+          <img src="assets/images/outreach.jpg" class="card-img-top" alt="Arise Band community outreach mission" loading="lazy" width="400" height="267">
         </div>
       </div>
       <div class="col-md-4 mb-3">
         <div class="card h-100 shadow-sm">
-          <img src="assets/images/rehearsal.jpg" class="card-img-top" alt="Band Rehearsal">
+          <img src="assets/images/rehearsal.jpg" class="card-img-top" alt="Arise Band rehearsal session" loading="lazy" width="400" height="267">
         </div>
       </div>
     </div>
@@ -444,7 +473,7 @@
           </button>
         </div>
 
-        <p class="mt-3 mb-0 small muted-note">M-Pesa: Payb</svg>ill 123456 (use your name/phone as Account). Replace with your official paybill/till when ready. Online payments processed securely — we never store payment credentials.</p>
+        <p class="mt-3 mb-0 small muted-note">M-Pesa: Paybill <strong>[OFFICIAL PAYBILL]</strong> &bull; Account: ARISE DONATION &bull; Online payments processed securely.</p>
       </div>
 
       <div class="col-md-4 col-sm-8 mt-4 mt-md-0">
@@ -628,7 +657,7 @@
 
             <ul class="list-unstyled mb-0">
               <li class="mb-2 contact-note"><strong>Email:</strong> <a class="text-decoration-underline contact-email-link" href="mailto:arisebandkenya@gmail.com">arisebandkenya@gmail.com</a></li>
-              <li class="mb-2 contact-note"><strong>Phone/WhatsApp:</strong> <span class="contact-info">+254 7XX XXX XXX</span></li>
+            <li class="mb-2 contact-note"><strong>Phone/WhatsApp:</strong> <a href="https://wa.me/254722104985" class="contact-info">+254 722 104 985</a></li>
               <li class="mb-0 contact-note">
                 <strong>Booking:</strong>
                 <span class="contact-info">
@@ -762,6 +791,19 @@
     </div>
   </div>
 
+  <!-- Newsletter Section -->
+  <section class="py-4" style="background:linear-gradient(135deg,#0a1628,#1a2744)" aria-label="Newsletter signup">
+    <div class="container text-center text-white">
+      <h4 class="mb-1" data-i18n="newsletterTitle">Stay Connected with Arise</h4>
+      <p class="text-white-50 small mb-3" data-i18n="newsletterSubtitle">Get event updates, worship resources &amp; prayer requests.</p>
+      <form class="arise-newsletter-form d-flex justify-content-center gap-2 flex-wrap" novalidate>
+        <input type="email" class="form-control" style="max-width:300px" placeholder="Your email address" data-i18n-placeholder="newsletterPlaceholder" required aria-label="Email address">
+        <button type="submit" class="btn btn-info px-4" data-i18n="newsletterBtn">Subscribe</button>
+      </form>
+      <div class="newsletter-feedback"></div>
+    </div>
+  </section>
+
   <!-- Footer -->
   <footer class="bg-dark text-white py-5">
     <div class="container">
@@ -789,6 +831,8 @@
           <ul class="list-unstyled">
             <li class="mb-2"><a href="#media" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right"></i> Media</a></li>
             <li class="mb-2"><a href="pages/events.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right"></i> All Events</a></li>
+            <li class="mb-2"><a href="pages/resources.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right"></i> Worship Resources</a></li>
+            <li class="mb-2"><a href="pages/volunteer.html" class="text-white-50 text-decoration-none hover-link"><i class="bi bi-chevron-right"></i> Volunteer</a></li>
           </ul>
         </div>
         <div class="col-md-3 col-sm-6 mb-3">
@@ -804,12 +848,12 @@
       <div class="row">
         <div class="col-12 text-center pt-3 border-top border-secondary">
           <div class="mb-3">
-            <a href="https://instagram.com" class="text-white me-3 fs-4"><i class="fab fa-instagram"></i></a>
-            <a href="https://youtube.com" class="text-white me-3 fs-4"><i class="fab fa-youtube"></i></a>
-            <a href="https://facebook.com" class="text-white me-3 fs-4"><i class="fab fa-facebook"></i></a>
-            <a href="https://tiktok.com" class="text-white fs-4"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.instagram.com/arisebandke" target="_blank" rel="noopener" class="text-white me-3 fs-4" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://www.youtube.com/@AriseBandKE" target="_blank" rel="noopener" class="text-white me-3 fs-4" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+            <a href="https://www.facebook.com/arisebandke" target="_blank" rel="noopener" class="text-white me-3 fs-4" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.tiktok.com/@arisebandke" target="_blank" rel="noopener" class="text-white fs-4" aria-label="TikTok"><i class="bi bi-tiktok"></i></a>
           </div>
-          <p class="mb-0 text-white-50">&copy; 2025 Arise Band_KE. All rights reserved.</p>
+          <p class="mb-0 text-white-50">&copy; 2026 Arise Band_KE. All rights reserved.</p>
         </div>
       </div>
     </div>

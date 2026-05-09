@@ -48,7 +48,7 @@
 
 // === Event Countdown Timer ===
 (function initEventCountdown() {
-  const targetDate = new Date(2025, 11, 15, 19, 0, 0);
+  const targetDate = new Date(2026, 7, 15, 19, 0, 0); // Aug 15 2026
   const el = document.getElementById('countdown-event1');
   if (!el) return;
 
@@ -61,7 +61,7 @@
     let diff = targetDate - now;
     
     if (diff <= 0) {
-      el.textContent = 'Event started';
+      el.textContent = '🎉 Event Live / Past — Check for updates!';
       clearInterval(countdownTimer);
       return;
     }
@@ -82,7 +82,7 @@
 
 // === Event 2 Countdown Timer ===
 (function initEvent2Countdown() {
-  const targetDate = new Date(2026, 0, 10, 18, 0, 0); // January 10, 2026, 6:00 PM
+  const targetDate = new Date(2026, 9, 10, 18, 0, 0); // Oct 10 2026, 6:00 PM
   const el = document.getElementById('countdown-event2');
   if (!el) return;
 
@@ -95,7 +95,7 @@
     let diff = targetDate - now;
     
     if (diff <= 0) {
-      el.textContent = 'Event started';
+      el.textContent = '🎉 Event Live / Past — Check for updates!';
       clearInterval(countdownTimer);
       return;
     }
@@ -182,7 +182,7 @@
 
 // === Event 3 Countdown Timer ===
 (function initEvent3Countdown() {
-  const targetDate = new Date(2025, 11, 27, 17, 0, 0); // December 27, 2025, 5:00 PM
+  const targetDate = new Date(2026, 11, 27, 17, 0, 0); // Dec 27 2026, 5:00 PM
   const el = document.getElementById('countdown-event3');
   if (!el) return;
 
@@ -195,7 +195,7 @@
     let diff = targetDate - now;
     
     if (diff <= 0) {
-      el.textContent = 'Event started';
+      el.textContent = '🎉 Event Live / Past — Check for updates!';
       clearInterval(countdownTimer);
       return;
     }
